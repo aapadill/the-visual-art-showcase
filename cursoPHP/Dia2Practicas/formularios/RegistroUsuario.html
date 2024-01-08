@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+</head>
+<body>
+	<header><h1>Registro Perfil</h1></header>
+	<main>
+<form action="PerfilUsuario.php" method="POST" enctype="multipart/form-data"> 
+	<input type="hidden" name="id" value="0">
+	<label for="nombre">
+		Correo electrónico: 
+		<input type="text" name="mail">
+	</label>
+	<br>
+	<label for="nombre">
+		Password: 
+		<input type="Password" name="password">
+	</label>
+	<br>
+	<label for="ocupacion">
+		Ocupación: <br>
+		<textarea rows="4" cols="50" name="ocupacion"></textarea>
+	</label>
+	<br>
+	<label for="sexo">
+		Sexo: <br>
+		<label><input type="radio" name="sexo" value="Femenino"><span>Femenino</span></label><br>
+  		<label><input type="radio" name="sexo" value="Masculino"><span>Masculino</span></label><br>
+  		<label><input type="radio" name="sexo" value="Otro"><span>Otro</span></label><br>
+	</label>
+	<br>
+	<label for="lenguajes">
+		Lenguajes: <br>
+		<label><input type="checkbox" name="lenguaje[]" value="PHP"><span>PHP</span></label><br>
+  		<label><input type="checkbox" name="lenguaje[]" value="HTML"><span>HTML</span></label><br>
+  		<label><input type="checkbox" name="lenguaje[]" value="Java"><span>Java</span></label><br>
+  		<label><input type="checkbox" name="lenguaje[]" value="JavaScript"><span>JavaScript</span></label><br>
+  		<label><input type="checkbox" name="lenguaje[]" value="Python"><span>Python</span></label><br>
+	</label>
+	<br>
+	
+	<label>Perfil: <br>
+		<select name="perfil">
+			<option value="">Seleccione una opción</option>
+			<option value="Administrador">Administrador</option>
+			<option value="Comprador">Comprador</option>
+			<option value="Vendedor">Vendedor</option>
+		</select>
+	</label>
+	<br>
+
+	<label for="nombre">
+		Imagen Perfil: 
+		<input type="file" name="img_perfil">
+	</label>
+	<br>
+
+	<input type="submit" value="Registrar">
+
+</form>
+
+</main>
+<footer>Mi Curso PHP</footer>
+</body>
+</html>

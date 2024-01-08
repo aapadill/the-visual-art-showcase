@@ -1,0 +1,79 @@
+.holster {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-flow: column nowrap;
+    font-family: monospace;
+  }
+  .container {
+    display: flex;
+    margin: 1em auto;
+    outline: 1px dashed lightgray;
+    flex: none;
+    overflow: auto;
+  }
+  .container.x {
+    width: 100%;
+    height: 128px;
+    flex-flow: row nowrap;
+    overflow-y: hidden;
+  }
+  .container.y {
+    /* width: 512px; */
+    height: 512px;
+    width: 100%;
+    /* height: 100%; */
+    flex-flow: column nowrap;
+    overflow-x: hidden;
+    border-radius: 5%;
+  }
+  /* scroll-snap */
+  .x.mandatory-scroll-snapping {
+    scroll-snap-type: x mandatory;
+  }
+  .x.proximity-scroll-snapping {
+    scroll-snap-type: x proximity;
+  }
+  .y.mandatory-scroll-snapping {
+    scroll-snap-type: y mandatory;
+  }
+  .y.proximity-scroll-snapping {
+    scroll-snap-type: y proximity;
+  }
+  
+  .container > div {
+    text-align: center;
+    scroll-snap-align: center;
+    flex: none;
+  }
+  
+  .x.container > div {
+    line-height: 128px;
+    font-size: 64px;
+    width: 100%;
+    height: 128px;
+  }
+  .y.container > div {
+    line-height: 512px;
+    /* line-height: 100%; */
+    font-size: 128px;
+    /* width: 256px; */
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* appearance fixes */
+  .y.container > div:first-child {
+    line-height: 512px;
+    font-size: 64px;
+  }
+  
+  /* coloration */
+  .container > div:nth-child(even) {
+    /* background-color: #87ea87; */
+    background-color: #87ccea;
+  }
+  .container > div:nth-child(odd) {
+    background-color: #87ccea;
+  }
+  
