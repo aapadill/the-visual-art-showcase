@@ -116,4 +116,36 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
     //full
+
+    // Get the header element
+    const header = document.querySelector('header');
+
+    // Get the logo element
+    const logo = document.querySelector('.logo');
+
+    // Initial scroll position
+    let lastScroll = 0;
+
+    // Function to handle scroll events
+    function handleScroll() {
+        const currentScroll = window.scrollY;
+
+        if (currentScroll > lastScroll) {
+            // Scrolling down, hide the header
+            header.classList.add('hide-header');
+            // Make the logo smaller
+            logo.classList.add('small-logo');
+        } else {
+            // Scrolling up, show the header
+            header.classList.remove('hide-header');
+            // Make the logo normal size
+            logo.classList.remove('small-logo');
+        }
+
+        lastScroll = currentScroll;
+    }
+
+    // Listen for the scroll event
+    window.addEventListener('scroll', handleScroll);
+
 });

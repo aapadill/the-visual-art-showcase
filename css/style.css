@@ -35,8 +35,7 @@ small, .text_small {font-size: 0.8rem;}
 body{
     margin: 0;
     border: 0;
-
-    background: white;
+    /* background: red; */
     font-family: acumin-pro, sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -55,14 +54,9 @@ body{
     all: unset;
 }
 
-.menu {
-    position: relative;
-    min-height: 108px;
-    min-width: 800px;
-    /* border: solid 1px red; */
+/* .menu {
     background-color: #262829;
-    color: white;
-}
+} */
 
 .corner {
     position: absolute;
@@ -126,9 +120,64 @@ b:not(:hover), i:not(:hover){
 }
 
 header{
+    /* border: solid 1px red; */
+    /* antes era de menu */
+    position: relative;
+    min-height: 108px;
+    min-width: 800px;
+    background-color: rgb(38, 40, 41);
+    color: white;
+    /* antes era de menu */
     position: sticky;
     top: 0;
     z-index: 2;
+}
+
+/* hide the header */
+header.hide-header {
+    /* transform: translateY(-25%); */
+    background-color: rgba(0, 0, 0, 0);
+    transition: transform 0.3s ease;
+}
+
+/* show the header menu when scrolling up */
+header:not(.hide-header) {
+    /* transform: translateY(0); */
+    transition: transform 0.3s ease;
+}
+
+/* hide the menu options */
+header.hide-header nav{
+    transform: translateY(-250%);
+    transition: all linear 150ms;
+}
+
+/* show the letters menu when scrolling up */
+header:not(.hide-header nav) {
+    transition: transform 0.3s ease;
+}
+
+/* shrink the logo when scrolling up */
+header.hide-header .logo{
+    transition: transform 0.3s ease;
+    /* transform: translate(-50%, -30%); */
+    /* width: 67.5px; */
+    /* height: 67.5px; */
+    /* font-size: 75%; */
+    background-color: rgba(0, 0, 0, 0.1);
+    -webkit-backdrop-filter: blur(10px); 
+    backdrop-filter: blur(10px);
+}
+
+header.hide-header .logo:hover{
+    background-color: white;
+    color: black;
+    transition: all linear 150ms;
+}
+
+/* show logo when scrolling up */
+header.hide-header .logo{
+    transition: transform 0.3s ease;
 }
 
 nav ul{
@@ -321,6 +370,7 @@ i:hover ~ figcaption{
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.55);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     animation: fadeIn 120ms linear;
 }
@@ -343,6 +393,7 @@ i:hover ~ figcaption{
 
     background-color: rgba(0, 0, 0, 0.55);
     border: 5px solid rgba(0, 0, 0, 0.7);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 
     border-radius: 25%;
