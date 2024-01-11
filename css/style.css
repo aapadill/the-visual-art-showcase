@@ -121,6 +121,9 @@ b:not(:hover), i:not(:hover){
 
 header{
     /* border: solid 1px red; */
+    transition: transform 0.25s ease-in-out;
+    transition: display 0.25s ease-in-out;
+    transition: background-color 0.25s ease-in-out;
     /* antes era de menu */
     position: relative;
     min-height: 108px;
@@ -131,31 +134,25 @@ header{
     position: sticky;
     top: 0;
     z-index: 2;
+    display: block;
 }
 
 /* hide the header */
 header.hide-header {
-    /* transform: translateY(-25%); */
     background-color: rgba(0, 0, 0, 0);
-    transition: transform 0.3s ease;
-}
-
-/* show the header menu when scrolling up */
-header:not(.hide-header) {
-    /* transform: translateY(0); */
-    transition: transform 0.3s ease;
 }
 
 /* hide the menu options */
 header.hide-header nav{
-    transform: translateY(-250%);
-    transition: all linear 150ms;
+    transition: display 2s ease-in-out;
+    /* transition: transform 0.1s ease-in-out; */
+    /* transform: translateY(-200%); */
+    display: none;
 }
 
 /* show the letters menu when scrolling up */
-header:not(.hide-header nav) {
-    transition: transform 0.3s ease;
-}
+/* header:not(.hide-header nav) { */
+/* } */
 
 /* shrink the logo when scrolling up */
 header.hide-header .logo{
