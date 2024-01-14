@@ -2,7 +2,7 @@
 html {
     font-size: 100%;
     /* TODO: hacer responsivo para mobile, tablet, pc */
-    min-width: 1000px;
+    /* min-width: 1000px; */
     margin: 0 1%;
     background-color: #262829;
 } /*16px*/
@@ -53,8 +53,8 @@ header{
     /* antes era de menu */
     position: relative; /* child elements are relative to this position */
     min-height: 108px;
-    min-width: 800px;
-    background-color: rgb(38, 40, 41);
+    width: 100%;
+    background-color: red;
     color: white;
     /* antes era de menu */
     position: sticky;
@@ -67,18 +67,19 @@ header{
     background-color: #262829;
 } */
 
-.corner {
-    position: absolute;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-}
-
 /* TODO: separate classes accordingly to names, example:
     corner: only corners the element
     top: only moves the element to the top
     left: only moves the element to the left
 */
+
+.corner {
+    box-sizing: border-box;
+    position: absolute;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
 
 /* you gotta transform it 'cause you actually want to end it at 50% vertical, not start it from 50%*/
 .center-left {
@@ -102,6 +103,11 @@ header{
     display: flex;
     width: 100%;
     justify-content: space-between;
+    /* justify-content: flex-start; */
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    overflow: hidden;
+    align-items: center;
 }
 
 /* .bottom-left {
@@ -113,6 +119,57 @@ header{
     bottom: 0;
     right: 0;
 } */
+
+/* phone vertical 301-480*/
+@media only screen and (min-width: 301px) and (max-width: 768px) {
+    header {
+        background-color: purple;
+    }
+
+    .center-left {
+        display: none;
+    }
+
+    .center-right {
+        display: none;
+    }
+}
+
+/* tablet horizontal, mid desktop */
+@media only screen and (min-width: 769px) and (max-width: 1279px) {
+    header {
+        background-color: rgb(0, 55, 128);
+    }
+
+    .center-left {
+        min-width: 42%;
+        font-size: 100%;
+    }
+
+    .center-left ul li:last-child {
+        margin-right: 0;
+        white-space: normal;
+    }
+
+    .center-right {
+        min-width: 42%;
+    }
+}
+
+/* full desktop */
+@media only screen and (min-width: 1280px) {
+    header {
+        background-color: rgb(38, 40, 41);
+    }
+
+    .center-left {
+        max-width: 43%;
+    }
+
+    .center-right {
+        max-width: 43%;
+    }
+}
 
 /* logo's font style and position */
 .logo p{
