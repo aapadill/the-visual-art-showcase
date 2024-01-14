@@ -110,7 +110,7 @@ body{
 b:hover, i:hover{
     /* font-size: 150%;
     text-decoration: underline;*/
-    filter: invert(35%)
+    filter: invert(35%);
 }
 
 b:not(:hover), i:not(:hover){
@@ -137,7 +137,8 @@ header{
     display: block;
 }
 
-/* hide the header */
+/* when scrolling down */
+/* remove the color of header */
 header.hide-header {
     background-color: rgba(0, 0, 0, 0);
 }
@@ -145,37 +146,29 @@ header.hide-header {
 /* hide the menu options */
 header.hide-header nav{
     transition: display 2s ease-in-out;
-    /* transition: transform 0.1s ease-in-out; */
-    /* transform: translateY(-200%); */
     display: none;
 }
 
-/* show the letters menu when scrolling up */
-/* header:not(.hide-header nav) { */
-/* } */
-
-/* shrink the logo when scrolling up */
+/* logo's background color is now transparent */
 header.hide-header .logo{
-    transition: transform 0.3s ease;
-    /* transform: translate(-50%, -30%); */
-    /* width: 67.5px; */
-    /* height: 67.5px; */
-    /* font-size: 75%; */
-    background-color: rgba(0, 0, 0, 0.1);
-    -webkit-backdrop-filter: blur(10px); 
+    /* filter: invert(100%); */
+    border-radius: 5px;
+    color: rgba(255, 255, 255, 0.85);
+    border: solid 2px rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+    /* for safari */
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
 
+/* logo's hover is white */
 header.hide-header .logo:hover{
     background-color: white;
     color: black;
+    /* border: solid 2px rgba(1, 1, 1, 0.1); */
     transition: all linear 150ms;
 }
-
-/* show logo when scrolling up */
-header.hide-header .logo{
-    transition: transform 0.3s ease;
-}
+/* when scrolling down */
 
 nav ul{
     display: flex;
