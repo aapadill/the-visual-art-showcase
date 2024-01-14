@@ -147,6 +147,17 @@ document.addEventListener("DOMContentLoaded", () => {
         lastScroll = currentScroll;
     }
 
+    function toggleSearch() {
+        var searchBar = document.getElementById('searchBar');
+        searchBar.style.width = (searchBar.style.width === '0px' || searchBar.style.width === '') ? '150px' : '0';
+    }
+
+    function performSearch() {
+        var searchTerm = document.getElementById('searchBar').value;
+        // Add logic to handle the search term, e.g., make an API request or update the page content
+        console.log('Searching for:', searchTerm);
+    }
+
     //listen for the scroll event
     window.addEventListener('scroll', handleScroll);
 });

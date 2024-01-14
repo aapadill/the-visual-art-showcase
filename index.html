@@ -11,56 +11,105 @@
     </head>
 
     <body>
-        <header>
-            <!-- <div class="menu"> -->
-                <nav class="corner center-left">
-                    <ul>
-                        <li> <b> LOG IN </b> </li>
-                        <li> <b> SUBSCRIBE </b> </li>
-                        <li> ARTIST? <b> SUBMIT </b> </li>
-                    </ul>
-                </nav>
-            
-                <nav class="corner center-right">
-                    <ul>
-                        <li> <b> ARCHIVES </b></li>
-                        <li> <b> ABOUT </b></li>
-                        <li> 
-                            <select name="language-select" id="language-select">
-                                <option value="en"> EN </option>
-                                <option value="es"> ES </option>
-                                <option value="fi"> FI </option>
-                                <option value="sv"> SV </option>
-                            </select> 
-                        </li>
-                    </ul>
-                </nav>
-            
-                <!-- <nav class="corner bottom-left">
-                    <ul>
-                        <li> <i class="fa-solid fa-bars icon"></i> </li>
-                    </ul>
-                </nav> -->
-            
-                <!-- <nav class="corner bottom-right">
-                    <ul>
-                        <li><i class="fa-solid fa-magnifying-glass icon"></i></li>
-                    </ul>
-                </nav> -->
+        <header class="main-header">
+            <nav class="corner center-left">
+                <ul>
+                    <li> <b> LOG IN </b> </li>
+                    <li> <b> SUBSCRIBE </b> </li>
+                    <li> ARTIST? <b> SUBMIT </b> </li>
+                </ul>
+            </nav>
+        
+            <nav class="corner center-right">
+                <ul>
+                    <li> <b> ARCHIVES </b></li>
+                    <li> <b> ABOUT </b></li>
+                    <li> 
+                        <select name="language-select" id="language-select">
+                            <option value="en"> EN </option>
+                            <option value="es"> ES </option>
+                            <option value="fi"> FI </option>
+                            <option value="sv"> SV </option>
+                        </select> 
+                    </li>
+                </ul>
+            </nav>
+        
+            <!-- <nav class="corner bottom-left">
+                <ul>
+                    <li> <i class="fa-solid fa-bars icon"></i> </li>
+                </ul>
+            </nav> -->
+        
+            <!-- <nav class="corner bottom-right">
+                <ul>
+                    <li><i class="fa-solid fa-magnifying-glass icon"></i></li>
+                </ul>
+            </nav> -->
 
-                <div class="logo">
-                    <a href="#top"><p> the<br>
-                        visual<br>
-                        art<br>
-                        showcase<br>
-                    </p></a>
-                    <!-- <pre> the
- visual
- art
- showcase
-                    </pre> -->
-                </div>
-            <!-- </div> -->
+            <div class="logo">
+                <a href="#top"><p> the<br>
+                    visual<br>
+                    art<br>
+                    showcase<br>
+                </p></a>
+                <!-- <pre> the
+visual
+art
+showcase
+                </pre> -->
+            </div>
+        </header>
+
+        <header class="art-header">
+            <nav class="corner center-left">
+                <ul id="week-technique">
+                    <li>
+                        <select name="week-select" id="week-select">
+                            <option value="all"> all </option>
+                            <option value="1"> 1 </option>
+                            <option value="2"> 2 </option>
+                            <option value="3"> 3 </option>
+                        </select>
+                    </li>
+                    <li>
+                        <select name="technique-select" id="technique-select">
+                            <option value="all"> all </option>
+                            <option value="painting"> PAINTING </option>
+                            <option value="drawing"> DRAWING </option>
+                            <option value="sculpture"> SCULPTURE </option>
+                        </select>
+                    </li>
+                </ul>
+            </nav>
+
+            <nav class="corner center-right">
+                <ul id="search-free-guided">
+                    <li>
+                        <div class="search-container">
+                            <div class="search-icon" onclick="toggleSearch()">
+                            </div>
+                            <input type="text" class="search-bar" placeholder="Search..." id="searchBar">
+                            <button class="search-button" onclick="performSearch()">Search</button>
+                        </div>
+                    </li>
+                    <li>
+                        <fieldset>
+                            <legend>Select a mode:</legend>
+                            
+                            <div>
+                                <input type="radio" id="free" name="free" value="free" checked />
+                                <label for="free">F</label>
+                            </div>
+                            
+                            <div>
+                                <input type="radio" id="guided" name="guided" value="guided" />
+                                <label for="guided">G</label>
+                            </div>
+                        </fieldset>
+                    </li>
+                </ul>
+            </nav>
         </header>
 
         <div id="preview-page" class="hidden">
