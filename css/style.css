@@ -1,6 +1,7 @@
-/* font */
+/* font begins */
 html {
     font-size: 100%;
+    /* TODO: hacer responsivo para mobile, tablet, pc */
     min-width: 1000px;
     margin: 0 1%;
     background-color: #262829;
@@ -31,7 +32,6 @@ h5 {font-size: 1.25rem;}
 
 small, .text_small {font-size: 0.8rem;}
 
-/* font */
 body{
     margin: 0;
     border: 0;
@@ -42,6 +42,25 @@ body{
     line-height: 1.25;
     /* line-height: 1.75;  */
     color: #000000;
+}
+/* font ends*/
+
+header{
+    /* border: solid 1px red; */
+    transition: transform 0.25s ease-in-out;
+    transition: display 0.25s ease-in-out;
+    transition: background-color 0.25s ease-in-out;
+    /* antes era de menu */
+    position: relative; /* child elements are relative to this position */
+    min-height: 108px;
+    min-width: 800px;
+    background-color: rgb(38, 40, 41);
+    color: white;
+    /* antes era de menu */
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    display: block;
 }
 
 /* .menu {
@@ -55,25 +74,45 @@ body{
     justify-content: flex-start;
 }
 
-.top-left {
-    top: 0;
-    left: 0;
+/* TODO: separate classes accordingly to names, example:
+    corner: only corners the element
+    top: only moves the element to the top
+    left: only moves the element to the left
+*/
+
+/* you gotta transform it 'cause you actually want to end it at 50% vertical, not start it from 50%*/
+.center-left {
+    width: 35%;
+    top: 50%;
+    left: 0%;
+    transform: translate(0%, -50%);
+    /* justify-content: left; */ /* redundant and not necessary, done by default */
 }
 
-.top-right {
-    top: 0;
+.center-right {
+    width: 35%;
+    top: 50%;
     right: 0;
+    transform: translate(0%, -50%);
+    justify-content: right;
 }
 
-.bottom-left {
+/* ul needs 100% of the parent space (nav, center-right) to justify the li items*/
+.center-left ul, .center-right ul{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+/* .bottom-left {
     bottom: 0;
     left: 0;
-}
+} */
 
-.bottom-right {
+/* .bottom-right {
     bottom: 0;
     right: 0;
-}
+} */
 
 /* logo's font style and position */
 .logo p{
@@ -121,24 +160,6 @@ b:not(:hover), i:not(:hover){
     /* font-size: 100%; 
     text-decoration: none;*/
     filter: invert(0%);
-}
-
-header{
-    /* border: solid 1px red; */
-    transition: transform 0.25s ease-in-out;
-    transition: display 0.25s ease-in-out;
-    transition: background-color 0.25s ease-in-out;
-    /* antes era de menu */
-    position: relative;
-    min-height: 108px;
-    min-width: 800px;
-    background-color: rgb(38, 40, 41);
-    color: white;
-    /* antes era de menu */
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    display: block;
 }
 
 /* when scrolling down */
