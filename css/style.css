@@ -30,8 +30,8 @@ h4 {font-size: 1.563rem;}
 h5 {font-size: 1.25rem;}
 
 small, .text_small {font-size: 0.8rem;}
-/* font */
 
+/* font */
 body{
     margin: 0;
     border: 0;
@@ -42,16 +42,6 @@ body{
     line-height: 1.25;
     /* line-height: 1.75;  */
     color: #000000;
-}
-
-.logo p{
-    padding: 5px;
-    margin: 0;
-    line-height: 1.25;
-}
-
-.logo a{
-    all: unset;
 }
 
 /* .menu {
@@ -85,6 +75,20 @@ body{
     right: 0;
 }
 
+/* logo's font style and position */
+.logo p{
+    padding: 5px;
+    margin: 0;
+    line-height: 1.25;
+    font-weight: bolder;
+}
+
+/* ???? */
+.logo a{
+    all: unset;
+}
+
+/* logo's position, size and border (within header natural position)*/
 .logo {
     /* background-color: red;  */
     position: absolute;
@@ -94,9 +98,9 @@ body{
     width: 90px;
     height: 90px;
     border: solid 2px white;
-    font-weight: bolder;
 }
 
+/* logo's hover () */
 .logo:hover{
     background-color: white;
     color: black;
