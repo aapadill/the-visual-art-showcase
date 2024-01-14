@@ -112,11 +112,11 @@ nav ul{
     justify-content: space-between;
 }
 
-/*  */
 #week-technique{
     justify-content: center;
 }
 
+/* TODO: this is taking all of the vertical size, why? */
 #search-free-guided{
     justify-content: space-around;
 }
