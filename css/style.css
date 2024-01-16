@@ -1,7 +1,15 @@
 /* font begins */
+:root {
+    --main-header-height: 108px;
+    --art-header-top: 54px;
+    --logo-reduction-h: 90px;
+    --logo-reduction-v: 90px;
+    --reduced-size: 100%;
+    --padding-size: 100%;
+}
+
 html {
     font-size: 100%;
-    /* TODO: hacer responsivo para mobile, tablet, pc */
     /* min-width: 1000px; */
     margin: 0 1%;
     background-color: #262829;
@@ -39,35 +47,45 @@ body{
     font-family: acumin-pro, sans-serif;
     font-style: normal;
     font-weight: 400;
-    line-height: 1.25;
+    /* line-height: 1.25; */
     /* line-height: 1.75;  */
-    color: #000000;
+    /* color: #000000; */
 }
 /* font ends*/
 
-.main-header, .art-header{
+.main-header{
     /* border: solid 1px red; */
-    transition: transform 0.25s ease-in-out;
-    transition: display 0.25s ease-in-out;
+    /* transition: transform 0.25s ease-in-out;
+    transition: display 0.25s ease-in-out; */
     transition: background-color 0.25s ease-in-out;
-    /* antes era de menu */
-    position: relative; /* child elements are relative to this position */
-    min-height: 108px;
-    width: 100%;
-    background-color: red;
+    /* min-height: 108px; */
+    height: var(--main-header-height);
+    /* width: 100%; */
     color: white;
-    /* antes era de menu */
     position: sticky;
     top: 0;
     z-index: 2;
     display: block;
 }
 
-/* .menu {
-    background-color: #262829;
-} */
+.art-header{
+    /* border: solid 1px red; */
+    /* transition: transform 0.25s ease-in-out;
+    transition: display 0.25s ease-in-out; */
+    transition: background-color 0.25s ease-in-out;
+    min-height: 54px;
+    top: var(--art-header-top);
+    /* width: 100%; */
+    color: white;
+    position: sticky;
+    /* 108px */
+    /* top: 54px; */
+    z-index: 2;
+    display: block;
+    overflow: hidden;
+}
 
-/* TODO: separate classes accordingly to names, example:
+/* TODO: proper classes accordingly to names, example:
     corner: only corners the element
     top: only moves the element to the top
     left: only moves the element to the left
@@ -154,6 +172,7 @@ nav ul{
 /* tablet horizontal, mid desktop */
 @media only screen and (min-width: 769px) and (max-width: 1279px) {
     .main-header{
+        border: solid 2px red;
         background-color: rgb(0, 55, 128);
     }
 
@@ -186,7 +205,7 @@ nav ul{
     }
 
     .art-header {
-        border: solid 2px green;
+        /* border: solid 2px green; */
         background-color: rgba(0, 0, 0, 0);
     }
 
@@ -197,11 +216,43 @@ nav ul{
     .center-right {
         max-width: 30%;
     }
+
+    /* TODO: this is not a correct solution, use js or responsiv */
+    /* hover */
+        .logo:hover{
+            background-color: white;
+            color: black;
+            transition: all linear 150ms;
+        }
+
+        .logo:not(:hover){
+            transition: all linear 150ms;
+        }
+
+        a b:hover{
+            /* font-size: 150%;
+            text-decoration: underline;*/
+            filter: invert(35%);
+        }
+
+        a b:not(:hover){
+            /* font-size: 100%; 
+            text-decoration: none;*/
+            filter: invert(0%);
+        }
+
+        /* logo's hover is white */
+        header.hide-header .logo:hover{
+            background-color: white;
+            color: black;
+            /* border: solid 2px rgba(1, 1, 1, 0.1); */
+            transition: all linear 150ms;
+        }   
 }
 
 /* logo's font style and position */
 .logo p{
-    padding: 5px;
+    padding: var(--padding-size);
     margin: 0;
     line-height: 1.25;
     font-weight: bolder;
@@ -219,32 +270,26 @@ nav ul{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 90px;
-    height: 90px;
+    /* transform: translate(-50%, var(--reduced-size)); */
+
+    width: var(--logo-reduction-w);
+    /* width: 90px; */
+    height: var(--logo-reduction-h);
+    /* height: 90px; */
     border: solid 2px white;
+
+    font-size: var(--reduced-size);
+    overflow: hidden;
 }
 
-/* logo's hover () */
-.logo:hover{
-    background-color: white;
-    color: black;
-    transition: all linear 150ms;
+a{
+    color: white;
+    text-decoration: none;
 }
 
-.logo:not(:hover){
-    transition: all linear 150ms;
-}
-
-b:hover, i:hover{
-    /* font-size: 150%;
-    text-decoration: underline;*/
-    filter: invert(35%);
-}
-
-b:not(:hover), i:not(:hover){
-    /* font-size: 100%; 
-    text-decoration: none;*/
-    filter: invert(0%);
+a:visited {
+    text-decoration: none;
+    color: default;
 }
 
 /* when scrolling down */
@@ -256,7 +301,7 @@ header.hide-header {
 /* hide the menu options */
 header.hide-header nav{
     transition: display 2s ease-in-out;
-    display: none;
+    /* display: none; */
 }
 
 /* logo's background color is now transparent */
@@ -269,14 +314,6 @@ header.hide-header .logo{
     /* for safari */
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
-}
-
-/* logo's hover is white */
-header.hide-header .logo:hover{
-    background-color: white;
-    color: black;
-    /* border: solid 2px rgba(1, 1, 1, 0.1); */
-    transition: all linear 150ms;
 }
 /* when scrolling down */
 
@@ -302,16 +339,12 @@ nav li{
 }
 
 .contenedor-artista{
-    height: 100%;
-    /* border: solid 1px red; */
-    /* position: relative; */
+    /* height: 100%; */
     min-height: 100px;
     min-width: 800px;
-    /* border: solid 1px red; */
     margin: 0;
-    overflow: hidden;
-
-    /* position: relative; mmmmmmmmmm*/
+    margin-top: -54px;
+    /* overflow: hidden; */
 }
 
 #seppe-borde{
@@ -455,9 +488,9 @@ figcaption img{
     overflow: hidden;
 } */
 
-i:hover ~ figcaption{
+/* i:hover ~ figcaption{
     visibility: visible;
-}
+} */
 
 #preview-page {
     z-index: 3;

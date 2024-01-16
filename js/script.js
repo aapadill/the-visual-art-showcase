@@ -117,26 +117,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     //full
 
+    // alfa: scroll changes size and position of headers
     //get the header element
     const header = document.querySelector('header');
 
     //initial scroll position
     let lastScroll = 0;
 
-    //velocity scroll math --extra, removable
-    let prevScrollPos = window.scrollY;
-    let scrollVelocity = 0;
-
-    window.onscroll = function() {
-        const currentScrollPos = window.scrollY;
-        scrollVelocity = Math.abs(currentScrollPos - prevScrollPos);
-        prevScrollPos = currentScrollPos;
-    }
-
     //function to handle scroll events
-    function handleScroll() {
+    function handleScrollA() {
         const currentScroll = window.scrollY;
 
+        // ignores the scroll if currentScroll is below 108px
+        if (currentScroll < 108) {
+            return; // Termina la función prematuramente
+        }
         if (currentScroll > lastScroll) {
             //scrolling down, hide the header
             header.classList.add('hide-header');
@@ -146,18 +141,88 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         lastScroll = currentScroll;
     }
+    // alfa: scroll changes size and position of headers
 
-    function toggleSearch() {
-        var searchBar = document.getElementById('searchBar');
-        searchBar.style.width = (searchBar.style.width === '0px' || searchBar.style.width === '') ? '150px' : '0';
+    // beta: scroll changes size and position of headers
+    // const mainHeader = document.querySelector('.main-header');
+    // const artHeader = document.querySelector('.art-header');
+    // let lastScrollTop = 0;
+    // let headerHeight = 108;
+
+    // // Firefox: This may not work well with asynchronous panning
+    // window.addEventListener('scroll', () => {
+    //     let currentScrollTop = window.scrollY || document.documentElement.scrollTop;
+    //     if (currentScrollTop > lastScrollTop) {
+    //         // Scroll hacia abajo
+    //         headerHeight = Math.max(54, headerHeight - (currentScrollTop - lastScrollTop));
+    //     } else {
+    //         // Scroll hacia arriba
+    //         headerHeight = Math.min(108, headerHeight + (lastScrollTop - currentScrollTop));
+    //     }
+    //     mainHeader.style.height = headerHeight + 'px';
+    //     artHeader.style.top = headerHeight + 'px';
+    //     lastScrollTop = currentScrollTop;
+    // });
+    // beta: scroll changes size and position of headers
+
+    // Función throttle: Limita la frecuencia de ejecución de la función
+    function throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        };
     }
 
-    function performSearch() {
-        var searchTerm = document.getElementById('searchBar').value;
-        // Add logic to handle the search term, e.g., make an API request or update the page content
-        console.log('Searching for:', searchTerm);
-    }
+    let lastScrollTop = 0;
+    document.documentElement.style.setProperty('--main-header-height', '108px');
+    document.documentElement.style.setProperty('--art-header-top', '54px');
+    document.documentElement.style.setProperty('--logo-reduction-h', '90px');
+    document.documentElement.style.setProperty('--logo-reduction-w', '90px');
+    document.documentElement.style.setProperty('--reduced-size', '100%');
+    document.documentElement.style.setProperty('--padding-size', '100%');
 
-    //listen for the scroll event
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+        let currentScrollTop = window.scrollY || document.documentElement.scrollTop;
+
+        // ignores the scroll if currentScroll is below 108px
+        if (currentScrollTop < 12) {
+            return; // Termina la función prematuramente
+        }
+
+        let newHeight = Math.max(54, Math.min(108, parseInt(getComputedStyle(document.documentElement).getPropertyValue('--main-header-height')) + (lastScrollTop - currentScrollTop)));
+        let reductionPercentage = (newHeight/108);
+        console.log(reductionPercentage); //cuanto se ha reducido la barra respecto a si misma, va de 1 a 0.5
+        document.documentElement.style.setProperty('--main-header-height', newHeight + 'px');
+        document.documentElement.style.setProperty('--art-header-top', newHeight + 'px');
+        document.documentElement.style.setProperty('--logo-reduction-h', reductionPercentage*90 + 'px');
+        document.documentElement.style.setProperty('--logo-reduction-w', reductionPercentage*90 + 'px');
+        document.documentElement.style.setProperty('--reduced-size', reductionPercentage*100 + '%');
+        document.documentElement.style.setProperty('--padding-size', reductionPercentage*5 + 'px');
+
+        lastScrollTop = currentScrollTop;
+    };
+
+    // throttle to limit exec frequency of handleScroll, which reduces main-header
+    const throttledHandleScroll = throttle(handleScroll, 10); //10ms
+    window.addEventListener('scroll', throttledHandleScroll);
+
+    //listen for the scroll event to hide or show the header
+    window.addEventListener('scroll', handleScrollA);
+
+    // function toggleSearch() {
+    //     var searchBar = document.getElementById('searchBar');
+    //     searchBar.style.width = (searchBar.style.width === '0px' || searchBar.style.width === '') ? '150px' : '0';
+    // }
+
+    // function performSearch() {
+    //     var searchTerm = document.getElementById('searchBar').value;
+    //     // Add logic to handle the search term, e.g., make an API request or update the page content
+    //     console.log('Searching for:', searchTerm);
+    // }
 });
