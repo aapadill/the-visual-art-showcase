@@ -11,51 +11,41 @@
     </head>
 
     <body>
-        <header>
-            <!-- <div class="menu"> -->
-                <nav class="corner top-left">
-                    <ul>
-                        <li> <b> LOG IN </b> </li>
-                        <li> <b> SUBSCRIBE </b> </li>
-                        <li> ARTIST? <b> SUBMIT </b> </li>
-                    </ul>
-                </nav>
-            
-                <nav class="corner top-right">
-                    <ul>
-                        <li> <b> CONTACT </b> </li>
-                        <li><b> <u> ENG </u> </b></li>
-                        <li> <b> SPA </b></li>
-                        <li> <b> FIN </b></li>
-                        <li> <b> SWE </b></li>
-                    </ul>
-                </nav>
-            
-                <nav class="corner bottom-left">
-                    <ul>
-                        <li> <i class="fa-solid fa-bars icon"></i> </li>
-                    </ul>
-                </nav>
-            
-                <nav class="corner bottom-right">
-                    <ul>
-                        <li><i class="fa-solid fa-magnifying-glass icon"></i></li>
-                    </ul>
-                </nav>
+        <header class="main-header">
+            <nav class="corner center-left">
+                <ul>
+                    <li>  </li>
+                    <li> <a href="/register"> <b> LOG IN </b> </a> </li>
+                    <li> <a href="/subscribe"> <b> SUBSCRIBE </b> </a> </li>
+                    <li> ARTIST? <a href="/submit"> <b> SUBMIT </b> </a> </li>
+                </ul>
+            </nav>
+        
+            <nav class="corner center-right">
+                <ul>
+                    <li> <a href="/archives"> <b> ARCHIVES </b> </a></li>
+                    <li> <a href="/about"> <b> ABOUT </b> </a></li>
+                    <li> 
+                        <select name="language-select" id="language-select">
+                            <option value="en"> EN </option>
+                            <option value="es"> ES </option>
+                            <option value="fi"> FI </option>
+                            <option value="sv"> SV </option>
+                        </select> 
+                    </li>
+                </ul>
+            </nav>
 
-                <div class="logo">
-                    <a href="#top"><p> the<br>
+            <div class="logo">
+                <a href="/"> <!-- #top da problemas de posicion -->
+                    <p> 
+                        the<br>
                         visual<br>
                         art<br>
                         showcase<br>
-                    </p></a>
-                    <!-- <pre> the
- visual
- art
- showcase
-                    </pre> -->
-                </div>
-            <!-- </div> -->
+                    </p>
+                </a>
+            </div>
         </header>
 
         <div id="preview-page" class="hidden">
@@ -66,8 +56,66 @@
         </div>
 
         <main>
-            <div class="contenedor-artista" id="seppe-borde"> <!--  -->
-                <div class="menu-artista" id="seppe"> <!-- -->
+            <!-- art header -->
+            <header class="art-header">
+
+                <!-- left side -->
+                <nav class="corner center-left">
+                    <!-- week | technique -->
+                    <ul id="week-technique">
+                        <li>
+                            <select name="week-select" id="week-select">
+                                <option value="all"> all </option>
+                                <option value="1"> 1 </option>
+                                <option value="2"> 2 </option>
+                                <option value="3"> 3 </option>
+                            </select>
+                        </li>
+                        <li>
+                            <select name="technique-select" id="technique-select">
+                                <option value="all"> all </option>
+                                <option value="painting"> PAINTING </option>
+                                <option value="drawing"> DRAWING </option>
+                                <option value="sculpture"> SCULPTURE </option>
+                            </select>
+                        </li>
+                    </ul>
+                </nav>
+                
+                <!-- right side -->
+                <nav class="corner center-right">
+                    <ul id="search-free-guided">
+                        <li>
+                            <!-- search -->
+                            <div class="search-container">
+                                <div class="search-icon">&#128269;</div>
+                                <input type="text" class="search-input" placeholder="Search...">
+                                <button class="search-submit">Go</button>
+                            </div>
+                        </li>
+
+                        <li>
+                            <!-- free | guided -->
+                            <fieldset>
+                                <!-- <legend>Select a mode:</legend> -->
+                                
+                                <div>
+                                    <input type="radio" id="free" name="free" value="free" />
+                                    <label for="free">F</label>
+                                </div>
+                                
+                                <div>
+                                    <input type="radio" id="guided" name="guided" value="guided" />
+                                    <label for="guided">G</label>
+                                </div>
+                            </fieldset>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+
+            <div class="contenedor-artista" id="seppe-borde">
+                <!-- <div class="menu-artista" id="seppe">
                     <div class="titulo-artista">
                         <h5> Featuring this <b>week</b> in <b>paintings</b></h5>
                         <h1><b> Seppe De Meyere </b></h1>
@@ -80,7 +128,7 @@
                         De Meyere is part of 404 Collective and the art community they’ve started called Cane Yo. See more of his work below.
                         </p>
                     </div>
-                </div>
+                </div> -->
                 
                 <div class="arte seppe-borde-inf">
                     <!-- 

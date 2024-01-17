@@ -1,7 +1,16 @@
-/* font */
+/* font begins */
+:root {
+    --main-header-height: 108px;
+    --art-header-top: 54px;
+    --logo-reduction-h: 90px;
+    --logo-reduction-v: 90px;
+    --reduced-size: 100%;
+    --padding-size: 5px;
+}
+
 html {
     font-size: 100%;
-    min-width: 1000px;
+    /* min-width: 1000px; */
     margin: 0 1%;
     background-color: #262829;
 } /*16px*/
@@ -31,7 +40,6 @@ h5 {font-size: 1.25rem;}
 
 small, .text_small {font-size: 0.8rem;}
 
-/* font */
 body{
     margin: 0;
     border: 0;
@@ -39,45 +47,212 @@ body{
     font-family: acumin-pro, sans-serif;
     font-style: normal;
     font-weight: 400;
-    line-height: 1.25;
+    /* line-height: 1.25; */
     /* line-height: 1.75;  */
-    color: #000000;
+    /* color: #000000; */
+}
+/* font ends*/
+
+.main-header{
+    /* border: solid 1px red; */
+    /* transition: transform 0.25s ease-in-out;
+    transition: display 0.25s ease-in-out; */
+    transition: background-color 0.25s ease-in-out;
+    /* min-height: 108px; */
+    height: var(--main-header-height);
+    /* width: 100%; */
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    display: block;
 }
 
-/* .menu {
-    background-color: #262829;
-} */
+.art-header{
+    /* border: solid 1px red; */
+    /* transition: transform 0.25s ease-in-out;
+    transition: display 0.25s ease-in-out; */
+    transition: background-color 0.25s ease-in-out;
+    min-height: 54px;
+    top: var(--art-header-top);
+    /* width: 100%; */
+    color: white;
+    position: sticky;
+    /* 108px */
+    /* top: 54px; */
+    z-index: 2;
+    display: block;
+    overflow: hidden;
+}
+
+/* TODO: proper classes accordingly to names, example:
+    corner: only corners the element
+    top: only moves the element to the top
+    left: only moves the element to the left
+*/
 
 .corner {
+    box-sizing: border-box;
     position: absolute;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
 }
 
-.top-left {
-    top: 0;
-    left: 0;
+/* you gotta transform it 'cause you actually want to end it at 50% vertical, not start it from 50%*/
+.center-left {
+    width: 35%;
+    top: 50%;
+    left: 0%;
+    transform: translate(0%, -50%);
+    /* justify-content: left; */ /* redundant and not necessary, done by default */
 }
 
-.top-right {
-    top: 0;
+.center-right {
+    width: 35%;
+    top: 50%;
     right: 0;
+    transform: translate(0%, -50%);
+    justify-content: right;
 }
 
-.bottom-left {
+/* ul needs 100% of the parent space (nav) to justify the li items*/
+nav ul{
+    display: flex;
+    width: 100%;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    overflow: hidden;
+    align-items: center;
+}
+
+.main-header ul{
+    justify-content: space-between;
+}
+
+#week-technique{
+    justify-content: center;
+}
+
+/* TODO: this is taking all of the vertical size, why? */
+#search-free-guided{
+    justify-content: space-around;
+}
+
+/* .bottom-left {
     bottom: 0;
     left: 0;
-}
+} */
 
-.bottom-right {
+/* .bottom-right {
     bottom: 0;
     right: 0;
+} */
+
+/* phone vertical 301-480*/
+@media only screen and (min-width: 301px) and (max-width: 768px) {
+    .main-header{
+        background-color: purple;
+    }
+
+    .art-header {
+        border: solid 2px green;
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    .center-left {
+        display: none;
+    }
+
+    .center-right {
+        display: none;
+    }
+}
+
+/* tablet horizontal, mid desktop */
+@media only screen and (min-width: 769px) and (max-width: 1279px) {
+    .main-header{
+        border: solid 2px red;
+        background-color: rgb(0, 55, 128);
+    }
+
+    .art-header {
+        border: solid 2px green;
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    .center-left {
+        min-width: 40%;
+        font-size: 100%;
+    }
+
+    .main-header .center-left ul li:last-child {
+        /* margin-right: 0; */
+        flex: 1;
+        white-space: normal;
+        max-width: 25%;
+    }
+
+    .center-right {
+        min-width: 40%;
+    }
+}
+
+/* full desktop */
+@media only screen and (min-width: 1280px) {
+    .main-header{
+        background-color: rgb(38, 40, 41);
+    }
+
+    .art-header {
+        /* border: solid 2px green; */
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    .center-left {
+        max-width: 30%;
+    }
+
+    .center-right {
+        max-width: 30%;
+    }
+
+    /* TODO: this is not a correct solution, use js or responsiv */
+    /* hover */
+        .logo:hover{
+            background-color: white;
+            color: black;
+            transition: all linear 150ms;
+        }
+
+        .logo:not(:hover){
+            transition: all linear 150ms;
+        }
+
+        a b:hover{
+            /* font-size: 150%;
+            text-decoration: underline;*/
+            filter: invert(35%);
+        }
+
+        a b:not(:hover){
+            /* font-size: 100%; 
+            text-decoration: none;*/
+            filter: invert(0%);
+        }
+
+        /* logo's hover is white */
+        header.hide-header .logo:hover{
+            background-color: white;
+            color: black;
+            /* border: solid 2px rgba(1, 1, 1, 0.1); */
+            transition: all linear 150ms;
+        }   
 }
 
 /* logo's font style and position */
 .logo p{
-    padding: 5px;
+    padding: var(--padding-size);
     margin: 0;
     line-height: 1.25;
     font-weight: bolder;
@@ -95,50 +270,26 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 90px;
-    height: 90px;
+    /* transform: translate(-50%, var(--reduced-size)); */
+
+    width: var(--logo-reduction-w);
+    /* width: 90px; */
+    height: var(--logo-reduction-h);
+    /* height: 90px; */
     border: solid 2px white;
+
+    font-size: var(--reduced-size);
+    overflow: hidden;
 }
 
-/* logo's hover () */
-.logo:hover{
-    background-color: white;
-    color: black;
-    transition: all linear 150ms;
-}
-
-.logo:not(:hover){
-    transition: all linear 150ms;
-}
-
-b:hover, i:hover{
-    /* font-size: 150%;
-    text-decoration: underline;*/
-    filter: invert(35%);
-}
-
-b:not(:hover), i:not(:hover){
-    /* font-size: 100%; 
-    text-decoration: none;*/
-    filter: invert(0%);
-}
-
-header{
-    /* border: solid 1px red; */
-    transition: transform 0.25s ease-in-out;
-    transition: display 0.25s ease-in-out;
-    transition: background-color 0.25s ease-in-out;
-    /* antes era de menu */
-    position: relative;
-    min-height: 108px;
-    min-width: 800px;
-    background-color: rgb(38, 40, 41);
+a{
     color: white;
-    /* antes era de menu */
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    display: block;
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+    color: default;
 }
 
 /* when scrolling down */
@@ -150,7 +301,7 @@ header.hide-header {
 /* hide the menu options */
 header.hide-header nav{
     transition: display 2s ease-in-out;
-    display: none;
+    /* display: none; */
 }
 
 /* logo's background color is now transparent */
@@ -163,14 +314,6 @@ header.hide-header .logo{
     /* for safari */
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
-}
-
-/* logo's hover is white */
-header.hide-header .logo:hover{
-    background-color: white;
-    color: black;
-    /* border: solid 2px rgba(1, 1, 1, 0.1); */
-    transition: all linear 150ms;
 }
 /* when scrolling down */
 
@@ -196,16 +339,12 @@ nav li{
 }
 
 .contenedor-artista{
-    height: 100%;
-    /* border: solid 1px red; */
-    /* position: relative; */
+    /* height: 100%; */
     min-height: 100px;
     min-width: 800px;
-    /* border: solid 1px red; */
     margin: 0;
-    overflow: hidden;
-
-    /* position: relative; mmmmmmmmmm*/
+    margin-top: -54px;
+    /* overflow: hidden; */
 }
 
 #seppe-borde{
@@ -349,9 +488,9 @@ figcaption img{
     overflow: hidden;
 } */
 
-i:hover ~ figcaption{
+/* i:hover ~ figcaption{
     visibility: visible;
-}
+} */
 
 #preview-page {
     z-index: 3;
@@ -395,6 +534,38 @@ i:hover ~ figcaption{
     animation: fadeIn 150ms linear;
     /* pointer-events: none; */
     /* transform-origin: top left; */
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    cursor: pointer;
+}
+
+.search-input {
+    width: 0;
+    opacity: 0;
+    transition: width 0.5s, opacity 0.5s;
+}
+
+.search-input.active {
+    width: 200px;
+    opacity: 1;
+    padding: 5px;
+}
+
+.search-submit {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+.search-input.active + .search-submit {
+    opacity: 1;
+    visibility: visible;
 }
 
 @keyframes fadeIn {
