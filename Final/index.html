@@ -11,16 +11,30 @@
     </head>
 
     <body>
+        <!-- page header -->
         <header class="main-header">
+            <!-- left menu: register/suscribe/submit -->
             <nav class="corner center-left">
                 <ul>
-                    <li>  </li>
                     <li> <a href="/register"> <b> LOG IN </b> </a> </li>
                     <li> <a href="/subscribe"> <b> SUBSCRIBE </b> </a> </li>
                     <li> ARTIST? <a href="/submit"> <b> SUBMIT </b> </a> </li>
                 </ul>
             </nav>
-        
+
+            <!-- logo -->
+            <div class="logo">
+                <a href="/"> <!-- #top da problemas de posicion -->
+                    <p> 
+                        the<br>
+                        visual<br>
+                        art<br>
+                        showcase<br>
+                    </p>
+                </a>
+            </div>
+            
+            <!-- right menu: archives/about/language -->
             <nav class="corner center-right">
                 <ul>
                     <li> <a href="/archives"> <b> ARCHIVES </b> </a></li>
@@ -35,31 +49,22 @@
                     </li>
                 </ul>
             </nav>
-
-            <div class="logo">
-                <a href="/"> <!-- #top da problemas de posicion -->
-                    <p> 
-                        the<br>
-                        visual<br>
-                        art<br>
-                        showcase<br>
-                    </p>
-                </a>
-            </div>
         </header>
 
+        <!-- preview page, hidden: hold click to enable -->
         <div id="preview-page" class="hidden">
             <img id="preview-image" class="show-preview" src="" alt="Preview Image">
         </div>
 
+        <!-- magnifier, hidden: hold z to enable -->
         <div id="magnifier" class="zoomable-image">
         </div>
 
+        <!-- art area -->
         <main>
-            <!-- art header -->
+            <!-- toolbar -->
             <header class="art-header">
-
-                <!-- left side -->
+                <!-- left menu -->
                 <nav class="corner center-left">
                     <!-- week | technique -->
                     <ul id="week-technique">
@@ -82,7 +87,7 @@
                     </ul>
                 </nav>
                 
-                <!-- right side -->
+                <!-- right menu -->
                 <nav class="corner center-right">
                     <ul id="search-free-guided">
                         <li>
@@ -114,7 +119,9 @@
                 </nav>
             </header>
 
+            <!-- art begins-->
             <div class="contenedor-artista" id="seppe-borde">
+
                 <!-- <div class="menu-artista" id="seppe">
                     <div class="titulo-artista">
                         <h5> Featuring this <b>week</b> in <b>paintings</b></h5>
