@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.documentElement.style.setProperty('--logo-reduction-h', '90px');
     document.documentElement.style.setProperty('--logo-reduction-w', '90px');
     document.documentElement.style.setProperty('--reduced-size', '100%');
-    document.documentElement.style.setProperty('--padding-size', '100%');
+    document.documentElement.style.setProperty('--padding-size', '5px');
 
     const handleScroll = () => {
         let currentScrollTop = window.scrollY || document.documentElement.scrollTop;
@@ -215,14 +215,14 @@ document.addEventListener("DOMContentLoaded", () => {
     //listen for the scroll event to hide or show the header
     window.addEventListener('scroll', handleScrollA);
 
-    // function toggleSearch() {
-    //     var searchBar = document.getElementById('searchBar');
-    //     searchBar.style.width = (searchBar.style.width === '0px' || searchBar.style.width === '') ? '150px' : '0';
-    // }
+    //search bar
+    const searchIcon = document.querySelector('.search-icon');
+    const searchInput = document.querySelector('.search-input');
 
-    // function performSearch() {
-    //     var searchTerm = document.getElementById('searchBar').value;
-    //     // Add logic to handle the search term, e.g., make an API request or update the page content
-    //     console.log('Searching for:', searchTerm);
-    // }
+    searchIcon.addEventListener('click', () => {
+        searchInput.classList.toggle('active');
+        if (searchInput.classList.contains('active')) {
+            searchInput.focus();
+        }
+    });
 });

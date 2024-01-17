@@ -5,7 +5,7 @@
     --logo-reduction-h: 90px;
     --logo-reduction-v: 90px;
     --reduced-size: 100%;
-    --padding-size: 100%;
+    --padding-size: 5px;
 }
 
 html {
@@ -538,34 +538,34 @@ figcaption img{
 
 .search-container {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
-    height: 100vh;
-    padding: 20px;
-}
-
-.search-bar {
-    width: 0;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    outline: none;
-    transition: width 0.3s ease-in-out;
-}
-
-.search-button {
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 5px;
 }
 
 .search-icon {
     cursor: pointer;
+}
+
+.search-input {
+    width: 0;
+    opacity: 0;
+    transition: width 0.5s, opacity 0.5s;
+}
+
+.search-input.active {
+    width: 200px;
+    opacity: 1;
+    padding: 5px;
+}
+
+.search-submit {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+.search-input.active + .search-submit {
+    opacity: 1;
+    visibility: visible;
 }
 
 @keyframes fadeIn {
