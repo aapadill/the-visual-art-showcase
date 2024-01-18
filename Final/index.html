@@ -15,7 +15,7 @@
         <header class="main-header">
             <!-- left menu: register/suscribe/submit -->
             <nav class="corner center-left">
-                <ul>
+                <ul class="menu" id="register-subscribe-submit">
                     <li> <a href="/register"> <b> LOG IN </b> </a> </li>
                     <li> <a href="/subscribe"> <b> SUBSCRIBE </b> </a> </li>
                     <li> ARTIST? <a href="/submit"> <b> SUBMIT </b> </a> </li>
@@ -35,8 +35,8 @@
             </div>
             
             <!-- right menu: archives/about/language -->
-            <nav class="corner center-right">
-                <ul>
+            <nav class="corner center-right" id="archives-about-language">
+                <ul class="menu">
                     <li> <a href="/archives"> <b> ARCHIVES </b> </a></li>
                     <li> <a href="/about"> <b> ABOUT </b> </a></li>
                     <li> 
@@ -67,8 +67,9 @@
                 <!-- left menu -->
                 <nav class="corner center-left">
                     <!-- week | technique -->
-                    <ul id="week-technique">
+                    <ul class="menu" id="week-technique">
                         <li>
+                            <label>WEEK</label>
                             <select name="week-select" id="week-select">
                                 <option value="all"> all </option>
                                 <option value="1"> 1 </option>
@@ -83,37 +84,35 @@
                                 <option value="drawing"> DRAWING </option>
                                 <option value="sculpture"> SCULPTURE </option>
                             </select>
+                            <label>TECHNIQUE</label>
                         </li>
                     </ul>
                 </nav>
                 
                 <!-- right menu -->
                 <nav class="corner center-right">
-                    <ul id="search-free-guided">
-                        <li>
-                            <!-- search -->
-                            <div class="search-container">
+                    <ul class="menu" id="search-free-guided">
+                        <!-- search -->
+                        <li id="search">
+                            <!-- <div> -->
                                 <div class="search-icon">&#128269;</div>
                                 <input type="text" class="search-input" placeholder="Search...">
                                 <button class="search-submit">Go</button>
-                            </div>
+                            <!-- </div> -->
                         </li>
 
-                        <li>
-                            <!-- free | guided -->
-                            <fieldset>
-                                <!-- <legend>Select a mode:</legend> -->
-                                
-                                <div>
-                                    <input type="radio" id="free" name="free" value="free" />
-                                    <label for="free">F</label>
-                                </div>
-                                
-                                <div>
-                                    <input type="radio" id="guided" name="guided" value="guided" />
-                                    <label for="guided">G</label>
-                                </div>
-                            </fieldset>
+                        <!-- free | guided -->
+                        <li id="free-guided">
+                            <!-- <legend>Select a mode:</legend> -->
+                            <div>
+                                <input type="radio" id="free" name="free" value="free" />
+                                <label for="free">F</label>
+                            </div>
+                            
+                            <div>
+                                <input type="radio" id="guided" name="guided" value="guided" />
+                                <label for="guided">G</label>
+                            </div>
                         </li>
                     </ul>
                 </nav>
@@ -142,7 +141,7 @@
                     <img src="img/seppe-de-meyere-1.jpeg" alt="Pintura 1"> 
                     -->
                     <!-- <figure> -->
-                    <i class="fa-solid fa-circle-info icon"></i>
+                    <!-- <i class="fa-solid fa-circle-info icon"></i> -->
                     <img src="img/seppe-de-meyere-1.jpeg" class="previewable-image zoomable-image" alt="Pintura 1"> 
                     <!-- </figure> -->
                 </div>

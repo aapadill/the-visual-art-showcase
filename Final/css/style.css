@@ -1,12 +1,12 @@
 /* variables */
-:root {
-    --main-header-height: 108px;
-    --art-header-top: 54px;
-    --logo-reduction-h: 90px;
-    --logo-reduction-v: 90px;
-    --reduced-size: 100%;
-    --padding-size: 5px;
-}
+    :root {
+        --main-header-height: 108px;
+        --art-header-top: 54px;
+        --logo-reduction-h: 90px;
+        --logo-reduction-v: 90px;
+        --reduced-size: 100%;
+        --padding-size: 5px;
+    }
 
 
 
@@ -58,7 +58,8 @@
 
 
 
-/* page header */
+/* page header and toolbar*/
+    /* page header */
     .main-header{
         /* border: solid 1px red; */
         /* transition: transform 0.25s ease-in-out;
@@ -88,7 +89,7 @@
         /* top: 54px; */
         z-index: 2;
         display: block;
-        overflow: hidden;
+        /* overflow: hidden; */
     }
 
     .corner {
@@ -119,28 +120,52 @@
         transform: translate(0%, -50%);
         justify-content: right;
     }
+
+    header{
+        border: solid 1px purple;
+    }
     
-    nav ul{ 
+    .menu{ 
         /* ul needs 100% of the parent space (nav) to justify the li items*/
         display: flex;
         width: 100%;
         flex-wrap: nowrap;
         white-space: nowrap;
-        overflow: hidden;
+        /* overflow: hidden; */
         align-items: center;
+        display: flex;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        border: solid 1px blue;
     }
 
-    .main-header ul{
+    .main-header .menu{
         justify-content: space-between;
     }
 
     #week-technique{
-        justify-content: center;
+        justify-content: left;
     }
 
     #search-free-guided{
         justify-content: space-around; /* TODO: restricted, this is taking all of the vertical size, why? */
     }
+
+    /* especificar */
+    /* toolbar 'buttons'*/
+    .art-header li{ 
+        border-radius: 5px;
+        border: solid 5px yellow;
+        color: rgba(255, 255, 255, 0.85);
+        border: solid 2px rgba(255, 255, 255, 0.5);
+        background-color: rgba(255, 255, 255, 0.1);
+        /* for safari */
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+    }
+/* ------ */
+
 
     /* desactivado
     .bottom-left {
@@ -195,11 +220,12 @@
             font-size: 100%;
         }
 
-        .main-header .center-left ul li:last-child {
+        #register-subscribe-submit li:last-child {
             /* margin-right: 0; */
             flex: 1;
             white-space: normal;
             max-width: 25%;
+            border: solid 2px greenyellow;
         }
 
         .center-right {
@@ -251,7 +277,7 @@
             }
 
             /* logo's hover is white */
-            header.hide-header .logo:hover{
+            .main-header.hide-header .logo:hover{
                 background-color: white;
                 color: black;
                 /* border: solid 2px rgba(1, 1, 1, 0.1); */
@@ -291,7 +317,7 @@
         border: solid 2px white;
 
         font-size: var(--reduced-size);
-        overflow: hidden;
+        /* overflow: hidden; */
     }
 
     /* link's color */
@@ -310,18 +336,18 @@
 
 /* when scrolling down */
     /* remove the color of header */
-    header.hide-header {
+    .main-header.hide-header {
         background-color: rgba(0, 0, 0, 0);
     }
 
     /* hide the menu options */
-    header.hide-header nav{
+    .main-header.hide-header nav{
         transition: display 2s ease-in-out;
         /* display: none; */
     }
 
     /* logo's background color is now transparent */
-    header.hide-header .logo{
+    .main-header.hide-header .logo{
         /* filter: invert(100%); */
         border-radius: 5px;
         color: rgba(255, 255, 255, 0.85);
@@ -330,31 +356,6 @@
         /* for safari */
         -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
-    }
-/* ------ */
-
-
-
-/* toolbar */
-    nav ul{
-        display: flex;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        border: solid 1px blue;
-    }
-
-    nav li{
-        width: auto;
-        height: auto;
-        border: solid 1px green;
-        margin: 5px 10px;
-        /* border: 0; */
-    }
-
-    #week-select, #technique-select {
-        border: 5px solid white;
-        border-radius: 10%; /* Adjust the border-radius value as needed */
     }
 /* ------ */
 
@@ -509,7 +510,7 @@
         /* transform-origin: top left; */
     }
 
-    .search-container {
+    #search{
         display: flex;
         align-items: center;
     }
@@ -518,10 +519,12 @@
         cursor: pointer;
     }
 
-    .search-input {
+    /* quitarlo cuando no exista */
+    .search-input { 
         width: 0;
         opacity: 0;
         transition: width 0.5s, opacity 0.5s;
+        /* display: none; */
     }
 
     .search-input.active {
@@ -530,15 +533,19 @@
         padding: 5px;
     }
 
+    /* quitarlo cuando no exista */
     .search-submit {
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.5s, visibility 0.5s;
+        /* display: none; */
     }
 
-    .search-input.active + .search-submit {
+    /* hace que aparezca el boton go */
+    .search-input.active + .search-submit{
         opacity: 1;
         visibility: visible;
+        display: block;
     }
 
     @keyframes fadeIn {
@@ -560,9 +567,14 @@
     }
 /* ------ */
 
-
-
 /* desactivado
+.main-header li{
+    width: auto;
+    height: auto;
+    border: solid 2px green;
+    margin: 5px 10px;
+}
+
 .icon{
     color: white;
     font-size: 2rem;
