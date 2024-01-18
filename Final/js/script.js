@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // alfa: scroll changes size and position of headers
     //get the header element
-    const header = document.querySelector('header');
+    const header = document.querySelector('.main-header');
 
     //initial scroll position
     let lastScroll = 0;
@@ -218,11 +218,15 @@ document.addEventListener("DOMContentLoaded", () => {
     //search bar
     const searchIcon = document.querySelector('.search-icon');
     const searchInput = document.querySelector('.search-input');
+    const searchSubmit = document.querySelector('.search-submit');
 
     searchIcon.addEventListener('click', () => {
+        
         searchInput.classList.toggle('active');
         if (searchInput.classList.contains('active')) {
             searchInput.focus();
+            // searchInput.style.display = 'block';
+            // searchSubmit.style.display = 'block';
         }
     });
 });
