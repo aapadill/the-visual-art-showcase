@@ -1,10 +1,8 @@
 <?php
 namespace Models;
 require_once('../config/autoloader.php');
+use Models\Connection;
 
-use Models\DatabaseConnection;
-
-namespace Models;
 
 class User {
     private $userId;

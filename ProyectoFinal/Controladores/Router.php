@@ -54,7 +54,7 @@ class Router {
 
     /**
      * Imprime la ruta de la imagen para ser presentada
-     * en una pagina we
+     * en una pagina web
      * 
      */
     public static function rutaImagenWeb($imagen) {

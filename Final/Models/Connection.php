@@ -1,7 +1,7 @@
 <?php
 namespace Models;
 
-class DatabaseConnection extends \PDO implements Persistent {
+class Connection extends \PDO implements Persistent {
 
     private static $host = "localhost";
     private static $port = "3306";

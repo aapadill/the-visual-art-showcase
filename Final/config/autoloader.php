@@ -1,11 +1,11 @@
 <?php
 define("PROJECT_PATH", '/Final');
-define("ROOT_PATH", $_SERVER['DOCUMENT_ROOT'] . PROJECT_PATH);
+define("COMPLETE_PROJECT_PATH", $_SERVER['DOCUMENT_ROOT'] . PROJECT_PATH);
 
 spl_autoload_register('loader');
 
 function loader($class){
-    $route = ROOT_PATH;
+    $route = COMPLETE_PROJECT_PATH;
     $extension = ".php";
 
     //convert namespace separators to directory separators
