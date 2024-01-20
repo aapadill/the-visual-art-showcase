@@ -17,6 +17,7 @@ WHERE
 *
 * @return ResultSet con los datos de la query
 */
+
 function queryPost($usuarioId){
     $conexion = abrirConexion();
     $usuarioId = limpiarDatos($conexion, $usuarioId);
@@ -46,6 +47,7 @@ function queryPost($usuarioId){
 *
 * @return true si el post se registro correctamente
 */
+
 function crearPost($usuarioId, $texto, $imagen){
     //Conectarse
     $conexion = abrirConexion();

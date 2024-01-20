@@ -18,6 +18,7 @@ FROM
 WHERE
    usuario_id <> $usuarioId
 */
+
 function listarSeguidores($usuarioId) {
     $conexion = abrirConexion();
     $usuarioIdLipio = limpiarDatos($conexion, $usuarioId);
@@ -48,6 +49,7 @@ INSERT INTO usuario_seguidor(usuario_id, seguidor_id) VALUES
 * 
 * @param true si el registro se actualizo correctamente
 */
+
 function seguir($usuarioId, $seguidorId) {
     $conexion = abrirConexion();
     $usuarioId = limpiarDatos($conexion, $usuarioId);
