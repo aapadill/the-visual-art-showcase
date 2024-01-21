@@ -20,9 +20,8 @@
 
   // $vieneDeCarrito = $sesion->obtener('intento_compra') ?? 0;
 
- 
   // Procesar El inicio de sesion
-  if (Router::esPost()) {
+  if (Router::esPost()) { //&& !$sesion
     if (!empty($nombreUsuario) && !empty($password)) {
       //Comprobar que el usuario y contrasenia son correctos
       $usuarioL = Usuario::validarLogin($nombreUsuario, $password);
@@ -32,9 +31,9 @@
       //Redireccionamiento
       if (!empty($usuarioL->userID)) {
         $sesion->insertar('usuario', $usuarioL);
-        // echo '<pre>';
-        // echo '$sesion: ';
-        // var_dump($sesion->getSesion());
+        echo '<pre>';
+        echo '$sesion: ';
+        var_dump($sesion->getSesion());
 
         // if ($vieneDeCarrito){
           // unset($_SESSION['intento_compra']);
@@ -46,6 +45,9 @@
       }
     }
   }
+  // else{
+  //   $sesion->cerrarSesion();
+  // }
 ?>
 
 <main>
@@ -96,5 +98,5 @@
 </main>
 
 <?php
-// include('./plantillas/footer.php');
+  include('./plantillas/footer.php');
 ?>

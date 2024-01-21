@@ -97,6 +97,12 @@ $usuarioIdSesion = $usuarioSesion->usuarioId ?? 0;
                 <?php
                 }
 
+                if ($rolSesion){ //1.bcd) 2.a) 3.a) admin, vendedor, comprador
+                  ?>
+                    <li><a class="dropdown-item" href="<?php Router::direccionWeb('cerrarSesion.php');?>">Cerrar sesion</a></li>
+                  <?php
+                }
+
                 else{ //de alguna manera traes sesion sin rol?, matamos la sesion Xd
                   session_destroy();
                 }

@@ -1,4 +1,3 @@
-<!-- dependiendo del rol del usuario (default, comprador, vendedor, admin) presentar diferentes menus -->
 <?php
 use Controladores\Router;
 use Controladores\Sesion;
@@ -6,18 +5,19 @@ use Modelos\Conexion;
 
 $sesion = new Sesion(); //la sesion la manejara el header
 
-$usuarioSesion = $sesion->obtener('username') ?? [];
-$productosSesion = $sesion->obtener('productos') ?? [];
+$usuarioSesion = $sesion->obtener('usuario') ?? [];
+// $productosSesion = $sesion->obtener('productos') ?? [];
 
 $nombreSesion = $usuarioSesion->username ?? '';
 $rolSesion = $usuarioSesion->roleID ?? '';
 $usuarioIdSesion = $usuarioSesion->userID ?? 0;
 
-$subscribed = 1; //hardcored, properly bring from table
-$submitted = 1; //hardcored, properly bring from table
+$subscribed = 0; //hardcored, properly bring from table
+$submitted = 0; //hardcored, properly bring from table
 
 // echo '<pre>';
 // $sesion = $sesion->getSesion() ?? [];
+
 // $usuarioSesion = $sesion['usuario'] ?? [];
 // var_dump($usuarioSesion);
 // var_dump($rolSesion);
@@ -36,13 +36,13 @@ $submitted = 1; //hardcored, properly bring from table
     <link rel="stylesheet" href="<?php Router::rutaRecursoWeb('main.css');?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link href="<?php Router::rutaRecursoWeb('/css/style.css');?>" rel="stylesheet"/>
+    <link href="<?php Router::rutaRecursoWeb('css/style.css');?>" rel="stylesheet"/>
   </head>
   
   <body>
     <header class="main-header">
       <!-- left menu: register/suscribe/submit -->
-      <nav class="corner center-left">
+      <nav class="corner center-left navbar navbar-expand-lg"> <!-- navbar sticky-top navbar-expand-lg navbar-dark bg-dark -->
           <ul class="menu" id="register-subscribe-submit">
             <?php
               if (empty($usuarioSesion)){ //sesion no iniciada
@@ -85,7 +85,7 @@ $submitted = 1; //hardcored, properly bring from table
                   <?php
                   }
 
-                  if ($rolSesion == '1' || $rolSesion == '2' || $rolSesion == '3'){ //admin, artist, user
+                  if ($rolSesion){ //admin, artist, user, 123
                   ?>
                     <li><a class="dropdown-item" href="<?php Router::direccionWeb('cerrarSesion.php');?>">Cerrar sesion</a></li>
                   <?php
@@ -99,13 +99,13 @@ $submitted = 1; //hardcored, properly bring from table
               </li>
             <?php
                 //not subscribed
-                if ($subscribed == 0 && ($rolSesion == '2' || $rolSesion == '1' || $rolSesion == '3')){ //admin should not get any option
+                if ($subscribed == 0 && ($rolSesion == '2' || $rolSesion == '1')){ //admin should not get any option
             ?>
                   <li> <a href="<?php Router::direccionWeb('subscribe.php');?>"> <b> SUBSCRIBE! </b> </a> </li>
             <?php
                 }
                 //subscribed
-                if ($subscribed == 1 && ($rolSesion == '2' || $rolSesion == '1' || $rolSesion == '3')){ //admin should not get any option
+                if ($subscribed == 1 && ($rolSesion == '2' || $rolSesion == '1')){ //admin should not get any option
             ?>
                   <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Subscription </a>
@@ -114,9 +114,8 @@ $submitted = 1; //hardcored, properly bring from table
                   </ul>
             <?php
                 }
-
                 //not submitted
-                if ($submitted == 0 && ($rolSesion == '2' || $rolSesion == '1' || $rolSesion == '3')){
+                if ($submitted == 0 && ($rolSesion == '2' || $rolSesion == '1')){ //if user, improve role_id to artist
             ?>
                 <li> ARTIST? <a href="<?php Router::direccionWeb('submit.php');?>"> <b> SUBMIT! </b> </a> </li>
             <?php

@@ -28,7 +28,7 @@ class Sesion {
     return $res;
   }
 
-  public function insertarProducto($productoId, $producto, $cantidad) {
+  // public function insertarProducto($productoId, $producto, $cantidad) { 
     // //si no existe $SESSION['productos'], definelo como cadena vacia
     // if (!isset($_SESSION['productos'])){
     //   $_SESSION['productos'] = [];
@@ -47,7 +47,7 @@ class Sesion {
     //     //añade el $POST a la $SESSION en $productos x $productoID
     //     $_SESSION['productos'][$productoId] = $producto;
     //   }
-  }
+  // }
 
   public function validarLogin($usuario, $password) {
     $res = 'Usuario invalido';
