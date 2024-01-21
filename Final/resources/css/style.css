@@ -8,8 +8,6 @@
         --padding-size: 5px;
     }
 
-
-
 /* general purpose */
     html {
         font-size: 100%;
@@ -365,7 +363,7 @@
     .contenedor-artista{
         /* height: 100%; */
         min-height: 100px;
-        min-width: 800px;
+        /* min-width: 800px; */
         margin: 0;
         margin-top: -54px;
         /* overflow: hidden; */
@@ -398,7 +396,7 @@
 
     .menu-artista div{
         width: 50%;
-        min-width: 450px;
+        /* min-width: 450px; */
         min-height: 100px;
         /* border: solid 1px pink; */
     }
@@ -425,7 +423,7 @@
 
     .arte{
         /* z-index: 2; */
-        min-width: 800px;
+        /* min-width: 800px; */
         /* min-height: 1024px; */
         min-height: auto;
 

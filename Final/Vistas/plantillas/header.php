@@ -12,7 +12,7 @@ $nombreSesion = $usuarioSesion->username ?? '';
 $rolSesion = $usuarioSesion->roleID ?? '';
 $usuarioIdSesion = $usuarioSesion->userID ?? 0;
 
-$subscribed = 0; //hardcored, properly bring from table
+$subscribed = 0; //hardcored, properly bring a table, or column?
 $submitted = 0; //hardcored, properly bring from table
 
 // echo '<pre>';
@@ -38,7 +38,7 @@ $submitted = 0; //hardcored, properly bring from table
 
     <link href="<?php Router::rutaRecursoWeb('css/style.css');?>" rel="stylesheet"/>
   </head>
-  
+    
   <body>
     <header class="main-header">
       <!-- left menu: register/suscribe/submit -->
@@ -115,10 +115,17 @@ $submitted = 0; //hardcored, properly bring from table
             <?php
                 }
                 //not submitted
-                if ($submitted == 0 && ($rolSesion == '2' || $rolSesion == '1')){ //if user, improve role_id to artist
+                if ($submitted == 0 && ($rolSesion == '2' || $rolSesion == '1')){
+                  if ($rolSesion == '1'){
             ?>
                 <li> ARTIST? <a href="<?php Router::direccionWeb('submit.php');?>"> <b> SUBMIT! </b> </a> </li>
             <?php
+                  }
+                  if ($rolSesion == '2'){
+            ?>
+                  <li> <a href="<?php Router::direccionWeb('submit.php');?>"> <b> SUBMIT? </b> </a> </li>
+            <?php
+                  }
                 }
                 //submitted
                 if ($submitted == 1 && $rolSesion == '2'){
@@ -162,9 +169,8 @@ $submitted = 0; //hardcored, properly bring from table
               </li>
           </ul>
       </nav>
-  </header>
-
-<main>
-
-<div class="container">
-  <br>
+    </header>
+  
+    <main>
+      <div class="container">
+      <br>
