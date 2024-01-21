@@ -19,7 +19,7 @@ class File {
         }
 
         if ($image['size'] > 50000000) { // 50MB size limit
-            return false; // or handle the error 
+            return false; //or handle the error 
         }
 
         $info = pathinfo($image['name']);
@@ -37,10 +37,10 @@ class File {
             if (move_uploaded_file($image['tmp_name'], $finalPath)) {
                 return $finalPath;
             } else {
-                return false; // or handle the error
+                return false; //or handle the error
             }
         } else {
-            return false; // or handle the error
+            return false; //or handle the error
         }
     }
 }

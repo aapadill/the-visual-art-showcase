@@ -15,23 +15,6 @@ class User {
     private $location;
     private $roleId;
     
-    /**
-     * Initializes class properties based on input array.
-     * 
-     * @param array $userData
-     *   An array with the following structure:
-     *   [
-     *       'user_id' => 'user_idValue',
-     *       'username' => 'usernameValue',
-     *       'email' => 'emailValue',
-     *       'password' => 'passwordValue',
-     *       'profile_picture' => 'profilePictureValue',
-     *       'name' => 'nameValue',
-     *       'bio' => 'bioValue',
-     *       'location' => 'locationValue',
-     *       'role_id' => 'roleIdValue'
-     *   ]
-     */
     public function __construct($userData = []) {
         $this->userId = $userData['user_id'] ?? 0;
         $this->username = htmlentities($userData['username'] ?? '');
@@ -42,5 +25,31 @@ class User {
         $this->bio = htmlentities($userData['bio'] ?? '');
         $this->location = htmlentities($userData['location'] ?? '');
         $this->roleId = $userData['role_id'] ?? 1;
+    }
+
+    public static function consultar($userId = 0, $username = '') {
+        $sql = "
+            SELECT *
+            FROM
+                Users U
+            WHERE 1 = 1
+        ";
+
+        $params = [];
+        if (!empty($userId)) {
+            $sql .= " AND user_id = :user_id";
+            $params['user_id'] = $userId;
+        }
+
+        if (!empty($username)) {
+            $sql .= " AND username = :username";
+            $params['username'] = $username;
+        }
+        
+        $connection = new Connection();
+        $results = $connection->runQuery($sql, $params);
+
+        $userData = $results->fetch();
+        return new User($userData);
     }
 }

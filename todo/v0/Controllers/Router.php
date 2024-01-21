@@ -2,19 +2,19 @@
 namespace Controllers;
 
 class Router {
-    public static function redirectTo($route){
+    public static function redirectTo($route) {//aka redireccionar
         header('Location: ' . PROJECT_PATH . "/Views/$route");
     }
 
-    public static function whichMethod(){
+    public static function whichMethod() {//aka metodo
         return strtoupper($_SERVER['REQUEST_METHOD'] ?? 'GET');
     }
 
-    public static function isPost() {
+    public static function isPost() { //aka esPost
         return self::whichMethod() == 'POST';
     }
 
-    public static function isGet() {
+    public static function isGet() { //aka esGet
         return !self::isPost();
     }
 

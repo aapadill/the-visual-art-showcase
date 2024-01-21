@@ -14,7 +14,8 @@ class Connection extends \PDO implements Persistent {
             parent::__construct("mysql:host=" . self::$host . ";port=" . self::$port . ";dbname=" . self::$dbname, self::$user, self::$pass);
             $this->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         } catch (\PDOException $e) {
-            die("Connection failed: " . $e->getMessage());
+            // die("Connection failed: " . $e->getMessage());
+            throw $e;
         }
     }
 
@@ -50,14 +51,17 @@ class Connection extends \PDO implements Persistent {
                 throw new \PDOException("Error executing SQL statement: " . $statement->errorInfo()[2]);
             }
 
-            $result = $isInsert ? $this->lastInsertId() : $statement->fetchAll(\PDO::FETCH_ASSOC);
+            $result = $isInsert ? $this->lastInsertId() : $statement->setFetchMode(\PDO::FETCH_ASSOC);
 
-            $this->commit();
-            $this->ownCloseConnection();
+            // $this->commit();
+            // $this->ownCloseConnection();
+            // return $result;
+            $this->endTransaction(true);
             return $result;
         } catch (\PDOException $e) {
             $this->rollBack();
-            die("Query failed: " . $e->getMessage());
+            // die("Query failed: " . $e->getMessage());
+            throw $e;
         }
     }
 }
