@@ -58,11 +58,11 @@ $submitted = 0; //hardcored, properly bring from table
               <li class="dropdown show">
                 <!-- class="nav-link dropdown-toggle" id="navbarDropdown" -->
                 <a class="btn btn-secondary dropdown-toggle" href="#" id="dropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <?php echo $nombreSesion;?> </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                   <?php
                   if ($rolSesion == '1' || $rolSesion == '2' ){ //user or admin
                   ?>
-                    <li> <b> User Menu <b> </li>          
+                    <h6 class="dropdown-header">User options</h6>
                     <li><a class="dropdown-item" href="<?php Router::direccionWeb('usuarios/');?>">Admin Profile</a></li>
                     <li><a class="dropdown-item" href="<?php Router::direccionWeb('likes/');?>">Likes</a></li>
                   <?php
@@ -70,7 +70,8 @@ $submitted = 0; //hardcored, properly bring from table
 
                   if ($rolSesion == '2'){ //artist
                   ?> 
-                    <li> <b> Artist Menu <b> </li>
+                    <div class="dropdown-divider"></div>
+                    <h6 class="dropdown-header">Artist options</h6>
                     <li><a class="dropdown-item" href="<?php Router::direccionWeb('artists/');?>">Admin Artist Profile</a></li>
                     <li><a class="dropdown-item" href="<?php Router::direccionWeb('artworks/');?>">Admin Artworks</a></li>
                   <?php
@@ -78,7 +79,7 @@ $submitted = 0; //hardcored, properly bring from table
 
                   if ($rolSesion == '3'){ //admin
                   ?>
-                    <li> <b> Admin Menu <b> </li>    
+                    <h6 class="dropdown-header">Administrator options</h6> 
                     <li><a class="dropdown-item" href="<?php Router::direccionWeb('weeklyShowcase/');?>">Admin Weekly Showcases</a></li>
                     <li><a class="dropdown-item" href="<?php Router::direccionWeb('showcaseArtworks/');?>">Admin Showcase Artworks</a></li>
                     <li><a class="dropdown-item" href="<?php Router::direccionWeb('artworks/');?>">Admin Artworks</a></li>
