@@ -28,27 +28,6 @@ class Sesion {
     return $res;
   }
 
-  // public function insertarProducto($productoId, $producto, $cantidad) { 
-    // //si no existe $SESSION['productos'], definelo como cadena vacia
-    // if (!isset($_SESSION['productos'])){
-    //   $_SESSION['productos'] = [];
-    // }
-    // //si existe $SESSION['productos']
-    //   //si cantidad es cero
-    //   if ($cantidad == 0){
-    //     //si existe ['productoID']
-    //     if (isset($_SESSION['productos'][$productoId])){
-    //       unset($_SESSION['productos'][$productoId]);//eliminarProducto
-    //     }
-    //   }
-
-    //   //si cantidad es mayor a cero
-    //   if ($cantidad > 0){
-    //     //añade el $POST a la $SESSION en $productos x $productoID
-    //     $_SESSION['productos'][$productoId] = $producto;
-    //   }
-  // }
-
   public function validarLogin($usuario, $password) {
     $res = 'Usuario invalido';
     $validacion = false;
@@ -79,3 +58,24 @@ class Sesion {
     Router::redireccionar('index.php');
   }
 }
+
+  // public function insertarProducto($productoId, $producto, $cantidad) { 
+    // //si no existe $SESSION['productos'], definelo como cadena vacia
+    // if (!isset($_SESSION['productos'])){
+    //   $_SESSION['productos'] = [];
+    // }
+    // //si existe $SESSION['productos']
+    //   //si cantidad es cero
+    //   if ($cantidad == 0){
+    //     //si existe ['productoID']
+    //     if (isset($_SESSION['productos'][$productoId])){
+    //       unset($_SESSION['productos'][$productoId]);//eliminarProducto
+    //     }
+    //   }
+
+    //   //si cantidad es mayor a cero
+    //   if ($cantidad > 0){
+    //     //añade el $POST a la $SESSION en $productos x $productoID
+    //     $_SESSION['productos'][$productoId] = $producto;
+    //   }
+  // }

@@ -116,56 +116,35 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
     //full
+    
+    //search bar
+    const searchIcon = document.querySelector('.search-icon');
+    const searchInput = document.querySelector('.search-input');
+    const searchSubmit = document.querySelector('.search-submit');
 
-    // alfa: scroll changes size and position of headers
-    //get the header element
+    searchIcon.addEventListener('click', () => {
+        searchInput.classList.toggle('active');
+        if (searchInput.classList.contains('active')) {
+            searchInput.focus();
+            // searchInput.style.display = 'block';
+            // searchSubmit.style.display = 'block';
+        }
+    });
+
+    //scroll
+    let lastScrollTop = 0;
     const header = document.querySelector('.main-header');
+    // throttle to limit exec frequency of handleScroll, which reduces main-header
+    // const throttledHandleScroll = throttle(handleScroll, 1000); //10ms
 
-    //initial scroll position
-    let lastScroll = 0;
+    document.documentElement.style.setProperty('--main-header-height', '108px');
+    document.documentElement.style.setProperty('--art-header-top', '54px');
+    document.documentElement.style.setProperty('--logo-reduction-h', '90px');
+    document.documentElement.style.setProperty('--logo-reduction-w', '90px');
+    document.documentElement.style.setProperty('--reduced-size', '100%');
+    document.documentElement.style.setProperty('--padding-size', '5px');
 
-    //function to handle scroll events
-    function handleScrollA() {
-        const currentScroll = window.scrollY;
-
-        // ignores the scroll if currentScroll is below 108px
-        if (currentScroll < 108) {
-            return; // Termina la función prematuramente
-        }
-        if (currentScroll > lastScroll) {
-            //scrolling down, hide the header
-            header.classList.add('hide-header');
-        } else {
-            //scrolling up, show the header
-            header.classList.remove('hide-header');
-        }
-        lastScroll = currentScroll;
-    }
-    // alfa: scroll changes size and position of headers
-
-    // beta: scroll changes size and position of headers
-    // const mainHeader = document.querySelector('.main-header');
-    // const artHeader = document.querySelector('.art-header');
-    // let lastScrollTop = 0;
-    // let headerHeight = 108;
-
-    // // Firefox: This may not work well with asynchronous panning
-    // window.addEventListener('scroll', () => {
-    //     let currentScrollTop = window.scrollY || document.documentElement.scrollTop;
-    //     if (currentScrollTop > lastScrollTop) {
-    //         // Scroll hacia abajo
-    //         headerHeight = Math.max(54, headerHeight - (currentScrollTop - lastScrollTop));
-    //     } else {
-    //         // Scroll hacia arriba
-    //         headerHeight = Math.min(108, headerHeight + (lastScrollTop - currentScrollTop));
-    //     }
-    //     mainHeader.style.height = headerHeight + 'px';
-    //     artHeader.style.top = headerHeight + 'px';
-    //     lastScrollTop = currentScrollTop;
-    // });
-    // beta: scroll changes size and position of headers
-
-    // Función throttle: Limita la frecuencia de ejecución de la función
+    // Función throttle: limita la frecuencia de ejecución de la función
     function throttle(func, limit) {
         let inThrottle;
         return function() {
@@ -179,54 +158,39 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     }
 
-    let lastScrollTop = 0;
-    document.documentElement.style.setProperty('--main-header-height', '108px');
-    document.documentElement.style.setProperty('--art-header-top', '54px');
-    document.documentElement.style.setProperty('--logo-reduction-h', '90px');
-    document.documentElement.style.setProperty('--logo-reduction-w', '90px');
-    document.documentElement.style.setProperty('--reduced-size', '100%');
-    document.documentElement.style.setProperty('--padding-size', '5px');
+    function handleScroll() {
+    let currentScrollTop = window.scrollY || document.documentElement.scrollTop;
 
-    const handleScroll = () => {
-        let currentScrollTop = window.scrollY || document.documentElement.scrollTop;
+    // Handling header visibility
+    if (currentScrollTop > lastScrollTop && currentScrollTop > 108) {
+        // Scrolling down, hide the header
+        header.classList.add('hide-header');
+    } else if (currentScrollTop < lastScrollTop) {
+        // Scrolling up, show the header
+        header.classList.remove('hide-header');
+    }
 
-        // ignores the scroll if currentScroll is below 108px
-        if (currentScrollTop < 12) {
-            return; // Termina la función prematuramente
-        }
-
+    // Handling header resizing
+    if (currentScrollTop >= 12) {
         let newHeight = Math.max(54, Math.min(108, parseInt(getComputedStyle(document.documentElement).getPropertyValue('--main-header-height')) + (lastScrollTop - currentScrollTop)));
-        let reductionPercentage = (newHeight/108);
-        console.log(reductionPercentage); //cuanto se ha reducido la barra respecto a si misma, va de 1 a 0.5
+        let reductionPercentage = newHeight / 108;
+        console.log(reductionPercentage); // Log the reduction percentage
+        
         document.documentElement.style.setProperty('--main-header-height', newHeight + 'px');
         document.documentElement.style.setProperty('--art-header-top', newHeight + 'px');
-        document.documentElement.style.setProperty('--logo-reduction-h', reductionPercentage*90 + 'px');
-        document.documentElement.style.setProperty('--logo-reduction-w', reductionPercentage*90 + 'px');
-        document.documentElement.style.setProperty('--reduced-size', reductionPercentage*100 + '%');
-        document.documentElement.style.setProperty('--padding-size', reductionPercentage*5 + 'px');
+        document.documentElement.style.setProperty('--logo-reduction-h', reductionPercentage * 90 + 'px');
+        document.documentElement.style.setProperty('--logo-reduction-w', reductionPercentage * 90 + 'px');
+        document.documentElement.style.setProperty('--reduced-size', reductionPercentage * 100 + '%');
+        document.documentElement.style.setProperty('--padding-size', reductionPercentage * 5 + 'px');
+    }
 
-        lastScrollTop = currentScrollTop;
-    };
+    lastScrollTop = currentScrollTop;
+    }
 
-    // throttle to limit exec frequency of handleScroll, which reduces main-header
-    const throttledHandleScroll = throttle(handleScroll, 10); //10ms
-    window.addEventListener('scroll', throttledHandleScroll);
+    // Add the event listener for the scroll event
+    window.addEventListener('scroll', handleScroll);
+    // window.addEventListener('scroll', throttledHandleScroll);
 
     //listen for the scroll event to hide or show the header
-    window.addEventListener('scroll', handleScrollA);
-
-    //search bar
-    const searchIcon = document.querySelector('.search-icon');
-    const searchInput = document.querySelector('.search-input');
-    const searchSubmit = document.querySelector('.search-submit');
-
-    searchIcon.addEventListener('click', () => {
-        
-        searchInput.classList.toggle('active');
-        if (searchInput.classList.contains('active')) {
-            searchInput.focus();
-            // searchInput.style.display = 'block';
-            // searchSubmit.style.display = 'block';
-        }
-    });
+    // window.addEventListener('scroll', transparentBackground);
 });

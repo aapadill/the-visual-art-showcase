@@ -54,8 +54,10 @@ $submitted = 0; //hardcored, properly bring from table
               }
               if (!empty($usuarioSesion)){ //sesion iniciada
             ?>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <?php echo $nombreSesion;?> </a>
+              <!-- nav-item  -->
+              <li class="dropdown show">
+                <!-- class="nav-link dropdown-toggle" id="navbarDropdown" -->
+                <a class="btn btn-secondary dropdown-toggle" href="#" id="dropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <?php echo $nombreSesion;?> </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <?php
                   if ($rolSesion == '1' || $rolSesion == '2' ){ //user or admin

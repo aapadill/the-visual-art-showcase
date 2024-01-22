@@ -44,13 +44,18 @@
     body{
         margin: 0;
         border: 0;
-        /* background: red; */
         font-family: acumin-pro, sans-serif;
         font-style: normal;
         font-weight: 400;
         /* line-height: 1.25; */
         /* line-height: 1.75;  */
         /* color: #000000; */
+    }
+
+    .container{
+        /* background-color: black; */
+        color: black;
+        border: solid 1px purple;
     }
 /* ------ */
 
@@ -81,7 +86,7 @@
         min-height: 54px;
         top: var(--art-header-top);
         /* width: 100%; */
-        color: white;
+        color: rgb(52, 52, 52); 
         position: sticky;
         /* 108px */
         /* top: 54px; */
@@ -155,7 +160,7 @@
     .art-header li{ 
         border-radius: 5px;
         border: solid 5px yellow;
-        color: rgba(255, 255, 255, 0.85);
+        /* color: rgba(255, 255, 255, 0.85); */
         border: solid 2px rgba(255, 255, 255, 0.5);
         background-color: rgba(255, 255, 255, 0.1);
         /* for safari */

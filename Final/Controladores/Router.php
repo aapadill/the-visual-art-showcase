@@ -35,7 +35,7 @@ class Router {
 
     //ruta basica
     public static function rutaImagenWeb($imagen) {
-        echo RUTA_BASE_WEB . "/img/$imagen";
+        echo RUTA_BASE_WEB . "/$imagen";
     }
 
     //ruta basica

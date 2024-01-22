@@ -86,7 +86,6 @@ CREATE TABLE Comments (
 
 CREATE TABLE WeeklyShowcase (
     weekly_showcase_id INT AUTO_INCREMENT PRIMARY KEY,
-    year INT NOT NULL,
     week_start_date DATE NOT NULL,
     week_end_date DATE NOT NULL,
     featured_artist_id INT,
