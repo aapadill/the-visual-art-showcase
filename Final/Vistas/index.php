@@ -12,17 +12,14 @@ include Router::direccion('/plantillas/header.php');
 $busqueda = htmlentities($_GET['buscar'] ?? ''); //texto a buscar
 $techniqueSelected = htmlentities($_GET['technique-select'] ?? 0); //technique chosen
 $selectedWeek = htmlentities($_GET['week-select'] ?? ''); //week chosen
-
-// var_dump($techniqueSelected);
 $categorias = Category::consultar(); //traer todas las categorias
 
-// $busquedaSemana = WeeklyShowcase::buscar($busqueda); regresa coincidencia
+//$busquedaSemana = WeeklyShowcase::buscar($busqueda); regresa coincidencia
 
-// Example array of dayIDs
 $filteredDayIDs = []; //days to display, affected by filter [alpha]
 
 //loop starts
-$day = WeeklyShowcase::convertToDate("3 March 2023"); //"now" // starting day
+$day = WeeklyShowcase::convertToDate("3 March 2023"); //"now" //starting day
 $dayID = WeeklyShowcase::whichID($day); // which week is $day
 
 //[alpha] filtering days depending on technique selection..
@@ -45,13 +42,6 @@ while ($dayID > 0) {
     }
     $dayID--; //previous week
 }
-// var_dump($filteredDayIDs);
-
-// var_dump();
-// echo '<pre>';
-// var_dump($weekArtist);
-
-//aqui andaba el Router::direccion
 ?>
 
 <!-- preview page, hidden: hold click to enable -->
@@ -63,7 +53,6 @@ while ($dayID > 0) {
 <div id="magnifier" class="zoomable-image">
 </div>
 
-<!-- class="row row-cols-md-3" id="productos" -->
 <!-- toolbar -->
 <!-- hacerlo div -->
 <header class="art-header">
@@ -103,7 +92,7 @@ while ($dayID > 0) {
     <nav class="corner center-right">
         <ul class="menu" id="search-free-guided">
             <!-- search -->
-            <li id="search">
+            <li>
                 <!-- <div> -->
                     <div class="search-icon">&#128269;</div>
                     <input type="text" class="search-input" placeholder="Search...">
@@ -162,7 +151,7 @@ while ($dayID > 0) {
                 <h3> <?php echo $artwork->title;?> </h3>
                 <p> <?php echo $artwork->technicalSheet;?> </p>
             </div>
-            <img src="<?php Router::rutaImagenWeb($artwork->imageURL);?>" class="image previewable-image zoomable-image" alt="<?php Router::rutaImagenWeb($artwork->imageURL);?>"> 
+            <img src="<?php Router::rutaImagenWeb($artwork->imageURL);?>" class="previewable-image zoomable-image" alt="<?php Router::rutaImagenWeb($artwork->imageURL);?>"> 
         </div>
         <br>
         <br>
