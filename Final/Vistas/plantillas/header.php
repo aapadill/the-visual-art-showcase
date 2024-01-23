@@ -28,7 +28,7 @@ $submitted = 1; //hardcored, properly bring from table
   <body>
       <header class="">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
+            <div class="container d-flex justify-content-between justify-content-lg-center">
                 <!-- Navbar Toggler -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -63,21 +63,19 @@ $submitted = 1; //hardcored, properly bring from table
                                     <?php
                                     if ($rolSesion == '1' || $rolSesion == '2' ){
                                     ?>
-                                        <h6 class="dropdown-header">User options</h6>
                                         <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('usuarios/');?>">Admin Profile</a></li>
                                         <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('likes/');?>">Likes</a></li>
                                     <?php
                                     }
                                     if ($rolSesion == '2'){
                                     ?> 
-                                        <h6 class="dropdown-header">Artist options</h6>
+                                        <li><hr class="dropdown-divider"></li>
                                         <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artists/');?>">Admin Artist Profile</a></li>
                                         <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artworks/');?>">Admin Artworks</a></li>
                                     <?php
                                     }
                                     if ($rolSesion == '3'){ 
                                     ?>
-                                        <h6 class="dropdown-header">Administrator options</h6> 
                                         <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('weeklyShowcase/');?>">Admin Weekly Showcases</a></li>
                                         <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('showcaseArtworks/');?>">Admin Showcase Artworks</a></li>
                                         <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artworks/');?>">Admin Artworks</a></li>
@@ -137,9 +135,9 @@ $submitted = 1; //hardcored, properly bring from table
                         }
                         ?>
                     </ul>
-
                     <!-- Right Nav -->
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li><hr class="dropdown-divider"></li>
                         <li class="nav-item"><a class="nav-link" href="/archives">Archives</a></li>
                         <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
                         <li class="nav-item dropdown">

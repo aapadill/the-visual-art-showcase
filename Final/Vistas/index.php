@@ -109,9 +109,9 @@ while ($dayID > 0) {
         </div>
 
         <!-- Search form (hidden on extra small screens) -->
-        <form class="d-flex d-none d-sm-block">
-          <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+        <form class="input-group d-none d-sm-flex">
+            <input type="text" class="form-control" placeholder="Search..." aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
       </div>
     </div>
@@ -124,7 +124,7 @@ while ($dayID > 0) {
     foreach ($filteredDayIDs as $dayID) {
         $weeklyShowcase = WeeklyShowcase::consultar($dayID); // WeeklyShowcase of a specific week
     ?>
-    <div class="info">
+    <div class="info-week">
         <h1 class="week-intro">Featuring on week <b> <?php echo $dayID;?> </b> </h1>
     </div>
     <?php
@@ -134,7 +134,7 @@ while ($dayID > 0) {
     ?>
     <!-- antes, class="contenedor-artista" id="seppe-borde" -->
     <div class="artist" id="">
-        <div class="info">
+        <div class="info-artist">
             <h2 class="artist-name"><b> <?php echo $weekArtist->artistName;?> </b></h2>
             <!-- antes, class="descripcion-artista" -->
             <div class="info">
@@ -148,7 +148,7 @@ while ($dayID > 0) {
     ?>
         <!-- antes, class="arte" -->
         <div class="artwork" id=""> 
-            <div class="info">
+            <div class="info-artwork">
                 <h3> <?php echo $artwork->title;?> </h3>
                 <p> <?php echo $artwork->technicalSheet;?> </p>
             </div>
