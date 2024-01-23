@@ -31,18 +31,34 @@
 
     .artwork{
         border-radius: 25px;
-        border: 1px solid black;
-        margin-top: 1%;
-        padding-top: 2%;
+        /* margin-top: 1%; */
+        /* padding-top: 2%; */
+        position: relative;
     }
 
-    .info-artwork{
-        margin-left: 3%;
+    .info-artwork {
+        padding: 0;
+        /* margin: 5%; */
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+        background-color: rgba(1, 1, 1, 0.8);
+        -webkit-backdrop-filter: blur(50px);
+        backdrop-filter: blur(50px);
+        filter: invert(100%);
+        border-radius: 15px;
+        transform: translate(2%, 35%);
+        border: solid 1px white;
     }
+
+    .info-artwork h3, .info-artwork p{
+        padding: 5px;
+        filter: invert(100%);
+    } 
 
     .art-header .navbar{
         border-radius: 3px;
-        border: 0.5px solid black;
     }
 
     .art-header { 
