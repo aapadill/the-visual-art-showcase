@@ -151,7 +151,7 @@ while ($dayID > 0) {
                 <h3> <?php echo $artwork->title;?> </h3>
                 <p> <?php echo $artwork->technicalSheet;?> </p>
             </div>
-            <img src="<?php Router::rutaImagenWeb($artwork->imageURL);?>" class="previewable-image zoomable-image" alt="<?php Router::rutaImagenWeb($artwork->imageURL);?>"> 
+            <img src="<?php Router::rutaImagenWeb($artwork->imageURL);?>" class="img-fluid previewable-image zoomable-image" alt="<?php Router::rutaImagenWeb($artwork->imageURL);?>"> 
         </div>
         <br>
         <br>
