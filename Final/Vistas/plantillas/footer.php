@@ -6,8 +6,10 @@ use Controladores\Router;
       </div>
     </main>
 
-    <footer class="bg-dark text-center">
-      <div class="container-fluid">
+    <!-- class="bg-dark text-center" -->
+    <footer>
+      <!-- class="container-fluid" -->
+      <div>
         <br>
         <p class="text-light"> The Visual Art Showcase</p>
       </div>
