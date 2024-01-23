@@ -55,66 +55,67 @@ while ($dayID > 0) {
 
 <!-- toolbar -->
 <!-- hacerlo div -->
-<header class="art-header">
-    <!-- left menu -->
-    <nav class="corner center-left">
-        <!-- week | technique -->
-        <ul class="menu" id="week-technique">
-            <li>
-                <label>WEEK</label>
-                <select name="week-select" id="week-select" onchange="this.form.submit()">
-                <?php 
-                foreach ($filteredDayIDs as $weekID) { 
-                    $selectedWeek = (isset($_GET['week-select']) && $_GET['week-select'] == $weekID) ? 'selected' : '';
-                    echo "<option value='$weekID' $selectedWeek>$weekID</option>";
-                } 
-                ?>
-                </select>
-            </li>
-            <li>
+<header class="art-header sticky-top">
+  <nav class="navbar navbar-expand navbar-light bg-light">
+    <div class="container-fluid">
+      <!-- Left menu -->
+      <div class="navbar-collapse collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              WEEK
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <?php foreach ($filteredDayIDs as $weekID) { 
+                $selectedWeek = (isset($_GET['week-select']) && $_GET['week-select'] == $weekID) ? 'selected' : '';
+                echo "<li><a class='dropdown-item' href='?week-select=$weekID'>$weekID</a></li>";
+              } ?>
+            </ul>
+          </li>
+          <li class="nav-item">
             <form method="GET" action="">
-                <select name="technique-select" id="technique-select" onchange="this.form.submit()">
-                    <option value="0"> all </option>
-                    <?php 
-                    foreach ($categorias as $c) {
-                        $selected = (isset($_GET['technique-select']) && $_GET['technique-select'] == $c['category_id']) ? 'selected' : '';
-                        echo '<option value="' . $c['category_id'] . '" ' . $selected . '>' . $c['category_name'] . '</option>';
-                    }
-                    ?>
-                </select>
-                <label>TECHNIQUE</label>
+              <select class="form-select" name="technique-select" id="technique-select" onchange="this.form.submit()">
+                <option value="0"> all </option>
+                <?php 
+                foreach ($categorias as $c) {
+                  $selected = (isset($_GET['technique-select']) && $_GET['technique-select'] == $c['category_id']) ? 'selected' : '';
+                  echo '<option value="' . $c['category_id'] . '" ' . $selected . '>' . $c['category_name'] . '</option>';
+                }
+                ?>
+              </select>
             </form>
-            </li>
+          </li>
         </ul>
-    </nav>
+      </div>
 
-    <!-- right menu -->
-    <nav class="corner center-right">
-        <ul class="menu" id="search-free-guided">
-            <!-- search -->
-            <li>
-                <!-- <div> -->
-                    <div class="search-icon">&#128269;</div>
-                    <input type="text" class="search-input" placeholder="Search...">
-                    <button class="search-submit">Go</button>
-                <!-- </div> -->
-            </li>
+      <!-- Toggler for extra small screens -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-            <!-- free | guided -->
-            <li id="free-guided">
-                <!-- <legend>Select a mode:</legend> -->
-                <div>
-                    <input type="radio" id="free" name="free" value="free" />
-                    <label for="free">F</label>
-                </div>
-                
-                <div>
-                    <input type="radio" id="guided" name="guided" value="guided" />
-                    <label for="guided">G</label>
-                </div>
-            </li>
-        </ul>
-    </nav>
+      <!-- Right menu -->
+      <div class="navbar-nav ms-auto">
+        <!-- Radio buttons for free/guided -->
+        <div class="d-flex align-items-center">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="free" name="mode" value="free" />
+            <label class="form-check-label" for="free">F</label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="guided" name="mode" value="guided" />
+            <label class="form-check-label" for="guided">G</label>
+          </div>
+        </div>
+
+        <!-- Search form (hidden on extra small screens) -->
+        <form class="d-flex d-none d-sm-block">
+          <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
 </header>
 
 <div class="week" id="week-<?php echo $dayID; ?>">
