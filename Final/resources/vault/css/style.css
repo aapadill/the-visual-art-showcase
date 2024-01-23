@@ -1,0 +1,636 @@
+/* variables */
+    :root {
+        --main-header-height: 108px;
+        --art-header-top: 54px;
+        --logo-reduction-h: 90px;
+        --logo-reduction-v: 90px;
+        --reduced-size: 100%;
+        --padding-size: 5px;
+    }
+
+/* general purpose */
+    html {
+        font-size: 100%;
+        /* min-width: 1000px; */
+        margin: 0 1%;
+        background-color: #262829;
+    } /*16px*/
+
+    p {margin-bottom: 1rem;}
+
+    h1, h2, h3, h4, h5 {
+        margin: 0.8rem 0.5rem;
+        font-family: acumin-pro, Helvetica, sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.3;
+    }
+
+    h1 {
+        margin-top: 0;
+        font-size: 3.052rem;
+    }
+
+    h2 {font-size: 2.441rem;}
+
+    h3 {font-size: 1.953rem;}
+
+    h4 {font-size: 1.563rem;}
+
+    h5 {font-size: 1.25rem;}
+
+    small, .text_small {font-size: 0.8rem;}
+
+    body{
+        margin: 0;
+        border: 0;
+        font-family: acumin-pro, sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        /* line-height: 1.25; */
+        /* line-height: 1.75;  */
+        /* color: #000000; */
+    }
+
+    .container{
+        /* background-color: black; */
+        color: black;
+        border: solid 1px purple;
+    }
+/* ------ */
+
+
+
+/* page header and toolbar*/
+    /* page header */
+    .main-header{
+        /* border: solid 1px red; */
+        /* transition: transform 0.25s ease-in-out;
+        transition: display 0.25s ease-in-out; */
+        transition: background-color 0.25s ease-in-out;
+        /* min-height: 108px; */
+        height: var(--main-header-height);
+        /* width: 100%; */
+        color: white;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        display: block;
+    }
+
+    .art-header{
+        /* border: solid 1px red; */
+        /* transition: transform 0.25s ease-in-out;
+        transition: display 0.25s ease-in-out; */
+        transition: background-color 0.25s ease-in-out;
+        min-height: 54px;
+        top: var(--art-header-top);
+        /* width: 100%; */
+        color: rgb(52, 52, 52); 
+        position: sticky;
+        /* 108px */
+        /* top: 54px; */
+        z-index: 2;
+        display: block;
+        /* overflow: hidden; */
+    }
+
+    .corner {
+        /* TODO: proper classes accordingly to names, example:
+        corner: only corners the element
+        top: only moves the element to the top
+        left: only moves the element to the left */
+        box-sizing: border-box;
+        position: absolute;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+    
+    .center-left { 
+        /* you gotta transform it 'cause you actually want to end it at 50% vertical, not start it from 50%*/
+        width: 35%;
+        top: 50%;
+        left: 0%;
+        transform: translate(0%, -50%);
+        /* justify-content: left; */ /* redundant and not necessary, done by default */
+    }
+
+    .center-right {
+        width: 35%;
+        top: 50%;
+        right: 0;
+        transform: translate(0%, -50%);
+        justify-content: right;
+    }
+
+    header{
+        border: solid 1px purple;
+    }
+    
+    .menu{ 
+        /* ul needs 100% of the parent space (nav) to justify the li items*/
+        display: flex;
+        width: 100%;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+        /* overflow: hidden; */
+        align-items: center;
+        display: flex;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        border: solid 1px blue;
+    }
+
+    .main-header .menu{
+        justify-content: space-between;
+    }
+
+    #week-technique{
+        justify-content: left;
+    }
+
+    #search-free-guided{
+        justify-content: space-around; /* TODO: restricted, this is taking all of the vertical size, why? */
+    }
+
+    /* especificar */
+    /* toolbar 'buttons'*/
+    .art-header li{ 
+        border-radius: 5px;
+        border: solid 5px yellow;
+        /* color: rgba(255, 255, 255, 0.85); */
+        border: solid 2px rgba(255, 255, 255, 0.5);
+        background-color: rgba(255, 255, 255, 0.1);
+        /* for safari */
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+    }
+/* ------ */
+
+
+    /* desactivado
+    .bottom-left {
+        bottom: 0;
+        left: 0;
+    }
+
+    .bottom-right {
+        bottom: 0;
+        right: 0;
+    } 
+    */
+/* ------ */
+
+
+
+/* responsiveness */
+    /* phone vertical 301-480*/
+    @media only screen and (min-width: 301px) and (max-width: 768px) {
+        .main-header{
+            background-color: purple;
+        }
+
+        .art-header {
+            border: solid 2px green;
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+        .center-left {
+            display: none;
+        }
+
+        .center-right {
+            display: none;
+        }
+    }
+
+    /* tablet horizontal, mid desktop */
+    @media only screen and (min-width: 769px) and (max-width: 1279px) {
+        .main-header{
+            border: solid 2px red;
+            background-color: rgb(0, 55, 128);
+        }
+
+        .art-header {
+            border: solid 2px green;
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+        .center-left {
+            min-width: 40%;
+            font-size: 100%;
+        }
+
+        #register-subscribe-submit li:last-child {
+            /* margin-right: 0; */
+            flex: 1;
+            white-space: normal;
+            max-width: 25%;
+            border: solid 2px greenyellow;
+        }
+
+        .center-right {
+            min-width: 40%;
+        }
+    }
+
+    /* full desktop */
+    @media only screen and (min-width: 1280px) {
+        .main-header{
+            background-color: rgb(38, 40, 41);
+        }
+
+        .art-header {
+            /* border: solid 2px green; */
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+        .center-left {
+            max-width: 30%;
+        }
+
+        .center-right {
+            max-width: 30%;
+        }
+
+        /* TODO: this is not a correct solution, use js or responsiv */
+        /* hover */
+            .logo:hover{
+                background-color: white;
+                color: black;
+                transition: all linear 150ms;
+            }
+
+            .logo:not(:hover){
+                transition: all linear 150ms;
+            }
+
+            a b:hover{
+                /* font-size: 150%;
+                text-decoration: underline;*/
+                filter: invert(35%);
+            }
+
+            a b:not(:hover){
+                /* font-size: 100%; 
+                text-decoration: none;*/
+                filter: invert(0%);
+            }
+
+            /* logo's hover is white */
+            .main-header.hide-header .logo:hover{
+                background-color: white;
+                color: black;
+                /* border: solid 2px rgba(1, 1, 1, 0.1); */
+                transition: all linear 150ms;
+            }   
+    }
+/* ------ */
+
+
+
+/* logo */
+    /* logo's font style and position */
+    .logo p{
+        padding: var(--padding-size);
+        margin: 0;
+        line-height: 1.25;
+        font-weight: bolder;
+    }
+
+    .logo a{
+        all: unset;
+    }
+
+    /* position, size, font-size */
+    .logo {
+        /* background-color: red;  */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* transform: translate(-50%, var(--reduced-size)); */
+
+        width: var(--logo-reduction-w);
+        /* width: 90px; */
+        height: var(--logo-reduction-h);
+        /* height: 90px; */
+        border: solid 2px white;
+
+        font-size: var(--reduced-size);
+        /* overflow: hidden; */
+    }
+
+    /* link's color */
+    a{
+        color: white;
+        text-decoration: none;
+    }
+
+    a:visited {
+        text-decoration: none;
+        color: default;
+    }
+/* ------ */
+
+
+
+/* when scrolling down */
+    /* remove the color of header */
+    .main-header.hide-header {
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    /* hide the menu options */
+    .main-header.hide-header nav{
+        transition: display 2s ease-in-out;
+        /* display: none; */
+    }
+
+    /* logo's background color is now transparent */
+    .main-header.hide-header .logo{
+        /* filter: invert(100%); */
+        border-radius: 5px;
+        color: rgba(255, 255, 255, 0.85);
+        border: solid 2px rgba(255, 255, 255, 0.5);
+        background-color: rgba(255, 255, 255, 0.1);
+        /* for safari */
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+    }
+/* ------ */
+
+
+
+/* art  */
+    .contenedor-artista{
+        /* height: 100%; */
+        min-height: 100px;
+        /* min-width: 800px; */
+        margin: 0;
+        margin-top: -54px;
+        /* overflow: hidden; */
+    }
+
+    #seppe-borde{
+        color: black;
+        border: solid 10px #5c7383;
+        border-bottom: none; /* cada pintura tendra su borde inferior */
+    }
+
+    #jill-borde{
+        color: white;
+        border: solid 10px #94573b;
+        border-bottom: none; /* cada pintura tendra su borde inferior */
+    }
+
+    .menu-artista{
+        display: flex;
+        max-height: 150px;
+    }
+
+    #seppe{
+        background-color: #5c7383;
+    }
+
+    #jill{
+        background-color: #94573b;
+    }
+
+    .menu-artista div{
+        width: 50%;
+        /* min-width: 450px; */
+        min-height: 100px;
+        /* border: solid 1px pink; */
+    }
+
+    .titulo-artista h1::before{
+        content: "";
+        display: inline-block;
+        width: 20px;
+        height: auto;
+        vertical-align: middle;
+    }
+
+    .descripcion-artista{
+        overflow: scroll;
+        /* border: solid 1px pink; */
+        margin: 0 0.5rem 1rem 0;
+    }
+
+    .descripcion-artista p{
+        margin-bottom: 0;
+        text-align: right;
+        line-height: 1.1rem;
+    }
+
+    .arte{
+        /* z-index: 2; */
+        /* min-width: 800px; */
+        /* min-height: 1024px; */
+        min-height: auto;
+
+        width: 100%;
+        height: 100%;
+        /* max-height: max-content; */
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        /* position: relative; */
+
+        /* background-image: url(../img/seppe-de-meyere-1.jpeg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center; */
+    }
+
+    .seppe-borde-inf{
+        border-bottom: solid 10px #5c7383;
+    }
+
+    .jill-borde-inf{
+        border-bottom: solid 10px #94573b;
+    }
+
+    .arte > img{
+        /* min-width: max-content; */
+        /* min-height: max-content; */
+        width: 100%;
+        /* height: 100%; */
+
+        /* display: block; mmmmmm */
+    }
+/* ------ */
+
+
+
+/* functionalities n animations */
+    #preview-page {
+        z-index: 3;
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.55);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        animation: fadeIn 120ms linear;
+    }
+
+    #preview-image {
+        max-width: 80%;
+        max-height: 80%;
+        border-radius: 3%;
+    }
+
+    #magnifier { 
+        z-index: 3;
+        display: none;
+        position: fixed; 
+        bottom: 0%;
+        right: 1.5%;
+        
+        width: 200px;
+        height: 200px;
+
+        background-color: rgba(0, 0, 0, 0.55);
+        border: 5px solid rgba(0, 0, 0, 0.7);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+
+        border-radius: 25%;
+
+        animation: fadeIn 150ms linear;
+        /* pointer-events: none; */
+        /* transform-origin: top left; */
+    }
+
+    #search{
+        display: flex;
+        align-items: center;
+    }
+
+    .search-icon {
+        cursor: pointer;
+    }
+
+    /* quitarlo cuando no exista */
+    .search-input { 
+        width: 0;
+        opacity: 0;
+        transition: width 0.5s, opacity 0.5s;
+        /* display: none; */
+    }
+
+    .search-input.active {
+        width: 200px;
+        opacity: 1;
+        padding: 5px;
+    }
+
+    /* quitarlo cuando no exista */
+    .search-submit {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s, visibility 0.5s;
+        /* display: none; */
+    }
+
+    /* hace que aparezca el boton go */
+    .search-input.active + .search-submit{
+        opacity: 1;
+        visibility: visible;
+        display: block;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+/* ------ */
+
+/* desactivado
+.main-header li{
+    width: auto;
+    height: auto;
+    border: solid 2px green;
+    margin: 5px 10px;
+}
+
+.icon{
+    color: white;
+    font-size: 2rem;
+}
+
+.arte figure{
+    margin: 0;
+    border: 0;
+    width: 100%;
+    position: relative;
+}
+
+figure img{
+    width: 100%;
+    vertical-align: bottom;
+}
+
+.arte i{
+    /* visibility: hidden; 
+    position: absolute;
+    bottom: 30%;
+    left: 35%;
+    z-index: 1;
+} 
+
+figcaption {
+    background-color: rgba(0, 0, 0, .5);
+    color: white;
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 0;
+    visibility: hidden;
+    display: flex;
+    justify-content: space-around;   
+}
+
+figcaption div{
+    max-width: 230px;
+    text-align: center;
+}
+
+figcaption p{
+    text-align: left;
+}
+
+figcaption img{
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+
+i:hover ~ figcaption{
+    visibility: visible;
+} 
+*/

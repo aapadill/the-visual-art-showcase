@@ -9,8 +9,8 @@ $usuarioSesion = $sesion->obtener('usuario') ?? [];
 $nombreSesion = $usuarioSesion->username ?? '';
 $rolSesion = $usuarioSesion->roleID ?? '';
 $usuarioIdSesion = $usuarioSesion->userID ?? 0;
-$subscribed = 0; //hardcored, properly bring a table, or column?
-$submitted = 0; //hardcored, properly bring from table
+$subscribed = 1; //hardcored, properly bring a table, or column?
+$submitted = 1; //hardcored, properly bring from table
 ?>
 
 <!DOCTYPE html>
@@ -24,140 +24,160 @@ $submitted = 0; //hardcored, properly bring from table
     <link rel="stylesheet" href="<?php Router::rutaRecursoWeb('main.css');?>">
     <link rel="stylesheet" href="<?php Router::rutaRecursoWeb('css/style.css');?>">
   </head>
-    
+
   <body>
-    <header>
-      <!-- left menu: register/suscribe/submit -->
-      <nav>
-        <ul>
-          <?php
-            if (empty($usuarioSesion)){ //sesion no iniciada
-          ?>
-            <li> <a href="<?php Router::direccionWeb('login.php');?>"> <b> LOG IN </b> </a> </li>
-            <li> <a href="<?php Router::direccionWeb('subscribe.php');?>"> <b> SUBSCRIBE </b> </a> </li>
-            <li> ARTIST?<a href="<?php Router::direccionWeb('submit.php');?>"> <b> SUBMIT </b> </a> </li>
-          <?php
-            }
-            if (!empty($usuarioSesion)){ //sesion iniciada
-          ?>
-            <li>
-              <a> <?php echo $nombreSesion;?> </a>
-              <ul>
-                <?php
-                if ($rolSesion == '1' || $rolSesion == '2' ){ //user or admin
-                ?>
-                  <h6 class="dropdown-header">User options</h6>
-                  <li><a href="<?php Router::direccionWeb('usuarios/');?>">Admin Profile</a></li>
-                  <li><a href="<?php Router::direccionWeb('likes/');?>">Likes</a></li>
-                <?php
-                }
+      <header class="sticky-top" >
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <!-- Left Nav -->
+                <div class="navbar-left">
+                  <ul class="navbar-nav">
+                    <?php 
+                    //sesion no iniciada
+                    if (empty($usuarioSesion)){  
+                    ?>
+                      <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('login.php'); ?>">Login</a></li>
+                      <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('subscribe.php'); ?>">Subscribe</a></li>
+                      <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('submit.php'); ?>">Submit</a></li>
+                    <?php 
+                    } 
+                    ?>
 
-                if ($rolSesion == '2'){ //artist
-                ?> 
-                  <div></div>
-                  <h6 class="dropdown-header">Artist options</h6>
-                  <li><a href="<?php Router::direccionWeb('artists/');?>">Admin Artist Profile</a></li>
-                  <li><a href="<?php Router::direccionWeb('artworks/');?>">Admin Artworks</a></li>
-                <?php
-                }
+                    <?php
+                    //sesion iniciada 
+                    if (!empty($usuarioSesion)){
+                      ?>
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <?php echo $nombreSesion; ?> </a>
+                          <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                            <?php
+                            //user or admin
+                            if ($rolSesion == '1' || $rolSesion == '2' ){
+                            ?>
+                              <h6 class="dropdown-header">User options</h6>
+                              <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('usuarios/');?>">Admin Profile</a></li>
+                              <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('likes/');?>">Likes</a></li>
+                            <?php
+                            }
+                            //artist
+                            if ($rolSesion == '2'){
+                            ?> 
+                              <h6 class="dropdown-header">Artist options</h6>
+                              <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artists/');?>">Admin Artist Profile</a></li>
+                              <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artworks/');?>">Admin Artworks</a></li>
+                            <?php
+                            }
+                            //admin
+                            if ($rolSesion == '3'){ 
+                            ?>
+                              <h6 class="dropdown-header">Administrator options</h6> 
+                              <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('weeklyShowcase/');?>">Admin Weekly Showcases</a></li>
+                              <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('showcaseArtworks/');?>">Admin Showcase Artworks</a></li>
+                              <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artworks/');?>">Admin Artworks</a></li>
+                              <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artists/');?>">Admin Artists</a></li>
+                              <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('usuarios/');?>">Admin Usuarios</a></li>
+                            <?php
+                            }
+                            //admin, artist, user, 123
+                            if ($rolSesion){
+                            ?>
+                              <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('cerrarSesion.php');?>">Cerrar sesion</a></li>
+                            <?php
+                            }
+                            //de alguna manera traes sesion sin rol?, matamos la sesion Xd
+                            else{ 
+                              $sesion.cerrarSesion();
+                            }
+                            ?>
+                          </ul>
+                        </li>
+                      <?php
 
-                if ($rolSesion == '3'){ //admin
-                ?>
-                  <h6 class="dropdown-header">Administrator options</h6> 
-                  <li><a href="<?php Router::direccionWeb('weeklyShowcase/');?>">Admin Weekly Showcases</a></li>
-                  <li><a href="<?php Router::direccionWeb('showcaseArtworks/');?>">Admin Showcase Artworks</a></li>
-                  <li><a href="<?php Router::direccionWeb('artworks/');?>">Admin Artworks</a></li>
-                  <li><a href="<?php Router::direccionWeb('artists/');?>">Admin Artists</a></li>
-                  <li><a href="<?php Router::direccionWeb('usuarios/');?>">Admin Usuarios</a></li>
-                <?php
-                }
+                      //not subscribed
+                      if ($subscribed == 0 && ($rolSesion == '2' || $rolSesion == '1')){
+                      ?>
+                        <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('subscribe.php');?>"> <b> SUBSCRIBE! </b> </a> </li>
+                      <?php
+                      }
 
-                if ($rolSesion){ //admin, artist, user, 123
-                ?>
-                  <li><a href="<?php Router::direccionWeb('cerrarSesion.php');?>">Cerrar sesion</a></li>
-                <?php
-                }
+                      //subscribed
+                      if ($subscribed == 1 && ($rolSesion == '2' || $rolSesion == '1')){
+                      ?>
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Subscription </a>
+                          <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                            <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artists/');?>">Admin Subscription</a></li>
+                          </ul>
+                        </li>
+                      <?php
+                      }
 
-                else{ //de alguna manera traes sesion sin rol?, matamos la sesion Xd
-                  $sesion.cerrarSesion();
-                }
-                ?>
-              </ul>
-            </li>
-          <?php
-              //not subscribed
-              if ($subscribed == 0 && ($rolSesion == '2' || $rolSesion == '1')){ //admin should not get any option
-          ?>
-                <li> <a href="<?php Router::direccionWeb('subscribe.php');?>"> <b> SUBSCRIBE! </b> </a> </li>
-          <?php
-              }
-              //subscribed
-              if ($subscribed == 1 && ($rolSesion == '2' || $rolSesion == '1')){ //admin should not get any option
-          ?>
-                <li>
-                <a> Subscription </a>
-                <ul>
-                  <li> <a href="<?php Router::direccionWeb('artists/');?>">Admin Subscription</a></li>
-                </ul>
-          <?php
-              }
-              //not submitted
-              if ($submitted == 0 && ($rolSesion == '2' || $rolSesion == '1')){
-                if ($rolSesion == '1'){
-          ?>
-              <li> ARTIST? <a href="<?php Router::direccionWeb('submit.php');?>"> <b> SUBMIT! </b> </a> </li>
-          <?php
-                }
-                if ($rolSesion == '2'){
-          ?>
-                <li> <a href="<?php Router::direccionWeb('submit.php');?>"> <b> SUBMIT? </b> </a> </li>
-          <?php
-                }
-              }
-              //submitted
-              if ($submitted == 1 && $rolSesion == '2'){
-          ?>
-                <li>
-                <a> Submission </a>
-                <ul>
-                  <li><a href="<?php Router::direccionWeb('submissions/');?>">Admin Submission</a></li>
-                </ul>
-          <?php
-              }
-            }
-          ?>
-        </ul>
-      </nav>
+                      //not submitted
+                      if ($submitted == 0 && ($rolSesion == '2' || $rolSesion == '1')){
+                        //and user
+                        if ($rolSesion == '1'){
+                      ?>
+                          <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('submit.php');?>"> <b> SUBMIT! </b> </a> </li>
+                      <?php
+                        }
+                        //and artist
+                        if ($rolSesion == '2'){
+                      ?>
+                          <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('submit.php');?>"> <b> SUBMIT? </b> </a> </li>
+                      <?php
+                        }
+                      }
 
-      <!-- logo -->
-      <div class="logo">
-          <a href="<?php Router::direccionWeb('index.php');?>">
-              <p> 
-                  the<br>
-                  visual<br>
-                  art<br>
-                  showcase<br>
-              </p>
-          </a>
-      </div>
-      
-      <!-- right menu: archives/about/language -->
-      <nav>
-          <ul>
-              <li> <a href="/archives"> <b> ARCHIVES </b> </a></li>
-              <li> <a href="/about"> <b> ABOUT </b> </a></li>
-              <li> 
-                  <select name="language-select" id="language-select">
-                      <option value="en"> EN </option>
-                      <option value="es"> ES </option>
-                      <option value="fi"> FI </option>
-                      <option value="sv"> SV </option>
-                  </select> 
-              </li>
-          </ul>
-      </nav>
+                      //submitted, you gotta be an artist
+                      if ($submitted == 1 && $rolSesion == '2'){
+                      ?>
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Submission </a>
+                          <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                            <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('submissions/');?>">Admin Submission</a></li>
+                          </ul>
+                        </li>
+                      <?php
+                      }
+                    }
+                    ?>
+                  </ul>
+                </div>
+
+                <!-- centered logo -->
+                <div class="navbar-center logo">
+                    <a class="navbar-brand" href="<?php Router::direccionWeb('index.php');?>">
+                      <!-- <img src="logo.png" alt="Logo"> -->
+                      <p> 
+                          the<br>
+                          visual<br>
+                          art<br>
+                          showcase<br>
+                      </p>
+                    </a>
+                </div>
+
+                <!-- Right Nav -->
+                <div class="navbar-right">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="/archives">Archives</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="languagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Languages
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="languagesDropdown">
+                                <li><a class="dropdown-item" href="#">EN</a></li>
+                                <li><a class="dropdown-item" href="#">ES</a></li>
+                                <li><a class="dropdown-item" href="#">FI</a></li>
+                                <li><a class="dropdown-item" href="#">SV</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
-  
     <main>
       <div class="container">
       <br>
