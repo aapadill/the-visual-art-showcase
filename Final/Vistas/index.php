@@ -71,7 +71,7 @@ while ($dayID > 0) {
     <nav class="corner center-left">
         <!-- week | technique -->
         <ul class="menu" id="week-technique">
-            <li>
+            <li class="toolbar-button">
                 <label>WEEK</label>
                 <select name="week-select" id="week-select" onchange="this.form.submit()">
                 <?php 
@@ -82,7 +82,7 @@ while ($dayID > 0) {
                 ?>
                 </select>
             </li>
-            <li>
+            <li class="toolbar-button">
             <form method="GET" action="">
                 <select name="technique-select" id="technique-select" onchange="this.form.submit()">
                     <option value="0"> all </option>
@@ -103,7 +103,7 @@ while ($dayID > 0) {
     <nav class="corner center-right">
         <ul class="menu" id="search-free-guided">
             <!-- search -->
-            <li id="search">
+            <li class="toolbar-button" id="search">
                 <!-- <div> -->
                     <div class="search-icon">&#128269;</div>
                     <input type="text" class="search-input" placeholder="Search...">
@@ -112,7 +112,7 @@ while ($dayID > 0) {
             </li>
 
             <!-- free | guided -->
-            <li id="free-guided">
+            <li class="toolbar-button" id="free-guided">
                 <!-- <legend>Select a mode:</legend> -->
                 <div>
                     <input type="radio" id="free" name="free" value="free" />

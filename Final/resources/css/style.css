@@ -59,8 +59,6 @@
     }
 /* ------ */
 
-
-
 /* page header and toolbar*/
     /* page header */
     .main-header{
@@ -157,7 +155,7 @@
 
     /* especificar */
     /* toolbar 'buttons'*/
-    .art-header li{ 
+    .toolbar-button{ 
         border-radius: 5px;
         border: solid 5px yellow;
         /* color: rgba(255, 255, 255, 0.85); */
@@ -168,8 +166,6 @@
         backdrop-filter: blur(10px);
     }
 /* ------ */
-
-
     /* desactivado
     .bottom-left {
         bottom: 0;
@@ -344,8 +340,8 @@
     }
 
     /* hide the menu options */
-    .main-header.hide-header nav{
-        transition: display 2s ease-in-out;
+    .main-header.hide-header .main-header-nav{
+        transition: display 0.5s ease-in-out;
         /* display: none; */
     }
 
@@ -361,112 +357,6 @@
         backdrop-filter: blur(10px);
     }
 /* ------ */
-
-
-
-/* art  */
-    .contenedor-artista{
-        /* height: 100%; */
-        min-height: 100px;
-        /* min-width: 800px; */
-        margin: 0;
-        margin-top: -54px;
-        /* overflow: hidden; */
-    }
-
-    #seppe-borde{
-        color: black;
-        border: solid 10px #5c7383;
-        border-bottom: none; /* cada pintura tendra su borde inferior */
-    }
-
-    #jill-borde{
-        color: white;
-        border: solid 10px #94573b;
-        border-bottom: none; /* cada pintura tendra su borde inferior */
-    }
-
-    .menu-artista{
-        display: flex;
-        max-height: 150px;
-    }
-
-    #seppe{
-        background-color: #5c7383;
-    }
-
-    #jill{
-        background-color: #94573b;
-    }
-
-    .menu-artista div{
-        width: 50%;
-        /* min-width: 450px; */
-        min-height: 100px;
-        /* border: solid 1px pink; */
-    }
-
-    .titulo-artista h1::before{
-        content: "";
-        display: inline-block;
-        width: 20px;
-        height: auto;
-        vertical-align: middle;
-    }
-
-    .descripcion-artista{
-        overflow: scroll;
-        /* border: solid 1px pink; */
-        margin: 0 0.5rem 1rem 0;
-    }
-
-    .descripcion-artista p{
-        margin-bottom: 0;
-        text-align: right;
-        line-height: 1.1rem;
-    }
-
-    .arte{
-        /* z-index: 2; */
-        /* min-width: 800px; */
-        /* min-height: 1024px; */
-        min-height: auto;
-
-        width: 100%;
-        height: 100%;
-        /* max-height: max-content; */
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        /* position: relative; */
-
-        /* background-image: url(../img/seppe-de-meyere-1.jpeg);
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center; */
-    }
-
-    .seppe-borde-inf{
-        border-bottom: solid 10px #5c7383;
-    }
-
-    .jill-borde-inf{
-        border-bottom: solid 10px #94573b;
-    }
-
-    .arte > img{
-        /* min-width: max-content; */
-        /* min-height: max-content; */
-        width: 100%;
-        /* height: 100%; */
-
-        /* display: block; mmmmmm */
-    }
-/* ------ */
-
-
 
 /* functionalities n animations */
     #preview-page {
@@ -633,4 +523,107 @@ figcaption img{
 i:hover ~ figcaption{
     visibility: visible;
 } 
+
 */
+
+/* art */ /* ---comentar--- */ /* ---comentar--- */ /* ---comentar--- */ /* ---comentar--- */ 
+.contenedor-artista{
+    /* height: 100%; */
+    min-height: 100px;
+    /* min-width: 800px; */
+    margin: 0;
+    margin-top: -54px;
+    /* overflow: hidden; */
+}
+
+#seppe-borde{
+    color: black;
+    border: solid 10px #5c7383;
+    border-bottom: none; /* cada pintura tendra su borde inferior */
+}
+
+#jill-borde{
+    color: white;
+    border: solid 10px #94573b;
+    border-bottom: none; /* cada pintura tendra su borde inferior */
+}
+
+.menu-artista{
+    display: flex;
+    max-height: 150px;
+}
+
+#seppe{
+    background-color: #5c7383;
+}
+
+#jill{
+    background-color: #94573b;
+}
+
+.menu-artista div{
+    width: 50%;
+    /* min-width: 450px; */
+    min-height: 100px;
+    /* border: solid 1px pink; */
+}
+
+.titulo-artista h1::before{
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: auto;
+    vertical-align: middle;
+}
+
+.descripcion-artista{
+    overflow: scroll;
+    /* border: solid 1px pink; */
+    margin: 0 0.5rem 1rem 0;
+}
+
+.descripcion-artista p{
+    margin-bottom: 0;
+    text-align: right;
+    line-height: 1.1rem;
+}
+
+.arte{
+    /* z-index: 2; */
+    /* min-width: 800px; */
+    /* min-height: 1024px; */
+    min-height: auto;
+
+    width: 100%;
+    height: 100%;
+    /* max-height: max-content; */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* position: relative; */
+
+    /* background-image: url(../img/seppe-de-meyere-1.jpeg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center; */
+}
+
+.seppe-borde-inf{
+    border-bottom: solid 10px #5c7383;
+}
+
+.jill-borde-inf{
+    border-bottom: solid 10px #94573b;
+}
+
+.arte > img{
+    /* min-width: max-content; */
+    /* min-height: max-content; */
+    width: 100%;
+    /* height: 100%; */
+
+    /* display: block; mmmmmm */
+}
+/* ------ */ /* ------ */ /* ------ */ /* ------ */ /* ------ */ /* ---comentar--- */ 

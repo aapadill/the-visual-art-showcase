@@ -42,7 +42,7 @@ $submitted = 0; //hardcored, properly bring from table
   <body>
     <header class="main-header">
       <!-- left menu: register/suscribe/submit -->
-      <nav class="corner center-left navbar navbar-expand-lg"> <!-- navbar sticky-top navbar-expand-lg navbar-dark bg-dark -->
+      <nav class="corner center-left main-header-nav navbar navbar-expand-lg"> <!-- navbar sticky-top navbar-expand-lg navbar-dark bg-dark -->
           <ul class="menu" id="register-subscribe-submit">
             <?php
               if (empty($usuarioSesion)){ //sesion no iniciada
@@ -158,7 +158,7 @@ $submitted = 0; //hardcored, properly bring from table
       </div>
       
       <!-- right menu: archives/about/language -->
-      <nav class="corner center-right" id="archives-about-language">
+      <nav class="corner center-right main-header-nav" id="archives-about-language">
           <ul class="menu">
               <li> <a href="/archives"> <b> ARCHIVES </b> </a></li>
               <li> <a href="/about"> <b> ABOUT </b> </a></li>
