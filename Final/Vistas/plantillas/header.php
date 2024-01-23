@@ -40,7 +40,7 @@ $submitted = 0; //hardcored, properly bring from table
   </head>
     
   <body>
-    <header class="main-header">
+    <header class="main-header" id="main-header">
       <!-- left menu: register/suscribe/submit -->
       <nav class="corner center-left main-header-nav navbar navbar-expand-lg"> <!-- navbar sticky-top navbar-expand-lg navbar-dark bg-dark -->
           <ul class="menu" id="register-subscribe-submit">
@@ -49,7 +49,7 @@ $submitted = 0; //hardcored, properly bring from table
             ?>
               <li> <a href="<?php Router::direccionWeb('login.php');?>"> <b> LOG IN </b> </a> </li>
               <li> <a href="<?php Router::direccionWeb('subscribe.php');?>"> <b> SUBSCRIBE </b> </a> </li>
-              <li> ARTIST?<a href="<?php Router::direccionWeb('submit.php');?>"> <b> SUBMIT </b> </a> </li>
+              <li> <a href="<?php Router::direccionWeb('login.php');?>"> <b> ARTIST? </b> </a> </li>
             <?php
               }
               if (!empty($usuarioSesion)){ //sesion iniciada
@@ -158,8 +158,8 @@ $submitted = 0; //hardcored, properly bring from table
       </div>
       
       <!-- right menu: archives/about/language -->
-      <nav class="corner center-right main-header-nav" id="archives-about-language">
-          <ul class="menu">
+      <nav class="corner center-right main-header-nav">
+          <ul class="menu" id="archives-about-language">
               <li> <a href="/archives"> <b> ARCHIVES </b> </a></li>
               <li> <a href="/about"> <b> ABOUT </b> </a></li>
               <li> 

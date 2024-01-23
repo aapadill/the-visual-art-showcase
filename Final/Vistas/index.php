@@ -157,7 +157,7 @@ while ($dayID > 0) {
             // var_dump($artwork->categoryID);
     ?>
         <!-- antes, class="arte" -->
-        <div class="artwork" id=""> 
+        <div class="artwork container" id=""> 
             <div class="info">
                 <h3> <?php echo $artwork->title;?> </h3>
                 <p> <?php echo $artwork->technicalSheet;?> </p>

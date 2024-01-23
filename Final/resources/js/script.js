@@ -9,9 +9,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.querySelector('.search-input');
     const searchSubmit = document.querySelector('.search-submit');
 
+    //header resizing and transparency
+    let lastScrollTop = 0;
+    const header = document.querySelector('.main-header');
+
+    document.documentElement.style.setProperty('--main-header-height', '108px');
+    document.documentElement.style.setProperty('--art-header-top', '54px');
+    document.documentElement.style.setProperty('--logo-reduction-h', '90px');
+    document.documentElement.style.setProperty('--logo-reduction-w', '90px');
+    document.documentElement.style.setProperty('--reduced-size', '100%');
+    document.documentElement.style.setProperty('--padding-size', '5px');
+
+    //preview page
     let previewTimeout;
     let clickStartTime = 0;
-
     let currentElement;
     let isZoomActive = false;
     let isZoomable = false;
@@ -133,67 +144,108 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     //
 
-    //redoing all of this
-    // //scroll
-    // let lastScrollTop = 0;
-    // const header = document.querySelector('.main-header');
-    // // throttle to limit exec frequency of handleScroll, which reduces main-header
-    // const throttledHandleScroll = throttle(handleScroll, 1000); //10ms
-
-    // document.documentElement.style.setProperty('--main-header-height', '108px');
-    // document.documentElement.style.setProperty('--art-header-top', '54px');
-    // document.documentElement.style.setProperty('--logo-reduction-h', '90px');
-    // document.documentElement.style.setProperty('--logo-reduction-w', '90px');
-    // document.documentElement.style.setProperty('--reduced-size', '100%');
-    // document.documentElement.style.setProperty('--padding-size', '5px');
-
-    // // Función throttle: limita la frecuencia de ejecución de la función
-    // function throttle(func, limit) {
-    //     let inThrottle;
-    //     return function() {
-    //         const args = arguments;
-    //         const context = this;
-    //         if (!inThrottle) {
-    //             func.apply(context, args);
-    //             inThrottle = true;
-    //             setTimeout(() => inThrottle = false, limit);
-    //         }
-    //     };
-    // }
-
-    // function handleScroll() {
-    // let currentScrollTop = window.scrollY || document.documentElement.scrollTop;
-
-    // // Handling header visibility
-    // if (currentScrollTop > lastScrollTop && currentScrollTop > 108) {
-    //     // Scrolling down, hide the header
-    //     header.classList.add('hide-header');
-    // } else if (currentScrollTop < lastScrollTop) {
-    //     // Scrolling up, show the header
-    //     header.classList.remove('hide-header');
-    // }
-
-    // // Handling header resizing
-    // if (currentScrollTop >= 12) {
-    //     let newHeight = Math.max(54, Math.min(108, parseInt(getComputedStyle(document.documentElement).getPropertyValue('--main-header-height')) + (lastScrollTop - currentScrollTop)));
-    //     let reductionPercentage = newHeight / 108;
-    //     console.log(reductionPercentage); // Log the reduction percentage
+    //header resizing
+        //1
+        // const element = document.getElementById("menu-header");
+        // let start, previousTimeStamp;
+        // let done = false;
         
-    //     document.documentElement.style.setProperty('--main-header-height', newHeight + 'px');
-    //     document.documentElement.style.setProperty('--art-header-top', newHeight + 'px');
-    //     document.documentElement.style.setProperty('--logo-reduction-h', reductionPercentage * 90 + 'px');
-    //     document.documentElement.style.setProperty('--logo-reduction-w', reductionPercentage * 90 + 'px');
-    //     document.documentElement.style.setProperty('--reduced-size', reductionPercentage * 100 + '%');
-    //     document.documentElement.style.setProperty('--padding-size', reductionPercentage * 5 + 'px');
-    // }
+        // function step(timeStamp) {
+        //     if (start === undefined) {
+        //         start = timeStamp;
+        //     }
+        //     const elapsed = timeStamp - start;
+            
+        //     if (previousTimeStamp !== timeStamp) {
+        //         // Math.min() is used here to make sure the element stops at exactly 200px
+        //         const count = Math.min(0.1 * elapsed, 200);
+        //         element.style.transform = `translateX(${count}px)`;
+        //         if (count === 200) done = true;
+        //     }
+            
+        //     if (elapsed < 2000) {
+        //         // Stop the animation after 2 seconds
+        //         previousTimeStamp = timeStamp;
+        //         if (!done) {
+        //         window.requestAnimationFrame(step);
+        //         }
+        //     }
+        // }
+        // window.requestAnimationFrame(step);
 
-    // lastScrollTop = currentScrollTop;
-    // }
+        //2
+        // var expandDiv = document.getElementById("menu-header");
+        // var speed = 5;
 
-    // // Add the event listener for the scroll event
-    // // window.addEventListener('scroll', handleScroll);
-    // window.addEventListener('scroll', throttledHandleScroll);
+        // function expanding() {
+        // var scrolltop = window.scrollY; // get number of pixels document has scrolled vertically
+        // var scrollAndSpeed = (scrolltop / speed);
+        // //Expand using transform
+        // //expandDiv.style.transform = "scalex( " + Math.min(Math.max(scrollAndSpeed, 1), 10) + ")";
+        
+        // //Or using width
+        // expandDiv.style.width = Math.min(Math.max(scrollAndSpeed, 20), 95) + "%";
+        // }
 
-    //listen for the scroll event to hide or show the header
-    // window.addEventListener('scroll', transparentBackground);
+        function handleScroll() {
+            let currentScrollTop = window.scrollY || document.documentElement.scrollTop;
+            console.log(currentScrollTop);
+            // Handling header visibility
+            if (currentScrollTop > lastScrollTop && currentScrollTop > 108) {
+                // Scrolling down, hide the header
+                header.classList.add('hide-header');
+            } else if (currentScrollTop < lastScrollTop) {
+                // Scrolling up, show the header
+                header.classList.remove('hide-header');
+            }
+    
+            // Handling header resizing
+            if (currentScrollTop >= 12) {
+                let newHeight = Math.max(54, Math.min(108, parseInt(getComputedStyle(document.documentElement).getPropertyValue('--main-header-height')) + (lastScrollTop - currentScrollTop)));
+                let reductionPercentage = newHeight / 108;
+                console.log(reductionPercentage); // Log the reduction percentage
+                
+                document.documentElement.style.setProperty('--main-header-height', newHeight + 'px');
+                document.documentElement.style.setProperty('--art-header-top', newHeight + 'px');
+                document.documentElement.style.setProperty('--logo-reduction-h', reductionPercentage * 90 + 'px');
+                document.documentElement.style.setProperty('--logo-reduction-w', reductionPercentage * 90 + 'px');
+                document.documentElement.style.setProperty('--reduced-size', reductionPercentage * 100 + '%');
+                document.documentElement.style.setProperty('--padding-size', reductionPercentage * 5 + 'px');
+            }
+    
+            lastScrollTop = currentScrollTop;
+        }
+
+        window.addEventListener('scroll', function() { // on page scroll
+            requestAnimationFrame(handleScroll); //call parallaxing()
+        }, false);
+        
+        //
+        //redoing all of this, it's a mess
+        // //scroll
+        // // throttle to limit exec frequency of handleScroll, which reduces main-header
+        // const throttledHandleScroll = throttle(handleScroll, 1000); //10ms
+
+        // // Función throttle: limita la frecuencia de ejecución de la función
+        // function throttle(func, limit) {
+        //     let inThrottle;
+        //     return function() {
+        //         const args = arguments;
+        //         const context = this;
+        //         if (!inThrottle) {
+        //             func.apply(context, args);
+        //             inThrottle = true;
+        //             setTimeout(() => inThrottle = false, limit);
+        //         }
+        //     };
+        // }
+
+        //handleScroll function
+
+        // // Add the event listener for the scroll event
+        // // window.addEventListener('scroll', handleScroll);
+        // window.addEventListener('scroll', throttledHandleScroll);
+
+        //listen for the scroll event to hide or show the header
+        // window.addEventListener('scroll', transparentBackground);
 });

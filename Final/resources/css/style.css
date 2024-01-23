@@ -157,7 +157,6 @@
     /* toolbar 'buttons'*/
     .toolbar-button{ 
         border-radius: 5px;
-        border: solid 5px yellow;
         /* color: rgba(255, 255, 255, 0.85); */
         border: solid 2px rgba(255, 255, 255, 0.5);
         background-color: rgba(255, 255, 255, 0.1);
@@ -194,11 +193,15 @@
         }
 
         .center-left {
-            display: none;
+            /* display: none; */
         }
 
         .center-right {
-            display: none;
+            /* display: none; */
+        }
+
+        #register-subscribe-submit, #archives-about-language{
+            flex-direction: column;
         }
     }
 
@@ -217,14 +220,6 @@
         .center-left {
             min-width: 40%;
             font-size: 100%;
-        }
-
-        #register-subscribe-submit li:last-child {
-            /* margin-right: 0; */
-            flex: 1;
-            white-space: normal;
-            max-width: 25%;
-            border: solid 2px greenyellow;
         }
 
         .center-right {
@@ -298,6 +293,7 @@
 
     .logo a{
         all: unset;
+        color: white;
     }
 
     /* position, size, font-size */
@@ -321,7 +317,6 @@
 
     /* link's color */
     a{
-        color: white;
         text-decoration: none;
     }
 
