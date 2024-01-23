@@ -9,9 +9,9 @@
 }
 
 .logo p{
-    padding: var(--padding-size);
+    padding: 5px;
     margin: 0;
-    line-height: 1.25;
+    /* line-height: 1.25; */
     font-weight: bolder;
 }
 
@@ -24,13 +24,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* width: var(--logo-reduction-w); */
-    width: 90px;
-    /* height: var(--logo-reduction-h);  */
-    height: 90px;
-    border: solid 2px black;
-    font-size: var(--reduced-size);
-    /* overflow: hidden; */
+    width: 200px;
+    height: 30px;
+    border: solid 1.5px black;
+    overflow: visible;
 }
 
 /* functionalities n animations */

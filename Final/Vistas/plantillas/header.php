@@ -134,12 +134,7 @@ $submitted = 1; //hardcored, properly bring from table
                     <!-- Centered logo -->
                     <div class="navbar-center logo">
                         <a class="navbar-brand" href="<?php Router::direccionWeb('index.php');?>">
-                            <p> 
-                                the<br>
-                                visual<br>
-                                art<br>
-                                showcase<br>
-                            </p>
+                            <p> the visual art showcase </p>
                         </a>
                     </div>
 
