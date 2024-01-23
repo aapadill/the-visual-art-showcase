@@ -26,36 +26,18 @@
 
 /* new */
     .img-fluid{
-        border-radius: 25px;
+        /* padding: 10px; */
+        border-radius: 10px;
     }
 
-    .artwork{
-        border-radius: 25px;
-        /* margin-top: 1%; */
-        /* padding-top: 2%; */
+    .artwork, .info-artist{
+        border-radius: 10px;
         position: relative;
     }
 
-    .info-artwork {
-        padding: 0;
-        /* margin: 5%; */
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        z-index: 1;
-        background-color: rgba(1, 1, 1, 0.8);
-        -webkit-backdrop-filter: blur(50px);
-        backdrop-filter: blur(50px);
-        filter: invert(100%);
-        border-radius: 15px;
-        transform: translate(2%, 35%);
-        border: solid 1px white;
+    .info-artwork{
+        margin-top: 10px;
     }
-
-    .info-artwork h3, .info-artwork p{
-        padding: 5px;
-        filter: invert(100%);
-    } 
 
     .art-header .navbar{
         border-radius: 3px;

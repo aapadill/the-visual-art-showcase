@@ -137,7 +137,7 @@ while ($dayID > 0) {
         <div class="info-artist">
             <h2 class="artist-name"><b> <?php echo $weekArtist->artistName;?> </b></h2>
             <!-- antes, class="descripcion-artista" -->
-            <div class="info">
+            <div class="bio">
                 <p> <?php echo $weekArtist->bio;?> </p>
             </div>
         </div>
@@ -148,11 +148,11 @@ while ($dayID > 0) {
     ?>
         <!-- antes, class="arte" -->
         <div class="artwork" id=""> 
+            <img src="<?php Router::rutaImagenWeb($artwork->imageURL);?>" class="img-fluid previewable-image zoomable-image" alt="<?php Router::rutaImagenWeb($artwork->imageURL);?>"> 
             <div class="info-artwork">
                 <h3> <?php echo $artwork->title;?> </h3>
                 <p> <?php echo $artwork->technicalSheet;?> </p>
             </div>
-            <img src="<?php Router::rutaImagenWeb($artwork->imageURL);?>" class="img-fluid previewable-image zoomable-image" alt="<?php Router::rutaImagenWeb($artwork->imageURL);?>"> 
         </div>
         <br>
         <br>
