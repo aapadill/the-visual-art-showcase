@@ -12,7 +12,7 @@ include Router::direccion('/plantillas/header.php');
 
 $busqueda = htmlentities($_GET['buscar'] ?? ''); //texto a buscar
 $techniqueSelected = htmlentities($_GET['technique-select'] ?? 0); //technique chosen
-$selectedWeek = htmlentities($_GET['week-select'] ?? ''); //week chosen
+// $selectedWeek = htmlentities($_GET['week-select'] ?? ''); //week chosen
 $categorias = Category::consultar(); //traer todas las categorias
 
 //$busquedaSemana = WeeklyShowcase::buscar($busqueda); regresa coincidencia
@@ -63,14 +63,17 @@ while ($dayID > 0) {
       <div class="navbar-collapse collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              WEEK
+            <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Go to
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <?php foreach ($filteredDayIDs as $weekID) { 
-                $selectedWeek = (isset($_GET['week-select']) && $_GET['week-select'] == $weekID) ? 'selected' : '';
-                echo "<li><a class='dropdown-item' href='?week-select=$weekID'>$weekID</a></li>";
-              } ?>
+            <?php 
+                foreach ($filteredDayIDs as $availDay) {
+            ?>
+                <li><a class='dropdown-item' href='#week-<?php echo $availDay;?>'>Week <?php echo $availDay;?></a></li>
+            <?php
+                }
+            ?>
             </ul>
           </li>
           <li class="nav-item">
@@ -96,8 +99,9 @@ while ($dayID > 0) {
 
       <!-- Right menu -->
       <div class="navbar-nav ms-auto">
-        <!-- Radio buttons for free/guided -->
-        <div class="d-flex align-items-center">
+        <!-- wont be ready -->
+        <!-- Radio buttons for free/guided --> 
+        <!-- <div class="d-flex align-items-center">
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" id="free" name="mode" value="free" />
             <label class="form-check-label" for="free">F</label>
@@ -107,7 +111,7 @@ while ($dayID > 0) {
             <input class="form-check-input" type="radio" id="guided" name="mode" value="guided" />
             <label class="form-check-label" for="guided">G</label>
           </div>
-        </div>
+        </div> -->
 
         <!-- Search form (hidden on extra small screens) -->
         <form class="input-group d-none d-sm-flex">
@@ -119,13 +123,13 @@ while ($dayID > 0) {
   </nav>
 </header>
 
-<div class="week" id="week-<?php echo $dayID; ?>">
+<div class="week">
     <?php
     // var_dump($techniqueSelected);
     foreach ($filteredDayIDs as $dayID) {
         $weeklyShowcase = WeeklyShowcase::consultar($dayID); // WeeklyShowcase of a specific week
     ?>
-    <div class="info-week">
+    <div class="info-week" id="week-<?php echo $dayID;?>">
         <h1 class="week-intro">Featuring on week <b> <?php echo $dayID;?> </b> </h1>
     </div>
     <?php
@@ -148,7 +152,7 @@ while ($dayID > 0) {
             // var_dump($artwork->categoryID);
     ?>
         <!-- antes, class="arte" -->
-        <div class="artwork" id=""> 
+        <div class="artwork" id="artwork-<?php echo $week['artwork_id'];?>"> 
             <img src="<?php Router::rutaImagenWeb($artwork->imageURL);?>" class="img-fluid previewable-image zoomable-image" alt="<?php Router::rutaImagenWeb($artwork->imageURL);?>"> 
             <div class="info-artwork">
                 <h3> <?php echo $artwork->title;?> </h3>
