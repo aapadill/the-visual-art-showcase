@@ -109,7 +109,7 @@ $submitted = 1; //hardcored, properly bring from table
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Subscription </a>
                                     <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                                        <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artists/');?>">Admin Subscription</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artist.php');?>">Admin Subscription</a></li>
                                     </ul>
                                 </li>
                             <?php
@@ -131,7 +131,7 @@ $submitted = 1; //hardcored, properly bring from table
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Submission </a>
                                     <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                                        <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('submissions/');?>">Admin Submission</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('submit.php');?>">Admin Submission</a></li>
                                     </ul>
                                 </li>
                             <?php
@@ -142,8 +142,8 @@ $submitted = 1; //hardcored, properly bring from table
                     <!-- Right Nav -->
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li><hr class="dropdown-divider"></li>
-                        <li class="nav-item"><a class="nav-link" href="/archives">Archives</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('archives.php');?>">Archives</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('about.php');?>">About</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="languagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Languages
