@@ -37,7 +37,8 @@
 
     .art-header { 
         /* esta sticky-top activo tambien */
-        position: sticky;
+        background-color: white; 
+        /* position: sticky; */
         z-index: 10;
     }
     

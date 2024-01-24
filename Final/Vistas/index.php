@@ -55,14 +55,14 @@ while ($dayID > 0) {
 
 <div class="container">
   <!-- toolbar -->
-  <div class="art-header sticky-top" style="background-color: white;">
+  <div class="art-header navbar fixed-bottom navbar-light bg-light">
     <header class="">
       <nav class="navbar navbar-expand">
         <div class="container-fluid">
           <!-- Left menu -->
           <div class="navbar-collapse collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-              <li class="nav-item dropdown">
+            <ul class="navbar-nav center">
+              <li class="nav-item dropup">
                 <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Go to
                 </a>
@@ -93,12 +93,13 @@ while ($dayID > 0) {
           </div>
 
           <!-- Toggler for extra small screens -->
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
+          </button> -->
 
-          <!-- Right menu -->
-          <div class="navbar-nav ms-auto">
+          <!-- Right menu ms-auto -->
+          <!-- <div class="navbar-nav"> -->
+          <!-- <div class="navbar-nav"> -->
             <!-- wont be ready -->
             <!-- Radio buttons for free/guided --> 
             <!-- <div class="d-flex align-items-center">
@@ -113,12 +114,12 @@ while ($dayID > 0) {
               </div>
             </div> -->
 
-            <!-- Search form (hidden on extra small screens) -->
-            <form class="input-group d-none d-sm-flex">
+            <!-- Search form (hidden on extra small screens) d-none d-sm-flex-->
+            <!-- <form class="input-group">
                 <input type="text" class="form-control" placeholder="Search..." aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
+            </form> -->
+          <!-- </div> -->
         </div>
       </nav>
     </header>
@@ -135,7 +136,6 @@ while ($dayID > 0) {
       <div class="week row text-center card mb-5" id="week-<?php echo $dayID;?>">
         <div class="week-intro card-header">Featuring on week <?php echo $dayID;?> </div>
         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        <!-- <div class="text-muted card-body"> 2 days ago </div> -->
 
         <?php
           $showcaseArtworks = ShowcaseArtwork::consultar($dayID); // ShowcaseArtworks of a specific week
@@ -157,13 +157,13 @@ while ($dayID > 0) {
                     $categoryID = Category::consultar($artwork->categoryID);
               ?>
                 <!-- antes, class="arte" -->
-                <div class="week-artwork" id="artwork-<?php echo $week['artwork_id'];?>"> 
+                <div class="week-artwork mb-4" id="artwork-<?php echo $week['artwork_id'];?>"> 
                     <img src="<?php Router::rutaImagenWeb($artwork->imageURL);?>" class="card-img-top img-fluid previewable-image zoomable-image" alt="<?php Router::rutaImagenWeb($artwork->imageURL);?>"> 
-                    <div class="info-artwork card-body text-end">
-                        <h3 class="card-text"> <?php echo $artwork->title;?> </h3>
-                        <p class="card-text"> <?php echo $artwork->technicalSheet;?> </p>
-                        <p class="card-text text-muted"> <?php echo $categoryID['category_name'];?> </p>
-                    </div>
+                    <ul class="info-artwork list-group list-group-flush text-end">
+                      <li class="list-group-item"><?php echo $artwork->title;?> </li>
+                      <li class="list-group-item"><?php echo $artwork->technicalSheet;?> </li>
+                      <li class="list-group-item"><?php echo $categoryID['category_name'];?> </li>
+                    </ul>
                 </div>
               <?php
               }
