@@ -1,9 +1,15 @@
 <?php
+ob_start(); //buffering trick
 require_once('../config/cargador.php');
 use Controladores\Router;
 
 include Router::direccion('/plantillas/header.php');
 
+$welcomeFlag = $sesion->obtener('welcomeValid') ?? 0;
+if(!$welcomeFlag){
+    Router::redireccionar('index.php');
+}
+$sesion->insertar('welcomeValid', 0); //flag is used
 ?>
 
 <div class="container mt-5">

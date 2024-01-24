@@ -6,6 +6,7 @@ use Modelos\Conexion;
 $sesion = new Sesion(); //la sesion la manejaremos aqui en el header
 
 $usuarioSesion = $sesion->obtener('usuario') ?? [];
+
 $nombreSesion = $usuarioSesion->username ?? '';
 $rolSesion = $usuarioSesion->roleID ?? '';
 $usuarioIdSesion = $usuarioSesion->userID ?? 0;

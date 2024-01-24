@@ -18,6 +18,7 @@ if (Router::esPost()){
       $usuarioOBJ->insertar(); //insertar, el ID devuelto no es el esperado
       $usuarioI = Usuario::consultar(0,$usuarioOBJ->username);
       $sesion->insertar('usuario', $usuarioI);
+      $sesion->insertar('welcomeValid', 1);
       Router::redireccionar('welcome.php'); //redireccion al welcome
     }
     else{
