@@ -63,7 +63,7 @@ $submitted = 1; //hardcored, properly bring from table
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <?php echo $nombreSesion; ?> </a>
                                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
                                     <?php
-                                    if ($rolSesion == '1' || $rolSesion == '2' ){
+                                    if ($rolSesion == '1' || $rolSesion == '2' || $rolSesion == '3'){
                                     ?>
                                         <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('usuarios/');?>">Admin Profile</a></li>
                                         <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('likes/');?>">Likes</a></li>
@@ -72,21 +72,23 @@ $submitted = 1; //hardcored, properly bring from table
                                     if ($rolSesion == '2'){
                                     ?> 
                                         <li><hr class="dropdown-divider"></li>
-                                        <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artists/');?>">Admin Artist Profile</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artworks/');?>">Admin Artworks</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artists/');?>">Admin your artist profile</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artworks/');?>">Admin your artworks</a></li>
                                     <?php
                                     }
                                     if ($rolSesion == '3'){ 
                                     ?>
-                                        <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('weeklyShowcase/');?>">Admin Weekly Showcases</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('showcaseArtworks/');?>">Admin Showcase Artworks</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artworks/');?>">Admin Artworks</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artists/');?>">Admin Artists</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('usuarios/');?>">Admin Usuarios</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('weeklyShowcase/');?>">Admin All Weekly Showcases</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('showcaseArtworks/');?>">Admin All Showcase Artworks</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artworks/');?>">Admin All Artworks</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artists/');?>">Admin All Artists</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('usuarios/');?>">Admin All Usuarios</a></li>
                                     <?php
                                     }
                                     if ($rolSesion){
                                     ?>
+                                        <li><hr class="dropdown-divider"></li>
                                         <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('cerrarSesion.php');?>">Cerrar sesion</a></li>
                                     <?php
                                     }
