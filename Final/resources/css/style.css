@@ -35,14 +35,6 @@
         position: relative;
     }
 
-    .info-artwork{
-        margin-top: 10px;
-    }
-
-    .art-header .navbar{
-        border-radius: 3px;
-    }
-
     .art-header { 
         /* esta sticky-top activo tambien */
         position: sticky;

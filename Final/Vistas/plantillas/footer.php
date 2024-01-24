@@ -2,9 +2,9 @@
 use Controladores\Router;
 ?>
 
-<br>
-      </div>
-    </main>
+<!-- <br> -->
+      <!-- </div> -->
+    <!-- </main> -->
 
     <footer> <!-- class="bg-dark text-center" -->
     </footer>

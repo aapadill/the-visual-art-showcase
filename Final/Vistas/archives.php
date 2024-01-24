@@ -11,6 +11,15 @@ use Modelos\Category;
 include Router::direccion('/plantillas/header.php');
 ?>
 
+<div class="container mt-5">
+    <div class="row">
+        <div class="col text">
+            <h1>Archives</h1>
+            <p class="lead">Here you have access to our entire archive of showcases. Pick your favorites and hop straight to the ones you love!</p>
+        </div>
+    </div>
+
+    <div class="row">
 <!-- <div class="container mt-5"> -->
     <!-- year -->
     <!-- <p>
@@ -29,6 +38,7 @@ include Router::direccion('/plantillas/header.php');
             while ($dayID > 0) {
                 $weeklyShowcaseOBJ = WeeklyShowcase::consultar($dayID);
                 $weekStartDate = $weeklyShowcaseOBJ->weekStartDate;
+                date('Y', strtotime($weekStartDate));
                 $weekEndDate = $weeklyShowcaseOBJ->weekEndDate;
                 $featuredArtistID = $weeklyShowcaseOBJ->featuredArtistID;
                 $artistOBJ = Artist::consultar($featuredArtistID);
@@ -39,16 +49,16 @@ include Router::direccion('/plantillas/header.php');
                     $weekNumber -= 52;
                 }
             ?>
-            <div class="card mb-2">
+            <!-- <div class="card mb-2"> -->
                 <div class="card-body">
-                    <h2 class="card-title"><?php echo $artistName;?></h2>
-                    <h6 class="card-subtitle mb-2 text-muted"> from <?php echo $weekStartDate?> to <?php echo $weekEndDate?></h6>
-
-                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseWeek<?php echo $weekNumber; ?>" role="button" aria-expanded="false" aria-controls="collapseWeek<?php echo $weekNumber; ?>"> Showcase <?php echo $weekNumber; ?> </a>
+                    <a class="btn btn-secondary dropdown-toggle" data-bs-toggle="collapse" href="#collapseWeek<?php echo $weekNumber; ?>" role="button" aria-expanded="false" aria-controls="collapseWeek<?php echo $weekNumber; ?>"> <?php echo date('Y', strtotime($weekStartDate));?>-<?php echo $weekNumber; ?> </a>
 
                     <div class="collapse" id="collapseWeek<?php echo $weekNumber; ?>">
                         <!-- Artworks -->
                         <div class="card card-body">
+                        <h2 class="card-title"><?php echo $artistName;?></h2>
+                        <h6 class="card-subtitle mb-2 text-muted"> from <?php echo $weekStartDate?> to <?php echo $weekEndDate?></h6>
+
                         <?php
                             $showcaseArtworks = ShowcaseArtwork::consultar($dayID);
                             foreach ($showcaseArtworks as $week) {
@@ -70,7 +80,7 @@ include Router::direccion('/plantillas/header.php');
                                         <h6 class="card-subtitle mb-2 text-muted"><?php echo $technicalSheet; ?> </h6>
                                         <p class="card-text">Category: <?php echo $categoryID['category_name']; ?></p>
                                         <a href="index.php#artwork-<?php echo $artworkID;?>" class="card-link">Go to artwork: <?php echo $artworkID;?> </a>
-                                        <!-- <a href="<?php Router::direccionWeb("index.php#week-")?>" class="card-link">Go to artwork: <?php echo $artworkID;?> </a> -->
+                                        <a href="<?php Router::direccionWeb("index.php#week-")?>" class="card-link">Go to artwork: <?php echo $artworkID;?> </a>
                                         <a href="#artist-<?php echo $featuredArtistID;?>" class="card-link">Go to artist: <?php echo $featuredArtistID;?> </a>
                                     </div>
                                 </div>
@@ -81,13 +91,13 @@ include Router::direccion('/plantillas/header.php');
                         </div>
                     </div>
                 </div>
-            </div>
+            <!-- </div> -->
             <?php }?>
             <!-- n weeks -->
         <!-- </div> -->
-    <!-- </div> -->
+    </div>
     <!-- n years -->
-<!-- </div> -->
+</div>
 <?php
 include Router::direccion('/plantillas/footer.php');
 ?>
