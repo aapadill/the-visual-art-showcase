@@ -42,4 +42,9 @@ class Router {
     public static function rutaRecursoWeb($archivo) {
         echo RUTA_BASE_WEB . "/resources/$archivo";
     }
+
+    //ruta basica
+    public static function rutaWebStatic($archivo) {
+        echo RUTA_BASE_WEB . "/static/$archivo";
+    }
 }

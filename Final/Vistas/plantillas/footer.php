@@ -6,13 +6,7 @@ use Controladores\Router;
       </div>
     </main>
 
-    <!-- class="bg-dark text-center" -->
-    <footer>
-      <!-- class="container-fluid" -->
-      <div>
-        <br>
-        <p class="text-light"> The Visual Art Showcase</p>
-      </div>
+    <footer> <!-- class="bg-dark text-center" -->
     </footer>
 
     <script src="<?php Router::rutaRecursoWeb('js/jquery-3.6.0.min.js');?>"></script>

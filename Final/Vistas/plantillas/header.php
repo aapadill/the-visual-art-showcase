@@ -9,8 +9,11 @@ $usuarioSesion = $sesion->obtener('usuario') ?? [];
 $nombreSesion = $usuarioSesion->username ?? '';
 $rolSesion = $usuarioSesion->roleID ?? '';
 $usuarioIdSesion = $usuarioSesion->userID ?? 0;
-$subscribed = 1; //hardcored, properly bring a table, or column?
+$subscribed = $usuarioSesion->isSubscribed ?? 0;
+// var_dump($sesion->getSesion());
 $submitted = 1; //hardcored, properly bring from table
+
+
 ?>
 
 <!DOCTYPE html>
@@ -95,12 +98,12 @@ $submitted = 1; //hardcored, properly bring from table
                                 </ul>
                             </li>
                             <?php
-                            if ($subscribed == 0 && ($rolSesion == '2' || $rolSesion == '1')){
+                            if ($subscribed == 0){ // && ($rolSesion == '2' || $rolSesion == '1')
                             ?>
-                                <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('subscribe.php');?>"> <b> SUBSCRIBE! </b> </a> </li>
+                                <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('subscribe.php');?>"> Subscribe! </a> </li>
                             <?php
                             }
-                            if ($subscribed == 1 && ($rolSesion == '2' || $rolSesion == '1')){
+                            if ($subscribed == 1){ //&& ($rolSesion == '2' || $rolSesion == '1')
                             ?>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Subscription </a>
@@ -110,19 +113,19 @@ $submitted = 1; //hardcored, properly bring from table
                                 </li>
                             <?php
                             }
-                            if ($submitted == 0 && ($rolSesion == '2' || $rolSesion == '1')){
-                                if ($rolSesion == '1'){
+                            if ($submitted == 0){ //&& ($rolSesion == '2' || $rolSesion == '1')
+                                if ($rolSesion == '1'){ //update account
                             ?>
-                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('submit.php');?>"> <b> SUBMIT! </b> </a> </li>
+                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('submit.php');?>"> Submit! </a> </li>
                             <?php
                                 }
                                 if ($rolSesion == '2'){
                             ?>
-                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('submit.php');?>"> <b> SUBMIT? </b> </a> </li>
+                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('submit.php');?>"> Submit? </a> </li>
                             <?php
                                 }
                             }
-                            if ($submitted == 1 && $rolSesion == '2'){
+                            if ($submitted == 1){ //&& $rolSesion == '2'
                             ?>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Submission </a>

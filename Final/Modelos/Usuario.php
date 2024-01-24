@@ -14,6 +14,7 @@ class Usuario {
     public $bio;
     public $location;
     public $roleID;
+    public $isSubscribed;
 
     public function __construct($usuario = []) {
         $this->userID = $usuario['user_id'] ?? 0;
@@ -24,7 +25,8 @@ class Usuario {
         $this->name = htmlentities($usuario['name'] ?? '');
         $this->bio = htmlentities($usuario['bio'] ?? '');
         $this->location = htmlentities($usuario['location'] ?? '');
-        $this->roleID = htmlentities($usuario['role_id'] ?? 3);
+        $this->roleID = htmlentities($usuario['role_id'] ?? 1);
+        $this->isSubscribed = htmlentities($usuario['is_subscribed'] ?? 0);
     }
 
     public static function consultar($userID = 0, $username = '') {
@@ -44,29 +46,104 @@ class Usuario {
             $sql .= " AND username = :username";
             $parametros['username'] = $username;
         }
+        // echo "SQL Query: " . $sql;
+        // echo "Parameters: ";
+        // print_r($parametros);
         
         $conexion = new Conexion();
         $resultados = $conexion->correrQuery($sql, $parametros);
-
         $usuarioDatos = $resultados->fetch();
         return new Usuario($usuarioDatos);
     }
 
-    // public static function existe($userID) {
-    //     $sql = "
-    //         SELECT *
-    //         FROM
-    //             Users U
-    //         WHERE
-    //             U.user_id = :usuarioId
-    //     ";
-    //     $parametros = [
-    //         'usuarioId' => $userID
-    //     ];
-    //     $conexion = new Conexion();
-    //     $resultados = $conexion->correrQuery($sql, $parametros);
-    //     $numUsuarios = $resultados->rowCount();
-    //     return 0 < $numUsuarios;
+    public static function userExists($userID) {
+        $sql = "
+            SELECT user_id
+            FROM
+                Users U
+            WHERE
+                U.user_id = :usuarioId
+        ";
+        $parametros = [
+            'usuarioId' => $userID
+        ];
+        $conexion = new Conexion();
+        $resultados = $conexion->correrQuery($sql, $parametros);
+        $numUsuarios = $resultados->rowCount();
+        return 0 < $numUsuarios;
+    }
+
+    public static function checkUsernameOrEmail($username, $email) {
+        $sql = "
+            SELECT username, email
+            FROM
+                Users U
+            WHERE
+                U.username = :username OR U.email = :email
+        ";
+        $parametros = [
+            'username' => $username,
+            'email' => $email
+        ];
+        $conexion = new Conexion();
+        $resultados = $conexion->correrQuery($sql, $parametros);
+    
+        if ($resultados->rowCount() > 0) {
+            $user = $resultados->fetch();
+            if ($user['username'] === $username) {
+                return 'Username already taken';
+            }
+            if ($user['email'] === $email) {
+                return 'Email already registered';
+            }
+        }
+        return 1;
+    }
+    
+    //breaking encapsulation with this being public? not really.. 
+    //this is how the real world interacts with the function, right?..
+    public function insertar() {
+        $sql = "
+            INSERT INTO Users (username, password, email, name, profile_picture, role_id, is_subscribed) 
+            VALUES
+                (:username, :password, :email, :name, :profile_picture, :role_id, :is_subscribed)
+            ";
+        $parametros = [
+            ':username' => $this->username,
+            ':email' => $this->email,
+            ':password' => $this->password,
+            ':name' => $this->name,
+            ':profile_picture' => $this->profilePicture,
+            ':role_id' => $this->roleID,
+            ':is_subscribed' => $this->isSubscribed,
+        ];
+        $conexion = new Conexion();
+        $conexion->correrQuery($sql, $parametros, true);
+        return $conexion->lastInsertId();
+    }
+        
+    public static function validarLogin($username, $password) {
+        $res = '';
+        $usuario = self::consultar(0, $username);
+
+        if (empty($usuario->userID)) {
+            $res = 'Usuario invalido';
+        } else {
+            if ($usuario->password !== $password) {
+                $res = 'Password Invalido';
+            } else {
+                $res = $usuario;
+            }
+        }
+        return $res;
+    }
+
+    // public function guardar() {
+    //     if (self::existe($this->usuarioId)) {
+    //         return $this->actualizar();
+    //     } else {
+    //         return $this->insertar(); 
+    //     }
     // }
 
     // public static function listar() {
@@ -79,26 +156,6 @@ class Usuario {
     //     $conexion = new Conexion();
     //     $resultados = $conexion->correrQuery($sql);
 
-    //     return $resultados;
-    // }
-
-    // private function insertar(){
-    //     $sql = "
-    //         INSERT INTO usuarios (nombre_usuario, password, email, nombre, img_usuario, rol_id) 
-    //         VALUES
-    //             (:nombreUsuario, :password, :email, :nombre, :img_usuario, :rol_id)
-    //         ";
-    //     $parametros = [
-    //         ':nombreUsuario' => $this->nombreUsuario,
-    //         ':email' => $this->email,
-    //         ':password' => $this->password,
-    //         ':nombre' => $this->nombre,
-    //         ':img_usuario' => $this->imgUsuario,
-    //         ':rol_id' => $this->rolId,
-    //     ];
-    //     $conexion = new Conexion();
-
-    //     $resultados = $conexion->correrQuery($sql, $parametros);
     //     return $resultados;
     // }
 
@@ -127,14 +184,6 @@ class Usuario {
     //     $conexion = new Conexion();
     //     $resultados = $conexion->correrQuery($sql, $parametros);
     //     return $resultados;
-    // }
-
-    // public function guardar() {
-    //     if (self::existe($this->usuarioId)) {
-    //         return $this->actualizar();
-    //     } else {
-    //         return $this->insertar(); 
-    //     }
     // }
 
     // public function borrar() {
@@ -171,34 +220,6 @@ class Usuario {
     //     $resultados = $conexion->correrQuery($sql, $parametros);
     //     return $resultados;
     // }
-
-    public static function listarRoles() {
-        $sql = "
-            SELECT role_id, name
-            FROM
-                Roles
-            ";
-        $conexion = new Conexion();
-        $resultados = $conexion->correrQuery($sql);
-
-        return $resultados;
-    }
-
-    public static function validarLogin($username, $password) {
-        $res = '';
-        $usuario = self::consultar(0, $username);
-
-        if (empty($usuario->userID)) {
-            $res = 'Usuario invalido';
-        } else {
-            if ($usuario->password !== $password) {
-                $res = 'Password Invalido';
-            } else {
-                $res = $usuario;
-            }
-        }
-        return $res;
-    }
 
     // public static function getUserByRolId($rol_id = 0) {
     //     $sql = "
