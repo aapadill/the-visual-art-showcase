@@ -161,6 +161,6 @@ $submitted = 1; //hardcored, properly bring from table
     </nav>
     </header>
 
-<!-- <main> -->
-    <!-- <div class="container"> -->
+<main>
+    <div class="container">
     <!-- <br> -->

@@ -54,17 +54,18 @@
     <form class="form-horizontal" action="login.php" method="POST" enctype="multipart/form-data">
 
       <div class="form-group">
-        <label class="col-md-8 offset-md-2" for="username">Username:</label>
-        <div class="col-md-8 offset-md-2">
-          <input type="text" class="form-control" name="username" value="<?php echo $usuario->username;?>">
+        <!-- <label class="col-md-8 offset-md-2" for="username">Username:</label> -->
+        <div class="input-group">
+          <span class="input-group-text" id="basic-addon1">@</span>
+          <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="username" value="<?php echo $usuario->username;?>">
         </div>
       </div>
 
       <br>
       <div class="form-group">
-          <label class="col-md-8 offset-md-2" for="password">Password:</label>
-          <div class="col-md-8 offset-md-2">
-            <input type="password" class="form-control" name="password" value="<?php echo $usuario->password;?>">
+          <!-- <label class="col-md-8 offset-md-2" for="password">Password:</label> -->
+          <div class="input-group">
+            <input type="password" class="form-control" placeholder="Password" name="password" aria-label="Username" value="<?php echo $usuario->password;?>">
           </div>
       </div>
 

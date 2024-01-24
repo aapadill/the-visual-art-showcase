@@ -3,8 +3,8 @@ use Controladores\Router;
 ?>
 
 <!-- <br> -->
-      <!-- </div> -->
-    <!-- </main> -->
+      </div>
+    </main>
 
     <footer> <!-- class="bg-dark text-center" -->
     </footer>
