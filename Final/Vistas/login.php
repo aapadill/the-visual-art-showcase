@@ -21,14 +21,18 @@
       $usuarioL = Usuario::validarLogin($nombreUsuario, $password);
       //Redireccionamiento
       if (!empty($usuarioL->userID)) {
-        var_dump($usuarioL);
+        // var_dump($usuarioL);
         $sesion->insertar('usuario', $usuarioL);
-        // if ($vieneDeCarrito){
-          // unset($_SESSION['intento_compra']);
-          // Router::redireccionar('carritoCompra/index.php');
+        // $vieneDeSubscribe = $sesion->obtener('fromSubscribe');
+        // var_dump($sesion->obtener('fromSubscribe'));
+        // if ($vieneDeSubscribe && !$usuarioL->isSubscribed){
+          // $sesion->insertar('fromSubscribe', 0); //ticket used
+          // Router::redireccionar('subscribe.php');
         // }
-        // if (!$vieneDeCarrito){
-        Router::redireccionar('index.php');
+        // else{
+          // $vieneDeSubscribe = 0;
+          // $sesion->insertar('fromSubscribe', 0); 
+          Router::redireccionar('index.php');
         // }
       }
       else{

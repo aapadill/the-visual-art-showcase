@@ -8,6 +8,7 @@ use Modelos\ShowcaseArtwork;
 use Modelos\Category;
 
 include Router::direccion('/plantillas/header.php');
+// var_dump($_SESSION);
 
 $busqueda = htmlentities($_GET['buscar'] ?? ''); //texto a buscar
 $techniqueSelected = htmlentities($_GET['technique-select'] ?? 0); //technique chosen

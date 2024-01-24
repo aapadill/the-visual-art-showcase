@@ -138,6 +138,53 @@ class Usuario {
         return $res;
     }
 
+    public function actualizar() {
+        $sql = "
+            UPDATE Users
+            SET
+                username = :username,
+                email = :email,
+                password = :password,
+                name = :name,
+                profile_picture = :profile_picture,
+                role_id = :role_id,
+                is_subscribed = :is_subscribed
+            WHERE
+                user_id = :user_id
+            ";
+        $parametros = [
+            ':user_id' => $this->userID,
+            ':username' => $this->username,
+            ':email' => $this->email,
+            ':password' => $this->password,
+            ':name' => $this->name,
+            ':profile_picture' => $this->profilePicture,
+            ':role_id' => $this->roleID,
+            ':is_subscribed' => $this->isSubscribed,
+        ];
+        $conexion = new Conexion();
+        $resultados = $conexion->correrQuery($sql, $parametros);
+        return $resultados;
+    }
+    
+    public function actualizarSuscripcion() {
+        $sql = "
+            UPDATE Users
+            SET
+                is_subscribed = :is_subscribed
+            WHERE
+                user_id = :user_id
+            ";
+        $parametros = [
+            ':user_id' => $this->userID,
+            ':is_subscribed' => $this->isSubscribed,
+        ];
+        $conexion = new Conexion();
+        $resultados = $conexion->correrQuery($sql, $parametros);
+        return $resultados;
+    }
+    
+
     // public function guardar() {
     //     if (self::existe($this->usuarioId)) {
     //         return $this->actualizar();
@@ -159,32 +206,7 @@ class Usuario {
     //     return $resultados;
     // }
 
-    // private function actualizar() {
-    //     $sql = "
-    //         UPDATE usuarios
-    //         SET
-    //             nombre_usuario = :nombreUsuario,
-    //             email = :email,
-    //             password = :password,
-    //             nombre = :nombre,
-    //             img_usuario = :img_usuario,
-    //             rol_id = :rol_id
-    //         WHERE
-    //             usuario_id = :usuarioId
-    //         ";
-    //     $parametros = [
-    //         ':usuarioId' => $this->usuarioId,
-    //         ':nombreUsuario' => $this->nombreUsuario,
-    //         ':email' => $this->email,
-    //         ':password' => $this->password,
-    //         ':nombre' => $this->nombre,
-    //         ':img_usuario' => $this->imgUsuario,
-    //         ':rol_id' => $this->rolId,
-    //     ];
-    //     $conexion = new Conexion();
-    //     $resultados = $conexion->correrQuery($sql, $parametros);
-    //     return $resultados;
-    // }
+    
 
     // public function borrar() {
     //     $sql = "
