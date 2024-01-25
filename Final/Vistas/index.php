@@ -81,11 +81,15 @@ while ($dayID > 0) {
                   <select class="form-select" name="technique-select" id="technique-select" onchange="this.form.submit()">
                     <option value="0"> all </option>
                     <?php 
-                    foreach ($categorias as $c) {
+                      foreach ($categorias as $c) {
+                    ?>
+
+                    <?php
                       $selected = (isset($_GET['technique-select']) && $_GET['technique-select'] == $c['category_id']) ? 'selected' : '';
                       echo '<option value="' . $c['category_id'] . '" ' . $selected . '>' . $c['category_name'] . '</option>';
                     }
                     ?>
+
                   </select>
                 </form>
               </li>
@@ -126,16 +130,16 @@ while ($dayID > 0) {
   </div>
 
   <div class="feed">
-    <!-- <h1>Home</h1> -->
+    <!-- <h1 class="mb-3 text-center">Home</h1> -->
   
     <?php
     // var_dump($techniqueSelected);
     foreach ($filteredDayIDs as $dayID) {
       $weeklyShowcase = WeeklyShowcase::consultar($dayID); // WeeklyShowcase of a specific week
     ?>
-      <div class="week row text-center card mb-5" id="week-<?php echo $dayID;?>">
+      <div class="week row text-center card mb-2" id="week-<?php echo $dayID;?>">
         <div class="week-intro card-header">Featuring on week <?php echo $dayID;?> </div>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        <!-- <p class="card-text"><small class="text-muted">Updated days ago</small></p> -->
 
         <?php
           $showcaseArtworks = ShowcaseArtwork::consultar($dayID); // ShowcaseArtworks of a specific week
