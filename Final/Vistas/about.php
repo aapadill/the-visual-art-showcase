@@ -6,7 +6,7 @@ include Router::direccion('/plantillas/header.php');
 ?>
 
 <div class="container mt-5">
-    <div class="row">
+    <div class="row mb 5">
         <div class="col">
             <h1>About us</h1>
             <p class="lead">Supporting Emerging Artists</p>

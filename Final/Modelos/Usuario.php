@@ -183,6 +183,22 @@ class Usuario {
         $resultados = $conexion->correrQuery($sql, $parametros);
         return $resultados;
     }
+
+    public static function listar() {
+        $sql = "
+            SELECT *
+            FROM
+            Users U
+        ";
+        $conexion = new Conexion();
+        $resultados = $conexion->correrQuery($sql);
+
+        $usuarios = [];
+        while ($fila = $resultados->fetch()) {
+            $usuarios[] = new Usuario($fila);
+        }
+        return $usuarios;
+    }
     
 
     // public function guardar() {
@@ -192,21 +208,6 @@ class Usuario {
     //         return $this->insertar(); 
     //     }
     // }
-
-    // public static function listar() {
-    //     $sql = "
-    //         SELECT U.usuario_id, U.nombre_usuario, U.email, U.nombre, U.img_usuario, U.password, R.rol_id, R.nombre rol_nombre
-    //         FROM
-    //             usuarios U
-    //             JOIN roles R ON R.rol_id = U.rol_id
-    //     ";
-    //     $conexion = new Conexion();
-    //     $resultados = $conexion->correrQuery($sql);
-
-    //     return $resultados;
-    // }
-
-    
 
     // public function borrar() {
     //     $sql = "

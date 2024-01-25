@@ -65,7 +65,7 @@ $submitted = 0; //hardcored, properly bring from table
                                 <?php
                                 if ($rolSesion == '1' || $rolSesion == '2' || $rolSesion == '3'){
                                 ?>
-                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('usuarios/');?>">Admin Profile</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('users/index.php');?>">Admin Profile</a></li>
                                     <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('likes/');?>">Likes</a></li>
                                 <?php
                                 }
@@ -89,7 +89,7 @@ $submitted = 0; //hardcored, properly bring from table
                                 if ($rolSesion){
                                 ?>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('cerrarSesion.php');?>">Cerrar sesion</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('cerrarSesion.php');?>">Logout</a></li>
                                 <?php
                                 }
                                 else{ 
@@ -109,7 +109,7 @@ $submitted = 0; //hardcored, properly bring from table
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Subscription </a>
                                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artist.php');?>">Admin Subscription</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('users/index.php');?>">Admin Subscription</a></li>
                                 </ul>
                             </li>
                         <?php
