@@ -131,118 +131,41 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    //scroll
-    // let lastScrollTop = 0;
-    // const header = document.querySelector('.main-header');
-    // // throttle to limit exec frequency of handleScroll, which reduces main-header
-    // // const throttledHandleScroll = throttle(handleScroll, 1000); //10ms
-
-    // document.documentElement.style.setProperty('--main-header-height', '108px');
-    // document.documentElement.style.setProperty('--art-header-top', '54px');
-    // document.documentElement.style.setProperty('--logo-reduction-h', '90px');
-    // document.documentElement.style.setProperty('--logo-reduction-w', '90px');
-    // document.documentElement.style.setProperty('--reduced-size', '100%');
-    // document.documentElement.style.setProperty('--padding-size', '5px');
-
-    // // Función throttle: limita la frecuencia de ejecución de la función
-    // function throttle(func, limit) {
-    //     let inThrottle;
-    //     return function() {
-    //         const args = arguments;
-    //         const context = this;
-    //         if (!inThrottle) {
-    //             func.apply(context, args);
-    //             inThrottle = true;
-    //             setTimeout(() => inThrottle = false, limit);
-    //         }
-    //     };
-    // }
-
-    // function handleScroll() {
-    // let currentScrollTop = window.scrollY || document.documentElement.scrollTop;
-
-    // // Handling header visibility
-    // if (currentScrollTop > lastScrollTop && currentScrollTop > 108) {
-    //     // Scrolling down, hide the header
-    //     header.classList.add('hide-header');
-    // } else if (currentScrollTop < lastScrollTop) {
-    //     // Scrolling up, show the header
-    //     header.classList.remove('hide-header');
-    // }
-
-    // // Handling header resizing
-    // if (currentScrollTop >= 12) {
-    //     let newHeight = Math.max(54, Math.min(108, parseInt(getComputedStyle(document.documentElement).getPropertyValue('--main-header-height')) + (lastScrollTop - currentScrollTop)));
-    //     let reductionPercentage = newHeight / 108;
-    //     console.log(reductionPercentage); // Log the reduction percentage
-        
-    //     document.documentElement.style.setProperty('--main-header-height', newHeight + 'px');
-    //     document.documentElement.style.setProperty('--art-header-top', newHeight + 'px');
-    //     document.documentElement.style.setProperty('--logo-reduction-h', reductionPercentage * 90 + 'px');
-    //     document.documentElement.style.setProperty('--logo-reduction-w', reductionPercentage * 90 + 'px');
-    //     document.documentElement.style.setProperty('--reduced-size', reductionPercentage * 100 + '%');
-    //     document.documentElement.style.setProperty('--padding-size', reductionPercentage * 5 + 'px');
-    // }
-
-    // lastScrollTop = currentScrollTop;
-    // }
-
-    // Add the event listener for the scroll event
     window.addEventListener('scroll', handleScroll);
-    // window.addEventListener('scroll', throttledHandleScroll);
-
-    //listen for the scroll event to hide or show the header
-    // window.addEventListener('scroll', transparentBackground);
-    
-    //colors
-        // function invertColor(hex) {
-        //     // Invert a hex color
-        //     var color = hex.substring(1); // Remove the hash
-        //     color = parseInt(color, 16); // Convert to integer
-        //     color = 0xFFFFFF ^ color; // Invert the color
-        //     color = color.toString(16); // Convert back to hex
-        //     color = ("000000" + color).slice(-6); // Add leading zeros
-        //     return "#" + color; // Return the inverted color
-        // }
-        
-        // function getPredominantColor(img) {
-        //     const canvas = document.createElement('canvas');
-        //     const context = canvas.getContext('2d');
-        //     canvas.width = img.width;
-        //     canvas.height = img.height;
-        //     context.drawImage(img, 0, 0, img.width, img.height);
-        
-        //     // Get the image data
-        //     const data = context.getImageData(0, 0, canvas.width, canvas.height).data;
-        
-        //     // Analyze the image data...
-        //     // This is a complex task. For simplicity, you might just average the colors.
-        //     // More advanced color analysis would require additional logic.
-        
-        //     let r = 0, g = 0, b = 0, count = 0;
-        //     for (let i = 0; i < data.length; i += 4) {
-        //         r += data[i];
-        //         g += data[i + 1];
-        //         b += data[i + 2];
-        //         count++;
-        //     }
-        
-        //     // Calculate average color
-        //     r = Math.floor(r / count);
-        //     g = Math.floor(g / count);
-        //     b = Math.floor(b / count);
-        
-        //     return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
-        // }
-        
-        // window.onload = function() {
-        //     const img = document.getElementById('backgroundImage');
-        //     const textColorElement = document.getElementById('textElement');
-        
-        //     img.onload = function() {
-        //         const predominantColor = getPredominantColor(img);
-        //         const invertedColor = invertColor(predominantColor);
-        //         textColorElement.style.color = invertedColor;
-        //     };
-        // };
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("cargo");
+    var likeButtons = document.querySelectorAll('.likeButton');
+    likeButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var artworkId = this.getAttribute('data-artwork-id');
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'like-handler.php', true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+                
+                // This block of code is executed when the request is successful
+                if (xhr.status >= 200 && xhr.status < 400) {
+                    // Handle the response here
+                    console.log('Response from server:', this.responseText);
+                    // Example: Update the like button appearance based on the response
+                    var response = JSON.parse(this.responseText);
+                    if (response.liked) {
+                        document.getElementById('likeButton').classList.add('liked');
+                    } else {
+                        document.getElementById('likeButton').classList.remove('liked');
+                    }
+                } else {
+                    // We reached our target server, but it returned an error
+                    console.error('Server reached, but it returned an error');
+                }
+            };
+            xhr.onerror = function() {
+                //connection error of some sort
+                console.error('Connection error');
+            };
+            xhr.send('imageId=' + artworkId); // Send POST data with the artwork ID
+        });
+    });
+});        
