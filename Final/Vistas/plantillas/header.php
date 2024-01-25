@@ -12,7 +12,7 @@ $rolSesion = $usuarioSesion->roleID ?? '';
 $usuarioIdSesion = $usuarioSesion->userID ?? 0;
 $subscribed = $usuarioSesion->isSubscribed ?? 0;
 // var_dump($sesion->getSesion());
-$submitted = 1; //hardcored, properly bring from table
+$submitted = 0; //hardcored, properly bring from table
 ?>
 
 <!DOCTYPE html>
