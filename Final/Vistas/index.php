@@ -8,7 +8,6 @@ use Modelos\ShowcaseArtwork;
 use Modelos\Category;
 
 include Router::direccion('/plantillas/header.php');
-// var_dump($_SESSION);
 
 $busqueda = htmlentities($_GET['buscar'] ?? ''); //texto a buscar
 $techniqueSelected = htmlentities($_GET['technique-select'] ?? 0); //technique chosen
@@ -162,10 +161,16 @@ while ($dayID > 0) {
               ?>
                 <!-- antes, class="arte" -->
                 <div class="week-artwork mb-4" id="artwork-<?php echo $week['artwork_id'];?>"> 
-                    <img src="<?php Router::rutaImagenWeb($artwork->imageURL);?>" class="card-img-top img-fluid previewable-image zoomable-image" alt="<?php Router::rutaImagenWeb($artwork->imageURL);?>"> 
-                    <button class="btn btn-outline-primary likeButton" data-artwork-id="<?php echo $week['artwork_id'];?>">
-                        <i class="fa fa-thumbs-up"></i> Like
+                    <img src="<?php Router::rutaImagenWeb($artwork->imageURL);?>" class="card-img-top img-fluid previewable-image zoomable-image" data-artwork-id="<?php echo $week['artwork_id'];?>" alt="<?php Router::rutaImagenWeb($artwork->imageURL);?>">
+                    <?php
+                    if(!empty($usuarioIdSesion)){
+                    ?>
+                    <button type="button" class="btn btn-outline-dark likeButton" data-artwork-id="<?php echo $week['artwork_id'];?>">
+                      <i class="bi bi-heart-fill"></i>
                     </button>
+                    <?php 
+                    } 
+                    ?>
                     <ul class="info-artwork list-group list-group-flush text-end">
                       <li class="list-group-item"><?php echo $artwork->title;?> </li>
                       <li class="list-group-item"><?php echo $artwork->technicalSheet;?> </li>

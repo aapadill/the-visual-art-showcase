@@ -79,93 +79,140 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
     //preview
-    document.addEventListener("mousedown", (e) => { //e: clicked element
-        if (e.target.classList.contains("previewable-image")) {
-            const imgsrc = e.target.src;
-            previewImage.src = imgsrc;
+        document.addEventListener("mousedown", (e) => { //e: clicked element
+            if (e.target.classList.contains("previewable-image")) {
+                const imgsrc = e.target.src;
+                previewImage.src = imgsrc;
 
-            clickStartTime = new Date().getTime();
-            previewTimeout = setTimeout(() => {
-                const clickEndTime = new Date().getTime();
-                const clickDuration = clickEndTime - clickStartTime;
-                if (clickDuration >= 500) { // 500 milliseconds = 0.5 seconds
-                    previewPage.style.display = "flex";
+                clickStartTime = new Date().getTime();
+                previewTimeout = setTimeout(() => {
+                    const clickEndTime = new Date().getTime();
+                    const clickDuration = clickEndTime - clickStartTime;
+                    if (clickDuration >= 500) { // 500 milliseconds = 0.5 seconds
+                        previewPage.style.display = "flex";
 
-                    console.log("duracion de click: " +clickDuration +"ms, mostrando previewPage");
-                }
-            }, 500);
-        }
-    });
+                        console.log("duracion de click: " +clickDuration +"ms, mostrando previewPage");
+                    }
+                }, 500);
+            }
+        });
 
-    document.addEventListener("mouseup", () => {
-        console.log("soltaste mouse");
-        clearTimeout(previewTimeout);
-        clickStartTime = 0;
-        //previewPage.style.display = "none";
-    });
-
-    previewPage.addEventListener("click", (e) => {
-        if (e.target.id != "preview-image"){ //click en background
-            console.log("cerraste previewPage"); 
+        document.addEventListener("mouseup", () => {
+            console.log("soltaste mouse");
             clearTimeout(previewTimeout);
             clickStartTime = 0;
-            previewPage.style.display = "none";
-        }
-        else{
-            //abrir img en nueva pestana?
-        }
-    });
-    //full
-    
-    //search bar
-    const searchIcon = document.querySelector('.search-icon');
-    const searchInput = document.querySelector('.search-input');
-    const searchSubmit = document.querySelector('.search-submit');
+            //previewPage.style.display = "none";
+        });
 
-    searchIcon.addEventListener('click', () => {
-        searchInput.classList.toggle('active');
-        if (searchInput.classList.contains('active')) {
-            searchInput.focus();
-            // searchInput.style.display = 'block';
-            // searchSubmit.style.display = 'block';
-        }
-    });
+        previewPage.addEventListener("click", (e) => {
+            if (e.target.id != "preview-image"){ //click en background
+                console.log("cerraste previewPage"); 
+                clearTimeout(previewTimeout);
+                clickStartTime = 0;
+                previewPage.style.display = "none";
+            }
+            else{
+                //abrir img en nueva pestana?
+            }
+        });
 
-    window.addEventListener('scroll', handleScroll);
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    console.log("cargo");
-    var likeButtons = document.querySelectorAll('.likeButton');
-    likeButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            var artworkId = this.getAttribute('data-artwork-id');
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'like-handler.php', true);
-            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            xhr.onload = function() {
-                
-                // This block of code is executed when the request is successful
-                if (xhr.status >= 200 && xhr.status < 400) {
-                    // Handle the response here
-                    console.log('Response from server:', this.responseText);
-                    // Example: Update the like button appearance based on the response
-                    var response = JSON.parse(this.responseText);
-                    if (response.liked) {
-                        document.getElementById('likeButton').classList.add('liked');
+    //duble-click like
+    document.addEventListener("click", function(e) {
+        if (e.target && e.target.classList.contains("previewable-image")) {
+            img = e.target.classList;
+            // Check if it's a double click
+            if (e.detail === 2) {
+                // Get the artwork ID from the data attribute
+                var artworkId = e.target.getAttribute('data-artwork-id');
+                // Trigger the like action
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'like-handler.php', true);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                xhr.onload = function() {
+                    //this block of code is executed when the request is successful
+                    if (xhr.status >= 200 && xhr.status < 400) {
+                        //handle the response here
+                        console.log('Response from server:', this.responseText);
+                        //example: Update the like button appearance based on the response
+                        var response = JSON.parse(this.responseText);
+                        // var icon = button.querySelector('i');
+                        if (response.liked) {
+                            console.log("liked");
+                            // button.classList.add('liked');
+                            // icon.className = 'bi bi-star-fill';
+                            img.add('liked');
+                            img.remove('unliked');
+                            console.log(img);
+                        } else {
+                            console.log("unliked");
+                            // button.classList.remove('liked');
+                            // icon.className = 'bi bi-star';
+                            img.add('unliked');
+                            img.remove('liked');
+                            console.log(img);
+                        }
                     } else {
-                        document.getElementById('likeButton').classList.remove('liked');
+                        //we reached our target server, but it returned an error
+                        console.error('Server reached, but it returned an error');
                     }
-                } else {
-                    // We reached our target server, but it returned an error
-                    console.error('Server reached, but it returned an error');
-                }
-            };
-            xhr.onerror = function() {
-                //connection error of some sort
-                console.error('Connection error');
-            };
-            xhr.send('imageId=' + artworkId); // Send POST data with the artwork ID
+                };
+                xhr.send('imageId=' + artworkId);
+            }
+        }
+    });
+    
+    //search bar hide on click
+        //     const searchIcon = document.querySelector('.search-icon');
+        //     const searchInput = document.querySelector('.search-input');
+        //     const searchSubmit = document.querySelector('.search-submit');
+
+        //     searchIcon.addEventListener('click', () => {
+        //         searchInput.classList.toggle('active');
+        //         if (searchInput.classList.contains('active')) {
+        //             searchInput.focus();
+        //             // searchInput.style.display = 'block';
+        //             // searchSubmit.style.display = 'block';
+        //         }
+        //     });
+
+        //     window.addEventListener('scroll', handleScroll);
+        // });
+});      
+    //json
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log("dom cargado");
+        var likeButtons = document.querySelectorAll('.likeButton');
+        likeButtons.forEach(function(button) {
+            button.addEventListener('mousedown', function() {
+                var artworkId = this.getAttribute('data-artwork-id');
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'like-handler.php', true);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                xhr.onload = function() {
+                    //this block of code is executed when the request is successful
+                    if (xhr.status >= 200 && xhr.status < 400) {
+                        //handle the response here
+                        console.log('Response from server:', this.responseText);
+                        //example: Update the like button appearance based on the response
+                        var response = JSON.parse(this.responseText);
+                        var icon = button.querySelector('i');
+                        if (response.liked) {
+                            // button.classList.add('liked');
+                            icon.className = 'bi bi-star-fill';
+                        } else {
+                            // button.classList.remove('liked');
+                            icon.className = 'bi bi-star';
+                        }
+                    } else {
+                        //we reached our target server, but it returned an error
+                        console.error('Server reached, but it returned an error');
+                    }
+                };
+                xhr.onerror = function() {
+                    //connection error of some sort
+                    console.error('Connection error');
+                };
+                xhr.send('imageId=' + artworkId); //send POST data with the artwork ID
+            });
         });
     });
-});        

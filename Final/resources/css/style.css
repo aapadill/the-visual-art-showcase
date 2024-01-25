@@ -49,7 +49,17 @@
     }
 
     .liked {
-        background-color: red;
+        /* border-radius: 10%; */
+        border: solid 30px black;
+        /* transition: border-radius 2s; */
+        transition: border 2s;
+    }
+
+    .unliked {
+        /* border-radius: 0%; */
+        border: solid 3px white;
+        /* transition: border-radius 2s; */
+        transition: border 2s;
     }
 
     /* responsiveness forced */
