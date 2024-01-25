@@ -116,50 +116,50 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-    //double-click like
-        document.addEventListener("click", function(e) {
-            if (e.target && e.target.classList.contains("previewable-image")) {
-                img = e.target.classList;
-                // Check if it's a double click
-                if (e.detail === 2) {
-                    // Get the artwork ID from the data attribute
-                    var artworkId = e.target.getAttribute('data-artwork-id');
-                    // Trigger the like action
-                    var xhr = new XMLHttpRequest();
-                    xhr.open('POST', 'like-handler.php', true);
-                    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-                    xhr.onload = function() {
-                        //this block of code is executed when the request is successful
-                        if (xhr.status >= 200 && xhr.status < 400) {
-                            //handle the response here
-                            console.log('Response from server:', this.responseText);
-                            //example: Update the like button appearance based on the response
-                            var response = JSON.parse(this.responseText);
-                            // const icon = img.nextElementSibling;
-                            if (response.liked) {
-                                console.log("liked");
-                                // button.classList.add('liked');
-                                // icon.className = 'bi bi-heart-fill';
-                                img.add('liked');
-                                img.remove('unliked');
-                                console.log(img);
-                            } else {
-                                console.log("unliked");
-                                // button.classList.remove('liked');
-                                // icon.className = 'bi bi-heart';
-                                img.add('unliked');
-                                img.remove('liked');
-                                console.log(img);
-                            }
-                        } else {
-                            //we reached our target server, but it returned an error
-                            console.error('Server reached, but it returned an error');
-                        }
-                    };
-                    xhr.send('imageId=' + artworkId);
-                }
-            }
-        });
+    //double-click like //mix both likes, button, double click and double tap?
+        // document.addEventListener("click", function(e) {
+        //     if (e.target && e.target.classList.contains("previewable-image")) {
+        //         img = e.target.classList;
+        //         // Check if it's a double click
+        //         if (e.detail === 2) {
+        //             // Get the artwork ID from the data attribute
+        //             var artworkId = e.target.getAttribute('data-artwork-id');
+        //             // Trigger the like action
+        //             var xhr = new XMLHttpRequest();
+        //             xhr.open('POST', 'like-handler.php', true);
+        //             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        //             xhr.onload = function() {
+        //                 //this block of code is executed when the request is successful
+        //                 if (xhr.status >= 200 && xhr.status < 400) {
+        //                     //handle the response here
+        //                     console.log('Response from server:', this.responseText);
+        //                     //example: Update the like button appearance based on the response
+        //                     var response = JSON.parse(this.responseText);
+        //                     // const icon = img.nextElementSibling;
+        //                     if (response.liked) {
+        //                         console.log("liked");
+        //                         // button.classList.add('liked');
+        //                         // icon.className = 'bi bi-heart-fill';
+        //                         img.add('liked');
+        //                         img.remove('unliked');
+        //                         console.log(img);
+        //                     } else {
+        //                         console.log("unliked");
+        //                         // button.classList.remove('liked');
+        //                         // icon.className = 'bi bi-heart';
+        //                         img.add('unliked');
+        //                         img.remove('liked');
+        //                         console.log(img);
+        //                     }
+        //                 } else {
+        //                     //we reached our target server, but it returned an error
+        //                     console.error('Server reached, but it returned an error');
+        //                 }
+        //             };
+        //             xhr.send('imageId=' + artworkId);
+        //         }
+        //     }
+        // });
     
     //search bar hide on click
         //     const searchIcon = document.querySelector('.search-icon');
