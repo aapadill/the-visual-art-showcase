@@ -6,6 +6,7 @@ use Modelos\Artist;
 use Modelos\Artwork;
 use Modelos\ShowcaseArtwork;
 use Modelos\Category;
+use Modelos\Like;
 
 include Router::direccion('/plantillas/header.php');
 
@@ -14,6 +15,11 @@ $techniqueSelected = htmlentities($_GET['technique-select'] ?? 0); //technique c
 // $selectedWeek = htmlentities($_GET['week-select'] ?? ''); //week chosen //simplificado a #
 $categorias = Category::consultar(); //traer todas las categorias
 //$busquedaSemana = WeeklyShowcase::buscar($busqueda); regresa coincidencia
+
+if(!empty($usuarioIdSesion)){
+  $likes = Like::consultar($usuarioIdSesion);
+  // var_dump($likes);
+}
 
 $filteredDayIDs = []; //days to display, affected by filter [alpha]
 
@@ -160,17 +166,24 @@ while ($dayID > 0) {
                     $categoryID = Category::consultar($artwork->categoryID);
               ?>
                 <!-- antes, class="arte" -->
-                <div class="week-artwork mb-4" id="artwork-<?php echo $week['artwork_id'];?>"> 
+                <div class="week-artwork mb-4" id="artwork-<?php echo $week['artwork_id'];?>">
+                  <!-- <div class="likeable-zone"> -->
                     <img src="<?php Router::rutaImagenWeb($artwork->imageURL);?>" class="card-img-top img-fluid previewable-image zoomable-image" data-artwork-id="<?php echo $week['artwork_id'];?>" alt="<?php Router::rutaImagenWeb($artwork->imageURL);?>">
                     <?php
                     if(!empty($usuarioIdSesion)){
+                      if(!in_array($week['artwork_id'],$likes)){
                     ?>
-                    <button type="button" class="btn btn-outline-dark likeButton" data-artwork-id="<?php echo $week['artwork_id'];?>">
-                      <i class="bi bi-heart-fill"></i>
-                    </button>
-                    <?php 
+                    <i class="bi bi-heart likeIcon" data-artwork-id="<?php echo $week['artwork_id'];?>"></i>
+                    <?php
+                      }
+                      if(in_array($week['artwork_id'],$likes)){
+                    ?>
+                      <i class="bi bi-heart-fill likeIcon" data-artwork-id="<?php echo $week['artwork_id'];?>"></i>
+                    <?php
+                      }
                     } 
                     ?>
+                    
                     <ul class="info-artwork list-group list-group-flush text-end">
                       <li class="list-group-item"><?php echo $artwork->title;?> </li>
                       <li class="list-group-item"><?php echo $artwork->technicalSheet;?> </li>

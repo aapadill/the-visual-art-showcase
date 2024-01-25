@@ -50,16 +50,36 @@
 
     .liked {
         /* border-radius: 10%; */
-        border: solid 30px black;
+        border: solid 30px rgba(177, 21, 21, 0.643);
         /* transition: border-radius 2s; */
         transition: border 2s;
     }
 
+    .button-liked {
+        border-radius: 50%;
+    }
+
     .unliked {
         /* border-radius: 0%; */
-        border: solid 3px white;
+        border: solid 0px white;
         /* transition: border-radius 2s; */
         transition: border 2s;
+    }
+
+    /* .likeable-zone{ */
+        /* position: relative; */
+    /* } */
+
+    .bi{
+        /* position: absolute; */
+        /* top: 50%; */
+        /* left: 50%; */
+        /* transform: translate(100%, -50%); */
+        font-size: 2rem;
+        color: rgb(180, 3, 3);
+        background-color: none;
+        width: 100%;
+        height: 100%;
     }
 
     /* responsiveness forced */

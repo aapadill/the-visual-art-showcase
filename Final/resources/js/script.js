@@ -116,50 +116,50 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-    //duble-click like
-    document.addEventListener("click", function(e) {
-        if (e.target && e.target.classList.contains("previewable-image")) {
-            img = e.target.classList;
-            // Check if it's a double click
-            if (e.detail === 2) {
-                // Get the artwork ID from the data attribute
-                var artworkId = e.target.getAttribute('data-artwork-id');
-                // Trigger the like action
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', 'like-handler.php', true);
-                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-                xhr.onload = function() {
-                    //this block of code is executed when the request is successful
-                    if (xhr.status >= 200 && xhr.status < 400) {
-                        //handle the response here
-                        console.log('Response from server:', this.responseText);
-                        //example: Update the like button appearance based on the response
-                        var response = JSON.parse(this.responseText);
-                        // var icon = button.querySelector('i');
-                        if (response.liked) {
-                            console.log("liked");
-                            // button.classList.add('liked');
-                            // icon.className = 'bi bi-star-fill';
-                            img.add('liked');
-                            img.remove('unliked');
-                            console.log(img);
+    //double-click like
+        document.addEventListener("click", function(e) {
+            if (e.target && e.target.classList.contains("previewable-image")) {
+                img = e.target.classList;
+                // Check if it's a double click
+                if (e.detail === 2) {
+                    // Get the artwork ID from the data attribute
+                    var artworkId = e.target.getAttribute('data-artwork-id');
+                    // Trigger the like action
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', 'like-handler.php', true);
+                    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                    xhr.onload = function() {
+                        //this block of code is executed when the request is successful
+                        if (xhr.status >= 200 && xhr.status < 400) {
+                            //handle the response here
+                            console.log('Response from server:', this.responseText);
+                            //example: Update the like button appearance based on the response
+                            var response = JSON.parse(this.responseText);
+                            // const icon = img.nextElementSibling;
+                            if (response.liked) {
+                                console.log("liked");
+                                // button.classList.add('liked');
+                                // icon.className = 'bi bi-heart-fill';
+                                img.add('liked');
+                                img.remove('unliked');
+                                console.log(img);
+                            } else {
+                                console.log("unliked");
+                                // button.classList.remove('liked');
+                                // icon.className = 'bi bi-heart';
+                                img.add('unliked');
+                                img.remove('liked');
+                                console.log(img);
+                            }
                         } else {
-                            console.log("unliked");
-                            // button.classList.remove('liked');
-                            // icon.className = 'bi bi-star';
-                            img.add('unliked');
-                            img.remove('liked');
-                            console.log(img);
+                            //we reached our target server, but it returned an error
+                            console.error('Server reached, but it returned an error');
                         }
-                    } else {
-                        //we reached our target server, but it returned an error
-                        console.error('Server reached, but it returned an error');
-                    }
-                };
-                xhr.send('imageId=' + artworkId);
+                    };
+                    xhr.send('imageId=' + artworkId);
+                }
             }
-        }
-    });
+        });
     
     //search bar hide on click
         //     const searchIcon = document.querySelector('.search-icon');
@@ -178,41 +178,41 @@ document.addEventListener("DOMContentLoaded", () => {
         //     window.addEventListener('scroll', handleScroll);
         // });
 });      
-    //json
+    //like
     document.addEventListener('DOMContentLoaded', function() {
-        console.log("dom cargado");
-        var likeButtons = document.querySelectorAll('.likeButton');
-        likeButtons.forEach(function(button) {
-            button.addEventListener('mousedown', function() {
+        console.log("DOM loaded");
+        var likeIcons = document.querySelectorAll('.likeIcon'); // Assuming the class is likeIcon for the icons
+        likeIcons.forEach(function(icon) {
+            icon.addEventListener('mousedown', function() {
                 var artworkId = this.getAttribute('data-artwork-id');
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', 'like-handler.php', true);
                 xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
                 xhr.onload = function() {
-                    //this block of code is executed when the request is successful
+                    // This block of code is executed when the request is successful
                     if (xhr.status >= 200 && xhr.status < 400) {
-                        //handle the response here
+                        // Handle the response here
                         console.log('Response from server:', this.responseText);
-                        //example: Update the like button appearance based on the response
+                        // Example: Update the like icon appearance based on the response
                         var response = JSON.parse(this.responseText);
-                        var icon = button.querySelector('i');
                         if (response.liked) {
-                            // button.classList.add('liked');
-                            icon.className = 'bi bi-star-fill';
+                            icon.classList.add('bi-heart-fill'); // Change to filled heart icon
+                            icon.classList.remove('bi-heart'); // Remove empty heart icon class
                         } else {
-                            // button.classList.remove('liked');
-                            icon.className = 'bi bi-star';
+                            icon.classList.add('bi-heart'); // Change to empty heart icon
+                            icon.classList.remove('bi-heart-fill'); // Remove filled heart icon class
                         }
                     } else {
-                        //we reached our target server, but it returned an error
+                        // We reached our target server, but it returned an error
                         console.error('Server reached, but it returned an error');
                     }
                 };
                 xhr.onerror = function() {
-                    //connection error of some sort
+                    // Connection error of some sort
                     console.error('Connection error');
                 };
-                xhr.send('imageId=' + artworkId); //send POST data with the artwork ID
+                xhr.send('imageId=' + artworkId); // Send POST data with the artwork ID
             });
         });
     });
+    

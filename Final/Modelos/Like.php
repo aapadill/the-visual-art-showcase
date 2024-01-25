@@ -45,5 +45,20 @@ class Like {
         $conexion = new Conexion();
         $conexion->correrQuery($sql, $parametros);
     }
+
+    public static function consultar($userId) {
+        $sql = "SELECT artwork_id FROM Likes WHERE user_id = :user_id";
+        $parametros = [
+            ':user_id' => $userId,
+        ];
+        $conexion = new Conexion();
+        $resultados = $conexion->correrQuery($sql, $parametros);
+
+        $likedArtworks = [];
+        while ($fila = $resultados->fetch()) {
+            $likedArtworks[] = $fila['artwork_id'];
+        }
+        return $likedArtworks;
+    }
 }
 ?>

@@ -11,6 +11,7 @@ $nombreSesion = $usuarioSesion->username ?? '';
 $rolSesion = $usuarioSesion->roleID ?? '';
 $usuarioIdSesion = $usuarioSesion->userID ?? 0;
 $subscribed = $usuarioSesion->isSubscribed ?? 0;
+$likes = [];
 // var_dump($sesion->getSesion());
 $submitted = 0; //hardcored, properly bring from table
 ?>
