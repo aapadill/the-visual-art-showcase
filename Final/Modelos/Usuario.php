@@ -14,6 +14,7 @@ class Usuario {
     public $bio;
     public $location;
     public $roleID;
+    public $isSubscribed;
 
     public function __construct($usuario = []) {
         $this->userID = $usuario['user_id'] ?? 0;
@@ -24,110 +25,186 @@ class Usuario {
         $this->name = htmlentities($usuario['name'] ?? '');
         $this->bio = htmlentities($usuario['bio'] ?? '');
         $this->location = htmlentities($usuario['location'] ?? '');
-        $this->roleID = htmlentities($usuario['role_id'] ?? 3);
+        $this->roleID = htmlentities($usuario['role_id'] ?? 1);
+        $this->isSubscribed = htmlentities($usuario['is_subscribed'] ?? 0);
     }
 
-    public static function consultar($userID = 0, $username = '') {
-        $sql = "
-            SELECT *
-            FROM
-                Users U
-            WHERE 1 = 1
-        ";
+    public static function consultar($userID = 0, $username = '', $email = '') {
+        $sql = "SELECT * FROM Users U WHERE 1 = 1";
         $parametros = [];
+    
         if (!empty($userID)) {
             $sql .= " AND user_id = :user_id";
             $parametros['user_id'] = $userID;
         }
-
+    
         if (!empty($username)) {
             $sql .= " AND username = :username";
             $parametros['username'] = $username;
         }
+    
+        if (!empty($email)) {
+            $sql .= " AND email = :email";
+            $parametros['email'] = $email;
+        }
         
         $conexion = new Conexion();
         $resultados = $conexion->correrQuery($sql, $parametros);
-
         $usuarioDatos = $resultados->fetch();
         return new Usuario($usuarioDatos);
     }
+    
 
-    // public static function existe($userID) {
-    //     $sql = "
-    //         SELECT *
-    //         FROM
-    //             Users U
-    //         WHERE
-    //             U.user_id = :usuarioId
-    //     ";
-    //     $parametros = [
-    //         'usuarioId' => $userID
-    //     ];
-    //     $conexion = new Conexion();
-    //     $resultados = $conexion->correrQuery($sql, $parametros);
-    //     $numUsuarios = $resultados->rowCount();
-    //     return 0 < $numUsuarios;
-    // }
+    public static function userExists($userID) {
+        $sql = "
+            SELECT user_id
+            FROM
+                Users U
+            WHERE
+                U.user_id = :usuarioId
+        ";
+        $parametros = [
+            'usuarioId' => $userID
+        ];
+        $conexion = new Conexion();
+        $resultados = $conexion->correrQuery($sql, $parametros);
+        $numUsuarios = $resultados->rowCount();
+        return 0 < $numUsuarios;
+    }
 
-    // public static function listar() {
-    //     $sql = "
-    //         SELECT U.usuario_id, U.nombre_usuario, U.email, U.nombre, U.img_usuario, U.password, R.rol_id, R.nombre rol_nombre
-    //         FROM
-    //             usuarios U
-    //             JOIN roles R ON R.rol_id = U.rol_id
-    //     ";
-    //     $conexion = new Conexion();
-    //     $resultados = $conexion->correrQuery($sql);
+    public static function checkUsernameOrEmail($username, $email, $currentUserId) {
+        $sql = "
+            SELECT username, email
+            FROM
+                Users U
+            WHERE
+                (U.username = :username OR U.email = :email)
+                AND U.user_id != :currentUserId
+        ";
+        $parametros = [
+            'username' => $username,
+            'email' => $email,
+            'currentUserId' => $currentUserId
+        ];
+        $conexion = new Conexion();
+        $resultados = $conexion->correrQuery($sql, $parametros);
+    
+        if ($resultados->rowCount() > 0) {
+            $user = $resultados->fetch();
+            if ($user['username'] === $username) {
+                return 'Username already taken';
+            }
+            if ($user['email'] === $email) {
+                return 'Email already registered';
+            }
+        }
+        return 1;
+    }    
+    
+    //breaking encapsulation with this being public? not really.. 
+    //this is how the real world interacts with the function, right?..
+    public function insertar() {
+        $sql = "
+            INSERT INTO Users (username, password, email, name, profile_picture, role_id, is_subscribed) 
+            VALUES
+                (:username, :password, :email, :name, :profile_picture, :role_id, :is_subscribed)
+            ";
+        $parametros = [
+            ':username' => $this->username,
+            ':email' => $this->email,
+            ':password' => $this->password,
+            ':name' => $this->name,
+            ':profile_picture' => $this->profilePicture,
+            ':role_id' => $this->roleID,
+            ':is_subscribed' => $this->isSubscribed,
+        ];
+        $conexion = new Conexion();
+        $conexion->correrQuery($sql, $parametros, true);
+        return $conexion->lastInsertId();
+    }
+        
+    public static function validarLogin($username, $password) {
+        $res = '';
+        $usuario = self::consultar(0, $username);
 
-    //     return $resultados;
-    // }
+        if (empty($usuario->userID)) {
+            $res = 'Usuario invalido';
+        } else {
+            if ($usuario->password !== $password) {
+                $res = 'Password Invalido';
+            } else {
+                $res = $usuario;
+            }
+        }
+        return $res;
+    }
 
-    // private function insertar(){
-    //     $sql = "
-    //         INSERT INTO usuarios (nombre_usuario, password, email, nombre, img_usuario, rol_id) 
-    //         VALUES
-    //             (:nombreUsuario, :password, :email, :nombre, :img_usuario, :rol_id)
-    //         ";
-    //     $parametros = [
-    //         ':nombreUsuario' => $this->nombreUsuario,
-    //         ':email' => $this->email,
-    //         ':password' => $this->password,
-    //         ':nombre' => $this->nombre,
-    //         ':img_usuario' => $this->imgUsuario,
-    //         ':rol_id' => $this->rolId,
-    //     ];
-    //     $conexion = new Conexion();
+    public function actualizar() {
+        $sql = "
+            UPDATE Users
+            SET
+                username = :username,
+                email = :email,
+                password = :password,
+                name = :name,
+                profile_picture = :profile_picture,
+                bio = :bio,
+                location = :location,
+                role_id = :role_id,
+                is_subscribed = :is_subscribed
+            WHERE
+                user_id = :user_id
+            ";
+        $parametros = [
+            ':user_id' => $this->userID,
+            ':username' => $this->username,
+            ':email' => $this->email,
+            ':password' => $this->password,
+            ':name' => $this->name,
+            ':profile_picture' => $this->profilePicture,
+            ':bio' => $this->bio,
+            ':location' => $this->location,
+            ':role_id' => $this->roleID,
+            ':is_subscribed' => $this->isSubscribed,
+        ];
+        $conexion = new Conexion();
+        $resultados = $conexion->correrQuery($sql, $parametros);
+        return $resultados;
+    }
+    
+    public function actualizarSuscripcion() {
+        $sql = "
+            UPDATE Users
+            SET
+                is_subscribed = :is_subscribed
+            WHERE
+                user_id = :user_id
+            ";
+        $parametros = [
+            ':user_id' => $this->userID,
+            ':is_subscribed' => $this->isSubscribed,
+        ];
+        $conexion = new Conexion();
+        $resultados = $conexion->correrQuery($sql, $parametros);
+        return $resultados;
+    }
 
-    //     $resultados = $conexion->correrQuery($sql, $parametros);
-    //     return $resultados;
-    // }
+    public static function listar() {
+        $sql = "
+            SELECT *
+            FROM
+            Users U
+        ";
+        $conexion = new Conexion();
+        $resultados = $conexion->correrQuery($sql);
 
-    // private function actualizar() {
-    //     $sql = "
-    //         UPDATE usuarios
-    //         SET
-    //             nombre_usuario = :nombreUsuario,
-    //             email = :email,
-    //             password = :password,
-    //             nombre = :nombre,
-    //             img_usuario = :img_usuario,
-    //             rol_id = :rol_id
-    //         WHERE
-    //             usuario_id = :usuarioId
-    //         ";
-    //     $parametros = [
-    //         ':usuarioId' => $this->usuarioId,
-    //         ':nombreUsuario' => $this->nombreUsuario,
-    //         ':email' => $this->email,
-    //         ':password' => $this->password,
-    //         ':nombre' => $this->nombre,
-    //         ':img_usuario' => $this->imgUsuario,
-    //         ':rol_id' => $this->rolId,
-    //     ];
-    //     $conexion = new Conexion();
-    //     $resultados = $conexion->correrQuery($sql, $parametros);
-    //     return $resultados;
-    // }
+        $usuarios = [];
+        while ($fila = $resultados->fetch()) {
+            $usuarios[] = new Usuario($fila);
+        }
+        return $usuarios;
+    }
+    
 
     // public function guardar() {
     //     if (self::existe($this->usuarioId)) {
@@ -171,34 +248,6 @@ class Usuario {
     //     $resultados = $conexion->correrQuery($sql, $parametros);
     //     return $resultados;
     // }
-
-    public static function listarRoles() {
-        $sql = "
-            SELECT role_id, name
-            FROM
-                Roles
-            ";
-        $conexion = new Conexion();
-        $resultados = $conexion->correrQuery($sql);
-
-        return $resultados;
-    }
-
-    public static function validarLogin($username, $password) {
-        $res = '';
-        $usuario = self::consultar(0, $username);
-
-        if (empty($usuario->userID)) {
-            $res = 'Usuario invalido';
-        } else {
-            if ($usuario->password !== $password) {
-                $res = 'Password Invalido';
-            } else {
-                $res = $usuario;
-            }
-        }
-        return $res;
-    }
 
     // public static function getUserByRolId($rol_id = 0) {
     //     $sql = "

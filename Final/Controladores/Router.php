@@ -6,6 +6,10 @@ class Router {
         header('Location: ' . RUTA_BASE_WEB . "/Vistas/$ruta");
     }
 
+    public static function contentType($kind) {
+        header('Content-Type: ' . "$kind");
+    }
+
     public static function metodo() {
         return strtoupper($_SERVER['REQUEST_METHOD'] ?? 'GET');
     }
@@ -42,4 +46,11 @@ class Router {
     public static function rutaRecursoWeb($archivo) {
         echo RUTA_BASE_WEB . "/resources/$archivo";
     }
+
+    //ruta basica
+    public static function rutaWebStatic($archivo) {
+        echo RUTA_BASE_WEB . "/static/$archivo";
+    }
+
+
 }

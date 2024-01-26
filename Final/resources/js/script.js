@@ -4,25 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const previewPage = document.getElementById("preview-page");
     const previewImage = document.getElementById("preview-image");
 
-    //search bar
-    const searchIcon = document.querySelector('.search-icon');
-    const searchInput = document.querySelector('.search-input');
-    const searchSubmit = document.querySelector('.search-submit');
-
-    //header resizing and transparency
-    let lastScrollTop = 0;
-    const header = document.querySelector('.main-header');
-
-    document.documentElement.style.setProperty('--main-header-height', '108px');
-    document.documentElement.style.setProperty('--art-header-top', '54px');
-    document.documentElement.style.setProperty('--logo-reduction-h', '90px');
-    document.documentElement.style.setProperty('--logo-reduction-w', '90px');
-    document.documentElement.style.setProperty('--reduced-size', '100%');
-    document.documentElement.style.setProperty('--padding-size', '5px');
-
-    //preview page
     let previewTimeout;
     let clickStartTime = 0;
+
     let currentElement;
     let isZoomActive = false;
     let isZoomable = false;
@@ -92,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 magnifier.style.display = "none";
             }
         });
-    //
+    
 
     //preview
         document.addEventListener("mousedown", (e) => { //e: clicked element
@@ -101,12 +85,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 previewImage.src = imgsrc;
 
                 clickStartTime = new Date().getTime();
-
                 previewTimeout = setTimeout(() => {
                     const clickEndTime = new Date().getTime();
                     const clickDuration = clickEndTime - clickStartTime;
                     if (clickDuration >= 500) { // 500 milliseconds = 0.5 seconds
                         previewPage.style.display = "flex";
+
                         console.log("duracion de click: " +clickDuration +"ms, mostrando previewPage");
                     }
                 }, 500);
@@ -131,121 +115,104 @@ document.addEventListener("DOMContentLoaded", () => {
                 //abrir img en nueva pestana?
             }
         });
-    //
 
-    //search
-        searchIcon.addEventListener('click', () => {
-            searchInput.classList.toggle('active');
-            if (searchInput.classList.contains('active')) {
-                searchInput.focus();
-                // searchInput.style.display = 'block';
-                // searchSubmit.style.display = 'block';
-            }
+    //double-click like //mix both likes, button, double click and double tap?
+        // document.addEventListener("click", function(e) {
+        //     if (e.target && e.target.classList.contains("previewable-image")) {
+        //         img = e.target.classList;
+        //         // Check if it's a double click
+        //         if (e.detail === 2) {
+        //             // Get the artwork ID from the data attribute
+        //             var artworkId = e.target.getAttribute('data-artwork-id');
+        //             // Trigger the like action
+        //             var xhr = new XMLHttpRequest();
+        //             xhr.open('POST', 'like-handler.php', true);
+        //             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        //             xhr.onload = function() {
+        //                 //this block of code is executed when the request is successful
+        //                 if (xhr.status >= 200 && xhr.status < 400) {
+        //                     //handle the response here
+        //                     console.log('Response from server:', this.responseText);
+        //                     //example: Update the like button appearance based on the response
+        //                     var response = JSON.parse(this.responseText);
+        //                     // const icon = img.nextElementSibling;
+        //                     if (response.liked) {
+        //                         console.log("liked");
+        //                         // button.classList.add('liked');
+        //                         // icon.className = 'bi bi-heart-fill';
+        //                         img.add('liked');
+        //                         img.remove('unliked');
+        //                         console.log(img);
+        //                     } else {
+        //                         console.log("unliked");
+        //                         // button.classList.remove('liked');
+        //                         // icon.className = 'bi bi-heart';
+        //                         img.add('unliked');
+        //                         img.remove('liked');
+        //                         console.log(img);
+        //                     }
+        //                 } else {
+        //                     //we reached our target server, but it returned an error
+        //                     console.error('Server reached, but it returned an error');
+        //                 }
+        //             };
+        //             xhr.send('imageId=' + artworkId);
+        //         }
+        //     }
+        // });
+    
+    //search bar hide on click
+        //     const searchIcon = document.querySelector('.search-icon');
+        //     const searchInput = document.querySelector('.search-input');
+        //     const searchSubmit = document.querySelector('.search-submit');
+
+        //     searchIcon.addEventListener('click', () => {
+        //         searchInput.classList.toggle('active');
+        //         if (searchInput.classList.contains('active')) {
+        //             searchInput.focus();
+        //             // searchInput.style.display = 'block';
+        //             // searchSubmit.style.display = 'block';
+        //         }
+        //     });
+
+        //     window.addEventListener('scroll', handleScroll);
+        // });
+});      
+    //like
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log("DOM loaded");
+        var likeIcons = document.querySelectorAll('.likeIcon'); // Assuming the class is likeIcon for the icons
+        likeIcons.forEach(function(icon) {
+            icon.addEventListener('mousedown', function() {
+                var artworkId = this.getAttribute('data-artwork-id');
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'like-handler.php', true);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                xhr.onload = function() {
+                    // This block of code is executed when the request is successful
+                    if (xhr.status >= 200 && xhr.status < 400) {
+                        // Handle the response here
+                        console.log('Response from server:', this.responseText);
+                        // Example: Update the like icon appearance based on the response
+                        var response = JSON.parse(this.responseText);
+                        if (response.liked) {
+                            icon.classList.add('bi-heart-fill'); // Change to filled heart icon
+                            icon.classList.remove('bi-heart'); // Remove empty heart icon class
+                        } else {
+                            icon.classList.add('bi-heart'); // Change to empty heart icon
+                            icon.classList.remove('bi-heart-fill'); // Remove filled heart icon class
+                        }
+                    } else {
+                        // We reached our target server, but it returned an error
+                        console.error('Server reached, but it returned an error');
+                    }
+                };
+                xhr.onerror = function() {
+                    // Connection error of some sort
+                    console.error('Connection error');
+                };
+                xhr.send('imageId=' + artworkId); // Send POST data with the artwork ID
+            });
         });
-    //
-
-    //header resizing
-        //1
-        // const element = document.getElementById("menu-header");
-        // let start, previousTimeStamp;
-        // let done = false;
-        
-        // function step(timeStamp) {
-        //     if (start === undefined) {
-        //         start = timeStamp;
-        //     }
-        //     const elapsed = timeStamp - start;
-            
-        //     if (previousTimeStamp !== timeStamp) {
-        //         // Math.min() is used here to make sure the element stops at exactly 200px
-        //         const count = Math.min(0.1 * elapsed, 200);
-        //         element.style.transform = `translateX(${count}px)`;
-        //         if (count === 200) done = true;
-        //     }
-            
-        //     if (elapsed < 2000) {
-        //         // Stop the animation after 2 seconds
-        //         previousTimeStamp = timeStamp;
-        //         if (!done) {
-        //         window.requestAnimationFrame(step);
-        //         }
-        //     }
-        // }
-        // window.requestAnimationFrame(step);
-
-        //2
-        // var expandDiv = document.getElementById("menu-header");
-        // var speed = 5;
-
-        // function expanding() {
-        // var scrolltop = window.scrollY; // get number of pixels document has scrolled vertically
-        // var scrollAndSpeed = (scrolltop / speed);
-        // //Expand using transform
-        // //expandDiv.style.transform = "scalex( " + Math.min(Math.max(scrollAndSpeed, 1), 10) + ")";
-        
-        // //Or using width
-        // expandDiv.style.width = Math.min(Math.max(scrollAndSpeed, 20), 95) + "%";
-        // }
-
-        function handleScroll() {
-            let currentScrollTop = window.scrollY || document.documentElement.scrollTop;
-            console.log(currentScrollTop);
-            // Handling header visibility
-            if (currentScrollTop > lastScrollTop && currentScrollTop > 108) {
-                // Scrolling down, hide the header
-                header.classList.add('hide-header');
-            } else if (currentScrollTop < lastScrollTop) {
-                // Scrolling up, show the header
-                header.classList.remove('hide-header');
-            }
+    });
     
-            // Handling header resizing
-            if (currentScrollTop >= 12) {
-                let newHeight = Math.max(54, Math.min(108, parseInt(getComputedStyle(document.documentElement).getPropertyValue('--main-header-height')) + (lastScrollTop - currentScrollTop)));
-                let reductionPercentage = newHeight / 108;
-                console.log(reductionPercentage); // Log the reduction percentage
-                
-                document.documentElement.style.setProperty('--main-header-height', newHeight + 'px');
-                document.documentElement.style.setProperty('--art-header-top', newHeight + 'px');
-                document.documentElement.style.setProperty('--logo-reduction-h', reductionPercentage * 90 + 'px');
-                document.documentElement.style.setProperty('--logo-reduction-w', reductionPercentage * 90 + 'px');
-                document.documentElement.style.setProperty('--reduced-size', reductionPercentage * 100 + '%');
-                document.documentElement.style.setProperty('--padding-size', reductionPercentage * 5 + 'px');
-            }
-    
-            lastScrollTop = currentScrollTop;
-        }
-
-        window.addEventListener('scroll', function() { // on page scroll
-            requestAnimationFrame(handleScroll); //call parallaxing()
-        }, false);
-        
-        //
-        //redoing all of this, it's a mess
-        // //scroll
-        // // throttle to limit exec frequency of handleScroll, which reduces main-header
-        // const throttledHandleScroll = throttle(handleScroll, 1000); //10ms
-
-        // // Función throttle: limita la frecuencia de ejecución de la función
-        // function throttle(func, limit) {
-        //     let inThrottle;
-        //     return function() {
-        //         const args = arguments;
-        //         const context = this;
-        //         if (!inThrottle) {
-        //             func.apply(context, args);
-        //             inThrottle = true;
-        //             setTimeout(() => inThrottle = false, limit);
-        //         }
-        //     };
-        // }
-
-        //handleScroll function
-
-        // // Add the event listener for the scroll event
-        // // window.addEventListener('scroll', handleScroll);
-        // window.addEventListener('scroll', throttledHandleScroll);
-
-        //listen for the scroll event to hide or show the header
-        // window.addEventListener('scroll', transparentBackground);
-});

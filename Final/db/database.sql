@@ -14,7 +14,7 @@ INSERT INTO Roles (role_name) VALUES ('user'), ('artist'), ('admin');
 
 CREATE TABLE Users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(30) NOT NULL,
+    username VARCHAR(30) NOT NULL UNIQUE,
     email VARCHAR(255) NOT NULL,
     password VARCHAR(60) NOT NULL,
     profile_picture VARCHAR(255),
@@ -22,6 +22,7 @@ CREATE TABLE Users (
     bio TEXT,
     location VARCHAR(255),
     role_id INT NOT NULL DEFAULT 1,
+    is_subscribed BOOLEAN NOT NULL DEFAULT FALSE;
     FOREIGN KEY (role_id) REFERENCES Roles(role_id) ON DELETE RESTRICT
 );
 
@@ -99,4 +100,14 @@ CREATE TABLE ShowcaseArtworks (
     PRIMARY KEY (weekly_showcase_id, artwork_id),
     FOREIGN KEY (weekly_showcase_id) REFERENCES WeeklyShowcase(weekly_showcase_id) ON DELETE CASCADE,
     FOREIGN KEY (artwork_id) REFERENCES Artworks(artwork_id) ON DELETE RESTRICT
+);
+
+-------future tables
+--quitar is subscribed
+CREATE TABLE Subscriptions (
+    subscription_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    subscribed_date DATE NOT NULL,
+    subscription_status BOOLEAN NOT NULL DEFAULT TRUE,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );

@@ -41,4 +41,32 @@ class Artist {
         $artistData = $resultados->fetch();
         return new Artist($artistData);
     }
+
+    public function actualizar() {
+        $sql = "
+            UPDATE Artists
+            SET
+                user_id = :user_id,
+                artist_name = :artist_name,
+                bio = :bio,
+                website = :website,
+                social_media = :social_media,
+                role_id = :role_id
+            WHERE
+                artist_id = :artist_id
+            ";
+        $parametros = [
+            ':artist_id' => $this->artistID,
+            ':user_id' => $this->userID,
+            ':artist_name' => $this->artistName,
+            ':bio' => $this->bio,
+            ':website' => $this->website,
+            ':social_media' => $this->socialMedia,
+            ':role_id' => $this->roleID,
+        ];
+
+        $conexion = new Conexion();
+        $resultados = $conexion->correrQuery($sql, $parametros);
+        return $resultados;
+    }
 }
