@@ -18,7 +18,7 @@ if ($artistID) {
         <img class="card-img-top" src="<?php Router::rutaImagenWeb($profilePic);?>" alt="Artist profile picture">
         <div class="card-body">
             <h5 class="card-title"><?php echo $artist->artistName ?></h5>
-            <p class="card-text"><?php echo $artist->bio ?></p>
+            <p class="card-text stretched-link"><?php echo $artist->bio ?></p>
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item"><a href="<?php echo $artist->socialMedia; ?>" target="_blank" rel="noopener">  <i class="bi bi-instagram" style="color: black"></i> </a></li>
