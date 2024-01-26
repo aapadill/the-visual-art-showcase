@@ -1,0 +1,33 @@
+Instrucciones
+--------Verificar conexiones del servidor
+1. Verificar la 'ruta base' y 'base web' en el archivo Final/cargador.php, tienen que coincidir con las propias del servidor en el que se alojara el sitio:
+
+define("RUTA_BASE_WEB", '/~aaron/Final'); 
+//ruta externa (o URL relativa) se utiliza para definir como se accede a los recursos desde el exterior, en otras palabras, como los usuarios y navegadores web localizan los archivos y recursos en el sitio web. 
+En este caso, es una ruta relativa ->(/~aaron/Final) a la raiz del dominio ->(http://132.248.75.158)
+
+define("RUTA_BASE", '/home/aaron/public_html/Final'); 
+//ruta raiz interna de servidor, camino completo donde se almacenan fisicamente los archivos y recursos del sitio, esta ruta la usa el servidor, para saber como acceder a los recursos del sitio (scripts, css, html, imagenes, etc)
+
+2. Verificar las configuraciones de la base de datos en el archivo Final/Modelos/Conexion.php, dependera de la configuracion que se tenga en el servidor, en este caso para aarondb son:
+
+public static $host = "localhost";
+public static $port = "3306";
+public static $user = "aaron";
+public static $pass = "2padilla-";
+public static $dbname = "aarondb";
+
+3. Para abrir el sitio es necesario ir a la ruta externa (raiz de dominio + ruta relativa) + carpeta de proyecto (/Final/Vistas), por lo que la ruta es la siguiente:
+
+http://132.248.75.158/~aaron/Final/Vistas/
+
+no es necesario especificar index.php, ya que este es abierto por default
+
+---------Llenado de la base de datos
+4. Abrir la carpeta db en raiz, se encuentran dos archivos:
+
+database.sql -> cuenta con todos los comandos necesarios para creaciones de tablas (DDL), solo es copiar el codigo y pegarlo en la seccion SQL de su base de datos, a la cual tiene que ingresar primero con sus propias credenciales
+
+populate.sql -> igualmente que el archivo anterior, este cuenta con todos los comandos necesarios para la manupulacion de los datos (DML), es solo copiar el codigo del archivo y pegarlo en la seccion SQL de la BD, el orden de la insercion es importante, ya que existen restricciones y llaves foraneas, por favor no intente cambiar el orden de las mismas
+
+---------Listo, tiene acceso al proyecto
