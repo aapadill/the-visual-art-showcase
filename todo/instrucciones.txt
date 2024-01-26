@@ -1,3 +1,0 @@
-instrucciones
-
-regresar la carpeta 'ProyectoFinal' y 'cursoPHP' a la raiz de htdocs. Se movieron por facilidad del proyecto final, pero no va a funcionar el modelo mvc por ser una ruta desconocida.
