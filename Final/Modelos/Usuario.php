@@ -29,32 +29,31 @@ class Usuario {
         $this->isSubscribed = htmlentities($usuario['is_subscribed'] ?? 0);
     }
 
-    public static function consultar($userID = 0, $username = '') {
-        $sql = "
-            SELECT *
-            FROM
-                Users U
-            WHERE 1 = 1
-        ";
+    public static function consultar($userID = 0, $username = '', $email = '') {
+        $sql = "SELECT * FROM Users U WHERE 1 = 1";
         $parametros = [];
+    
         if (!empty($userID)) {
             $sql .= " AND user_id = :user_id";
             $parametros['user_id'] = $userID;
         }
-
+    
         if (!empty($username)) {
             $sql .= " AND username = :username";
             $parametros['username'] = $username;
         }
-        // echo "SQL Query: " . $sql;
-        // echo "Parameters: ";
-        // print_r($parametros);
+    
+        if (!empty($email)) {
+            $sql .= " AND email = :email";
+            $parametros['email'] = $email;
+        }
         
         $conexion = new Conexion();
         $resultados = $conexion->correrQuery($sql, $parametros);
         $usuarioDatos = $resultados->fetch();
         return new Usuario($usuarioDatos);
     }
+    
 
     public static function userExists($userID) {
         $sql = "
@@ -73,17 +72,19 @@ class Usuario {
         return 0 < $numUsuarios;
     }
 
-    public static function checkUsernameOrEmail($username, $email) {
+    public static function checkUsernameOrEmail($username, $email, $currentUserId) {
         $sql = "
             SELECT username, email
             FROM
                 Users U
             WHERE
-                U.username = :username OR U.email = :email
+                (U.username = :username OR U.email = :email)
+                AND U.user_id != :currentUserId
         ";
         $parametros = [
             'username' => $username,
-            'email' => $email
+            'email' => $email,
+            'currentUserId' => $currentUserId
         ];
         $conexion = new Conexion();
         $resultados = $conexion->correrQuery($sql, $parametros);
@@ -98,7 +99,7 @@ class Usuario {
             }
         }
         return 1;
-    }
+    }    
     
     //breaking encapsulation with this being public? not really.. 
     //this is how the real world interacts with the function, right?..
@@ -147,6 +148,8 @@ class Usuario {
                 password = :password,
                 name = :name,
                 profile_picture = :profile_picture,
+                bio = :bio,
+                location = :location,
                 role_id = :role_id,
                 is_subscribed = :is_subscribed
             WHERE
@@ -159,6 +162,8 @@ class Usuario {
             ':password' => $this->password,
             ':name' => $this->name,
             ':profile_picture' => $this->profilePicture,
+            ':bio' => $this->bio,
+            ':location' => $this->location,
             ':role_id' => $this->roleID,
             ':is_subscribed' => $this->isSubscribed,
         ];

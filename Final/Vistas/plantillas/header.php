@@ -66,14 +66,14 @@ $submitted = 0; //hardcored, properly bring from table
                                 <?php
                                 if ($rolSesion == '1' || $rolSesion == '2' || $rolSesion == '3'){
                                 ?>
-                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('users/index.php');?>">Admin Profile</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('users/index.php');?>">Admin profile</a></li>
                                     <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('likes/');?>">Likes</a></li>
                                 <?php
                                 }
                                 if ($rolSesion == '2'){
                                 ?> 
                                     <li><hr class="dropdown-divider"></li>
-                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artists/');?>">Admin your artist profile</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artists/index-artist.php');?>">Admin your artist profile</a></li>
                                     <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artworks/');?>">Admin your artworks</a></li>
                                 <?php
                                 }
@@ -90,7 +90,7 @@ $submitted = 0; //hardcored, properly bring from table
                                 if ($rolSesion){
                                 ?>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('cerrarSesion.php');?>">Logout</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('cerrarSesion.php');?>">Log out</a></li>
                                 <?php
                                 }
                                 else{ 
@@ -150,10 +150,10 @@ $submitted = 0; //hardcored, properly bring from table
                             Languages
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="languagesDropdown">
-                            <li><a class="dropdown-item" href="#">EN</a></li>
-                            <li><a class="dropdown-item" href="#">ES</a></li>
-                            <li><a class="dropdown-item" href="#">FI</a></li>
-                            <li><a class="dropdown-item" href="#">SV</a></li>
+                            <li><a class="dropdown-item" href="#">EN (soon)</a></li>
+                            <li><a class="dropdown-item" href="#">ES (soon)</a></li>
+                            <li><a class="dropdown-item" href="#">FI (soon)</a></li>
+                            <li><a class="dropdown-item" href="#">SV (soon)</a></li>
                         </ul>
                     </li>
                 </ul>

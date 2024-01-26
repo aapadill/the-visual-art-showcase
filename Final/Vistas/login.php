@@ -49,7 +49,8 @@
 ?>
 
 <main>
-<div class="container">
+<div class="container row text-center">
+  <h1 class="mt-4 mb-4 text-center">Login</h1>
   <div class="row" id="login">
     <form class="form-horizontal" action="login.php" method="POST" enctype="multipart/form-data">
 

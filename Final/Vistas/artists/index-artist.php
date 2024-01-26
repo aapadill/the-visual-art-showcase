@@ -39,18 +39,18 @@ if (Router::esPost() && !$registro['is_subscribed']) {
 ?>
 
 <div class="container mt-5">
-    <h2>Hi @<?php echo $nombreSesion; ?></h2>
+    <h2>Hi <?php echo $infoArtista->artistName; ?></h2>
     
     <!-- Tab Navigation -->
     <ul class="nav nav-tabs" id="adminProfileTabs" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">User Profile</a>
-        </li>
         <?php if($resultados->roleID == '2'){?>
         <li class="nav-item">
-            <a class="nav-link" id="artist-tab" data-bs-toggle="tab" href="#artist" role="tab" aria-controls="artist" aria-selected="false">Artist profile</a>
+            <a class="nav-link active" id="artist-tab" data-bs-toggle="tab" href="#artist" role="tab" aria-controls="artist" aria-selected="false">Artist profile</a>
         </li>
         <?php } ?>
+        <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">User Profile</a>
+        </li>
         <li class="nav-item">
             <a class="nav-link" id="subscription-tab" data-bs-toggle="tab" href="#subscription" role="tab" aria-controls="subscription" aria-selected="false">Subscription</a>
         </li>
@@ -59,7 +59,7 @@ if (Router::esPost() && !$registro['is_subscribed']) {
     <!-- all tabs -->
     <div class="tab-content" id="adminProfileTabsContent">
         <!-- user tab -->
-        <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title">User Information</h3>
@@ -79,7 +79,7 @@ if (Router::esPost() && !$registro['is_subscribed']) {
 
         <?php if($resultados->roleID == '2'){?>
         <!-- artist tab -->
-        <div class="tab-pane fade" id="artist" role="tabpanel" aria-labelledby="artist-tab">
+        <div class="tab-pane fade show active" id="artist" role="tabpanel" aria-labelledby="artist-tab">
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title">Artist Information</h3>
