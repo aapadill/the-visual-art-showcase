@@ -13,7 +13,8 @@ if(!empty($usuarioIdSesion)){
 ?>
 
 <div class="container mt-4 rounded">
-    <h2>Favorited</h2>
+    <div class="row">
+    <h1>Favorited</h1>
     <table class="table card">
         <tbody>
             <?php
@@ -34,4 +35,8 @@ if(!empty($usuarioIdSesion)){
             ?>
         </tbody>
     </table>
+    <div class="col text-center">
+        <p class="lead">You can only view and visit your favorite artworks now, but soon you'll be able to manage them right here! 🖼️ Stay tuned for updates! 🎨</p>
+    </div>
+    </div>
 </div>
