@@ -22,7 +22,7 @@ CREATE TABLE Users (
     bio TEXT,
     location VARCHAR(255),
     role_id INT NOT NULL DEFAULT 1,
-    is_subscribed BOOLEAN NOT NULL DEFAULT FALSE;
+    is_subscribed BOOLEAN NOT NULL DEFAULT FALSE,
     FOREIGN KEY (role_id) REFERENCES Roles(role_id) ON DELETE RESTRICT
 );
 

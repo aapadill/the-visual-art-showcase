@@ -1,14 +1,14 @@
 INSERT INTO Users (username, email, password, profile_picture, name, bio, location, role_id) VALUES 
-    ('alexsmith', 'alexsmith@example.com', 'pass1234', 'images/alex_pic.jpg', 'Alex Smith', 'Artist and designer from New York.', 'New York', 1),
-    ('emilyjones', 'emilyjones@example.com', 'pass2345', 'images/emily_pic.jpg', 'Emily Jones', 'Freelance illustrator based in San Francisco.', 'San Francisco', 1),
-    ('davidjohnson', 'davidjohnson@example.com', 'pass3456', 'images/david_pic.jpg', 'David Johnson', 'Aspiring digital artist and animator.', 'Los Angeles', 1),
-    ('sarahbrown', 'sarahbrown@example.com', 'pass4567', 'images/sarah_pic.jpg', 'Sarah Brown', 'Professional photographer and visual artist.', 'Chicago', 1),
-    ('michaellee', 'michaellee@example.com', 'pass5678', 'images/michael_pic.jpg', 'Michael Lee', 'Graphic designer with a passion for street art.', 'Houston', 1),
-    ('lindawilliams', 'lindawilliams@example.com', 'pass6789', 'images/linda_pic.jpg', 'Linda Williams', 'Abstract painter and art instructor.', 'Philadelphia', 1),
-    ('chrisevans', 'chrisevans@example.com', 'pass7890', 'images/chris_pic.jpg', 'Chris Evans', 'Contemporary artist focusing on environmental themes.', 'Phoenix', 1),
-    ('oliviawilson', 'oliviawilson@example.com', 'pass8901', 'images/olivia_pic.jpg', 'Olivia Wilson', 'Mixed media artist and freelance designer.', 'San Antonio', 1),
-    ('jamesmoore', 'jamesmoore@example.com', 'pass9012', 'images/james_pic.jpg', 'James Moore', 'Landscape painter and art history enthusiast.', 'San Diego', 1),
-    ('laurataylor', 'laurataylor@example.com', 'pass0123', 'images/laura_pic.jpg', 'Laura Taylor', 'Ceramic artist and pottery workshop instructor.', 'Dallas', 1);
+    ('alexsmith', 'alexsmith@example.com', 'pass1234', 'images/users/alex_pic.jpg', 'Alex Smith', 'Artist and designer from New York.', 'New York', 1),
+    ('emilyjones', 'emilyjones@example.com', 'pass2345', 'images/users/emily_pic.jpg', 'Emily Jones', 'Freelance illustrator based in San Francisco.', 'San Francisco', 1),
+    ('davidjohnson', 'davidjohnson@example.com', 'pass3456', 'images/users/david_pic.jpg', 'David Johnson', 'Aspiring digital artist and animator.', 'Los Angeles', 1),
+    ('sarahbrown', 'sarahbrown@example.com', 'pass4567', 'images/users/sarah_pic.jpg', 'Sarah Brown', 'Professional photographer and visual artist.', 'Chicago', 1),
+    ('michaellee', 'michaellee@example.com', 'pass5678', 'images/users/michael_pic.jpg', 'Michael Lee', 'Graphic designer with a passion for street art.', 'Houston', 1),
+    ('lindawilliams', 'lindawilliams@example.com', 'pass6789', 'images/users/linda_pic.jpg', 'Linda Williams', 'Abstract painter and art instructor.', 'Philadelphia', 1),
+    ('chrisevans', 'chrisevans@example.com', 'pass7890', 'images/users/chris_pic.jpg', 'Chris Evans', 'Contemporary artist focusing on environmental themes.', 'Phoenix', 1),
+    ('oliviawilson', 'oliviawilson@example.com', 'pass8901', 'images/users/olivia_pic.jpg', 'Olivia Wilson', 'Mixed media artist and freelance designer.', 'San Antonio', 1),
+    ('jamesmoore', 'jamesmoore@example.com', 'pass9012', 'images/users/james_pic.jpg', 'James Moore', 'Landscape painter and art history enthusiast.', 'San Diego', 1),
+    ('laurataylor', 'laurataylor@example.com', 'pass0123', 'images/users/laura_pic.jpg', 'Laura Taylor', 'Ceramic artist and pottery workshop instructor.', 'Dallas', 1);
 
 INSERT INTO Artists (user_id, artist_name, bio, website, social_media, role_id) VALUES
     (1, 'Alex Smith', 'Talented artist specializing in abstract painting.', 'www.alexsmithart.com', 'www.instagram.com/alexsmithart/', 2),
@@ -48,7 +48,7 @@ INSERT INTO WeeklyShowcase (year, week_start_date, week_end_date, featured_artis
 (2023, '2023-03-05', '2023-03-11', 4);
 
 INSERT INTO Artworks (artist_id, title, technical_sheet, image_url, upload_date, category_id) VALUES
-(1, 'Abstract Sunrise', 'Oil on canvas, 40x60 inches', 'images/art1.jpg', '2023-01-10', 1),
+(1, 'Abstract Sunrise', 'Oil on canvas, 40x60 inches', 'images/artworks/art1.jpg', '2023-01-10', 1),
 (2, 'Urban Landscape', 'Acrylic, 36x48 inches', 'images/art2.jpg', '2023-01-15', 2),
 (3, 'The Lonely Tree', 'Watercolor, 30x40 inches', 'images/art3.jpg', '2023-01-20', 3),
 (4, 'Modern Life', 'Mixed media, 50x50 inches', 'images/art4.jpg', '2023-01-25', 4),
