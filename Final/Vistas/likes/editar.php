@@ -29,7 +29,7 @@ if(!empty($usuarioIdSesion)){
 
                         ?><td> <a href="../index.php#artwork-<?php echo $artwork->artworkID;?>" class="card-link"> <?php echo $artwork->title;?> </a> </td><?php
 
-                        ?><td> <?php echo $artist->artistName;?> </td><?php
+                        ?><td> <a href="../about-artist.php?artistID=<?php echo $artwork->artistID;?>"> <?php echo $artist->artistName;?></a> </td><?php
                     echo "</tr>";
                 }
             ?>

@@ -80,7 +80,8 @@ include Router::direccion('/plantillas/header.php');
                                         <h6 class="card-subtitle mb-2 text-muted"><?php echo $technicalSheet; ?> </h6>
                                         <p class="card-text">Category: <?php echo $categoryID['category_name']; ?></p>
                                         <a href="index.php#artwork-<?php echo $artworkID;?>" class="card-link">Go to artwork: <?php echo $artworkID;?> </a>
-                                        <a href="#artist-<?php echo $featuredArtistID;?>" class="card-link">Go to artist: <?php echo $featuredArtistID;?> </a>
+                                        
+                                        <a href="about-artist.php?artistID=<?php echo $featuredArtistID; ?>" class="card-link">Go to artist: <?php echo $featuredArtistID; ?></a>
                                     </div>
                                 </div>
                                 <?php
