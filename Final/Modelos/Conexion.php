@@ -4,10 +4,10 @@ namespace Modelos;
 class Conexion extends \PDO implements Persistente {
 
     public static $host = "localhost";
-    public static $port = "8809";
-    public static $user = "root";
-    public static $pass = null;
-    public static $dbname = "VisualArtShowcaseDB";
+    public static $port = "3306";
+    public static $user = "aaron";
+    public static $pass = "2padilla-";
+    public static $dbname = "aarondb";
 
     function  __construct() {
         try {

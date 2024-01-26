@@ -3,7 +3,7 @@
 // define("RUTA_BASE_WEB", '/Final'); //ruta a carpeta del proyecto
 // define("RUTA_BASE", $_SERVER['DOCUMENT_ROOT'] . RUTA_BASE_WEB);
 define("RUTA_BASE_WEB", '/~aaron/Final'); //ruta a carpeta del proyecto
-define("RUTA_BASE", '/home/aaron/public_html/Final' . RUTA_BASE_WEB);
+define("RUTA_BASE", '/home/aaron/public_html/Final');
 spl_autoload_register('cargador');
 
 function cargador($clase) {
