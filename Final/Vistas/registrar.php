@@ -11,7 +11,7 @@ if (Router::esPost()){
   $algunCampoVacio = empty($registro['name']) || empty($registro['username']) || empty($registro['password']) || empty($registro['email'] || empty($registro['profile_picture']));
 
   if (!$algunCampoVacio){
-    $isAvailable = Usuario::checkUsernameOrEmail($registro['username'], $registro['email']);
+    $isAvailable = Usuario::checkUsernameOrEmail($registro['username'], $registro['email'], $usuarioIdSesion);
     //$usernameAlreadyExists = Usuario::consultar(0, $registro['username']); //too noisy in php, and we don't need an object yet so..
     if($isAvailable === 1){
       $usuarioOBJ = new Usuario($registro); //crear objeto datos
