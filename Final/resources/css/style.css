@@ -102,7 +102,7 @@
 
 /* functionalities n animations */
 #preview-page {
-    z-index: 30;
+    z-index: 40;
     display: none;
     position: fixed;
     top: 0;
@@ -124,7 +124,7 @@
 }
 
 #magnifier { 
-    z-index: 3;
+    z-index: 50;
     display: none;
     position: fixed; 
     bottom: 0%;
