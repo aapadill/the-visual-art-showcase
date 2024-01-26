@@ -153,10 +153,12 @@ while ($dayID > 0) {
         ?>
 
         <div class="info-artist card-body ">
-            <h2 class="artist-name card-title"><b> <?php echo $weekArtist->artistName;?> </b></h2>
+            <a href="about-artist.php?artistID=<?php echo $weeklyShowcase->featuredArtistID;?>" style="color: black; text-decoration: none;">
+              <h2 class="artist-name card-title"><b> <?php echo $weekArtist->artistName;?> </b></h2> 
+            </a>
             <!-- antes, class="descripcion-artista" -->
             <div class="bio card-text">
-              <p> <?php echo $weekArtist->bio;?> </p>
+              <p class="card-text"> <?php echo $weekArtist->bio;?> </p>
             </div>
 
             <!-- <div class="week-artist card" id=""> -->

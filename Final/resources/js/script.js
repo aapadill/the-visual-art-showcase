@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //like
     document.addEventListener('DOMContentLoaded', function() {
         console.log("DOM loaded");
-        var likeIcons = document.querySelectorAll('.likeIcon'); // Assuming the class is likeIcon for the icons
+        var likeIcons = document.querySelectorAll('.likeIcon');
         likeIcons.forEach(function(icon) {
             icon.addEventListener('mousedown', function() {
                 var artworkId = this.getAttribute('data-artwork-id');
@@ -215,4 +215,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     });
+
+    
     
