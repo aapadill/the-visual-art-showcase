@@ -66,15 +66,15 @@ $submitted = 0; //hardcored, properly bring from table
                                 <?php
                                 if ($rolSesion == '1' || $rolSesion == '2' || $rolSesion == '3'){
                                 ?>
-                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('users/index.php');?>">Admin profile</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('likes/');?>">Likes</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('users/index.php');?>">Edit profile</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('likes.php');?>">Favorites</a></li>
                                 <?php
                                 }
                                 if ($rolSesion == '2'){
                                 ?> 
                                     <li><hr class="dropdown-divider"></li>
-                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artists/index-artist.php');?>">Admin your artist profile</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artworks/');?>">Admin your artworks</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artists/index-artist.php');?>">Edit artist profile</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('artworks/index.php');?>">Edit your artworks</a></li>
                                 <?php
                                 }
                                 if ($rolSesion == '3'){ 

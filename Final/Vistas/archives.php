@@ -15,7 +15,7 @@ include Router::direccion('/plantillas/header.php');
     <div class="row">
         <div class="col text">
             <h1>Archives</h1>
-            <p class="lead">Here you have access to our entire archive of showcases. Pick your favorites and hop straight to the ones you love!</p>
+            <p class="lead">Here you have access to our entire archive of showcases. Pick your favorites and hop straight to the ones you love! 🏛️</p>
         </div>
     </div>
 

@@ -14,7 +14,7 @@ if(empty($usuarioIdSesion)){
     <div class="row">
         <div class="col text-center">
             <h1>About that...</h1>
-            <p class="lead">Currently, we're not accepting submissions, but feel free to subscribe, and we'll let you know as soon as they open up again. Thanks for your interest @<?php echo $nombreSesion;?>! 📩</p>
+            <p class="lead">Currently, we're not accepting submissions, but feel free to subscribe, and we'll let you know as soon as they open up again. <br> Thanks for your interest @<?php echo $nombreSesion;?>! 📩</p>
             <a href="<?php Router::direccionWeb("index.php")?>" class="btn btn-primary">Take me home</a>
         </div>
     </div>
