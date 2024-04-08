@@ -1,7 +1,7 @@
 
 # Visual Art Showcase
 
-Visual Art Showcase is a web platform dedicated to bringing emerging artists into the spotlight. By providing a digital space for artists to display their work, we aim to connect them with a broader audience. Our platform enables users to explore a diverse range of artworks, follow their favorite artists, and stay updated with weekly showcases.
+Visual Art Showcase is a web platform dedicated to bringing emerging artists into the spotlight. By providing a digital space for artists to display their work, we aim to connect them with a broader audience. The platform enables users to explore a diverse range of artworks, follow their favorite artists, and stay updated with weekly showcases.
 
 ## Features
 
