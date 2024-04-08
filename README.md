@@ -29,7 +29,7 @@ Visual Art Showcase is a web platform dedicated to bringing emerging artists int
 
 1. Clone the repository to your local machine:
     ```
-    git clone https://github.com/deblish/visual-art-showcase.git
+    git clone https://github.com/deblish/visual-art-showcase
     ```
 2. Navigate into the project directory:
     ```
