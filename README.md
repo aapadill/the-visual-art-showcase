@@ -49,7 +49,7 @@ Visual Art Showcase is a web platform dedicated to bringing emerging artists int
 
 ## Contributing
 
-Not taking contributions to the Visual Art Showcase currently, but when ready, [CONTRIBUTING.md](CONTRIBUTING.md) will have the guidelines on how to make contributions.
+Not taking contributions for the Visual Art Showcase currently, but when possible, [CONTRIBUTING.md](CONTRIBUTING.md) will have the guidelines on how to make them.
 
 ## License
 
