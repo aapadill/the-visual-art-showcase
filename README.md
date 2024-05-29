@@ -50,12 +50,3 @@ Visual Art Showcase is a web platform dedicated to bringing emerging artists int
 ## Contributing
 
 Not taking contributions for the Visual Art Showcase currently, but when possible, [CONTRIBUTING.md](CONTRIBUTING.md) will have the guidelines on how to make them.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-
-## Acknowledgments
-
-- Special thanks to all the artists who share their incredible work on our platform.
-- Our community of users who continually support and inspire artists.
