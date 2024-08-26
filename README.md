@@ -1,5 +1,5 @@
 
-# Visual Art Showcase
+# Visual Art Showcase (CRUD Web-app)
 
 Visual Art Showcase is a web platform dedicated to bringing emerging artists into the spotlight. By providing a digital space for artists to display their work, we aim to connect them with a broader audience. The platform enables users to explore a diverse range of artworks, follow their favorite artists, and stay updated with weekly showcases.
 
@@ -17,35 +17,35 @@ Visual Art Showcase is a web platform dedicated to bringing emerging artists int
 - **Frontend**: HTML, CSS (Bootstrap), JavaScript
 - **Database**: MySQL
 
-## Getting Started
+## Get started
 
-### Prerequisites
+### Visit the page
 
-- PHP 7.4 or higher
-- MySQL 5.7 or higher
-- Composer (for dependency management)
+- The page is hosted in a personal domain: www.deblish.com/Final/Vistas/
+- Up to this point it is possible to register, give likes, subscribe and admin your own profile.
+- Future updates will include comments, follows, role changes, administration of users, artworks and more.
+- If you'te interested in testing a user without creating an account, please try
+- User: github-test Password: github-test
 
 ### Installation
 
-1. Clone the repository to your local machine:
+- If you're interested in testing it locally or in your own server:
+
+1. Clone the repository to your local directory:
     ```
     git clone https://github.com/deblish/visual-art-showcase
     ```
-2. Navigate into the project directory:
+2. Copy the /Final folder in your public-html or htdocs directory
     ```
-    cd visual-art-showcase
+    cp ~/visual-art-showcase/Final ~/htdocs/
     ```
-3. Install dependencies (if any):
-    ```
-    composer install
-    ```
-4. Create a MySQL database and import the `VisualArtShowcaseDB.sql` file.
-5. Configure your database connection in `Modelos/Conexion.php`.
-6. Start your local PHP server:
+3. Create a MySQL database and import the `VisualArtShowcaseDB.sql` file.
+4. Configure your database connection in `Modelos/Conexion.php`.
+5. Start your local PHP server:
     ```
     php -S localhost:8000
     ```
-7. Open your browser and navigate to `http://localhost:8000` to view the project.
+6. Open your browser and navigate to `http://localhost:8000` to view the project.
 
 ## Contributing
 
