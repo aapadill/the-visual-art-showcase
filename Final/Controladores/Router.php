@@ -24,7 +24,8 @@ class Router {
 
     //completa
     public static function direccion($ruta) {
-        return RUTA_BASE . "/Vistas/$ruta";
+        echo RUTA_BASE_WEB . "/Vistas/$ruta";
+        //return RUTA_BASE . "/Vistas/$ruta";
     }
 
     //ruta basica
@@ -34,7 +35,8 @@ class Router {
 
     //completa
     public static function rutaImagen($imagen) {
-        return RUTA_BASE . "/img/$imagen";
+        echo RUTA_BASE_WEB . "/images/$ruta";
+        //return RUTA_BASE . "/img/$imagen";
     }
 
     //ruta basica
