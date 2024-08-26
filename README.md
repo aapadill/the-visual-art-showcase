@@ -1,7 +1,7 @@
 
-# Visual Art Showcase (CRUD Web-app)
+# The Visual Art Showcase (CRUD Web-app)
 
-Visual Art Showcase is a web platform dedicated to bringing emerging artists into the spotlight. By providing a digital space for artists to display their work, we aim to connect them with a broader audience. The platform enables users to explore a diverse range of artworks, follow their favorite artists, and stay updated with weekly showcases.
+The Visual Art Showcase is a web app dedicated to bring emerging artists into the spotlight by providing a digital space for them to display their work, the main goal is to connect artists with art enthusiasts, no matter anyone's background, enabling users to explore a diverse range of artworks, follow their favorite artists, and stay updated with weekly showcases.
 
 ## Features
 
@@ -21,11 +21,11 @@ Visual Art Showcase is a web platform dedicated to bringing emerging artists int
 
 ### Visit the page
 
-- The page is hosted in a personal domain: www.deblish.com/Final/Vistas/
-- Up to this point it is possible to register, give likes, subscribe and admin your own profile.
-- Future updates will include comments, follows, role changes, administration of users, artworks and more.
-- If you'te interested in testing a user without creating an account, please try
-- User: github-test Password: github-test
+- The page is currently hosted in a personal domain: www.deblish.com/Final/Vistas/
+- Up to this point it is possible to register, give likes to artwork, subscribe to the page and admin your own profile.
+- Future updates will include comments, follows to artists, role changes, administration of users, artworks and more.
+- If you're interested in testing a user but without creating an account, please try with:
+- User: **github-test** Password: **github-test**
 
 ### Installation
 
