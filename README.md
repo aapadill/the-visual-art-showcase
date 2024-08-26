@@ -33,13 +33,13 @@ The Visual Art Showcase is a web app dedicated to bring emerging artists into th
 
 1. Clone the repository to your local directory:
     ```
-    git clone https://github.com/deblish/visual-art-showcase
+    git clone https://github.com/deblish/the-visual-art-showcase
     ```
 2. Copy the /Final folder in your public-html or htdocs directory
     ```
     cp ~/visual-art-showcase/Final ~/htdocs/
     ```
-3. Create a MySQL database and import the `VisualArtShowcaseDB.sql` file.
+3. Create a MySQL database using the `db/database.sql` and populate some testing data using the `db/populate.sql` file.
 4. Configure your database connection in `Modelos/Conexion.php`.
 5. Start your local PHP server:
     ```
