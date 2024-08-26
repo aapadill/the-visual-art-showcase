@@ -4,7 +4,8 @@ require_once('../../config/cargador.php');
 use Controladores\Router;
 use Modelos\Usuario;
 use Modelos\Artist;
-include Router::direccion('/plantillas/header.php');
+
+include('../plantillas/header.php');
 
 if(empty($usuarioSesion)){
     Router::direccionWeb('login.php');
@@ -38,28 +39,38 @@ if (Router::esPost() && !$registro['is_subscribed']) {
 // var_dump($resultados);
 ?>
 
+<?php
+    //default tab
+    $activeTab = 'profile';
+
+    //check if the 'tab' GET parameter is set
+    if (isset($_GET['tab'])) {
+        $activeTab = $_GET['tab'];
+    }
+?>
+
 <div class="container mt-5">
     <h2>Hi @<?php echo $nombreSesion; ?></h2>
     
     <!-- Tab Navigation -->
     <ul class="nav nav-tabs" id="adminProfileTabs" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">User Profile</a>
+            <a class="nav-link <?php echo ($activeTab == 'profile' ? 'active' : ''); ?>" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="<?php echo ($activeTab == 'profile' ? 'true' : 'false'); ?>">User Profile</a>
         </li>
         <?php if($resultados->roleID == '2'){?>
         <li class="nav-item">
-            <a class="nav-link" id="artist-tab" data-bs-toggle="tab" href="#artist" role="tab" aria-controls="artist" aria-selected="false">Artist profile</a>
+            <a class="nav-link <?php echo ($activeTab == 'artist' ? 'active' : ''); ?>" id="artist-tab" data-bs-toggle="tab" href="#artist" role="tab" aria-controls="artist" aria-selected="<?php echo ($activeTab == 'artist' ? 'true' : 'false'); ?>">Artist profile</a>
         </li>
         <?php } ?>
         <li class="nav-item">
-            <a class="nav-link" id="subscription-tab" data-bs-toggle="tab" href="#subscription" role="tab" aria-controls="subscription" aria-selected="false">Subscription</a>
+            <a class="nav-link <?php echo ($activeTab == 'subscription' ? 'active' : ''); ?>" id="subscription-tab" data-bs-toggle="tab" href="#subscription" role="tab" aria-controls="subscription" aria-selected="<?php echo ($activeTab == 'subscription' ? 'true' : 'false'); ?>">Subscription</a>
         </li>
     </ul>
 
     <!-- all tabs -->
     <div class="tab-content" id="adminProfileTabsContent">
         <!-- user tab -->
-        <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="tab-pane fade <?php echo ($activeTab == 'profile' ? 'show active' : ''); ?>" id="profile" role="tabpanel" aria-labelledby="profile-tab">
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title">User Information</h3>
@@ -79,7 +90,7 @@ if (Router::esPost() && !$registro['is_subscribed']) {
 
         <?php if($resultados->roleID == '2'){?>
         <!-- artist tab -->
-        <div class="tab-pane fade" id="artist" role="tabpanel" aria-labelledby="artist-tab">
+        <div class="tab-pane fade <?php echo ($activeTab == 'artist' ? 'show active' : ''); ?>" id="artist" role="tabpanel" aria-labelledby="artist-tab">
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title">Artist Information</h3>
@@ -93,10 +104,10 @@ if (Router::esPost() && !$registro['is_subscribed']) {
                 </div>
             </div>
         </div>
-        <?php } ?>
+        <?php } else if ($activeTab == 'artist') {Router::redireccionar("users/index.php");}?>
 
         <!-- subscribe Tab -->
-        <div class="tab-pane fade" id="subscription" role="tabpanel" aria-labelledby="subscription-tab">
+        <div class="tab-pane fade <?php echo ($activeTab == 'subscription' ? 'show active' : ''); ?>" id="subscription" role="tabpanel" aria-labelledby="subscription-tab">
         <?php if($subscribed == '1'){?>
             <div class="card">
                 <div class="card-body">
@@ -133,5 +144,5 @@ if (Router::esPost() && !$registro['is_subscribed']) {
 </div>
 
 <?php
-include Router::direccion('/plantillas/footer.php');
+include('../plantillas/footer.php');
 ?>

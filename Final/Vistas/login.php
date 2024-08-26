@@ -1,4 +1,5 @@
 <?php
+  ob_start(); //buffering trick
   require_once('../config/cargador.php');
   use Modelos\Usuario;
   use Controladores\Sesion;
@@ -32,12 +33,13 @@
         // else{
           // $vieneDeSubscribe = 0;
           // $sesion->insertar('fromSubscribe', 0); 
+          //Router::redireccionar('index.php');
           Router::redireccionar('index.php');
         // }
       }
-      else{
+      //else{
       //considerado //te quieres registrar mejor?
-      }
+      //}
     }
     else{
       var_dump("primero llena el formulario"); //no escribio en algun campo
@@ -48,8 +50,8 @@
   // }
 ?>
 
-<main>
-<div class="container row text-center">
+<!-- <main> -->
+<!-- <div class="container row text-center"> -->
   <h1 class="mt-4 mb-4 text-center">Login</h1>
   <div class="row" id="login">
     <form class="form-horizontal" action="login.php" method="POST" enctype="multipart/form-data">
@@ -96,8 +98,8 @@
       <a href="<?php Router::direccionWeb("registrar.php")?>" class="btn btn-secondary pull-right">Sign up</a>
     </div>
   </div>
-</div>
-</main>
+<!-- </div> -->
+<!-- </main> -->
 
 <?php
   include('./plantillas/footer.php');

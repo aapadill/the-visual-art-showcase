@@ -8,7 +8,7 @@ if (Router::esGet()) {
   Router::redireccionar('index.php');
 }
 
-include Router::direccion('plantillas/header.php');
+include('../plantillas/header.php');
 
 //Procesar Editar
 //!empty($_POST['user_id']) && !empty($_POST['name']) && !empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['password'])
@@ -33,4 +33,8 @@ if (Router::esPost()) {
 }
 // $error = urlencode('Existen campos necesarios en blanco, por favor llenelos');
 // Router::redireccionar('users/edit.php?error=' . $error);
+?>
+
+<?php
+include('../plantillas/footer.php');
 ?>

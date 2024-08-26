@@ -5,7 +5,8 @@ use Controladores\Router;
 use Modelos\Artist;
 use Modelos\Artwork;
 use Modelos\Like;
-include Router::direccion('/plantillas/header.php');
+
+include('../plantillas/header.php');
 
 if(!empty($usuarioIdSesion)){
     $likes = Like::consultar($usuarioIdSesion);
@@ -40,3 +41,7 @@ if(!empty($usuarioIdSesion)){
     </div>
     </div>
 </div>
+
+<?php
+include('../plantillas/footer.php');
+?>

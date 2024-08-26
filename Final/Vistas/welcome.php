@@ -3,7 +3,7 @@ ob_start(); //buffering trick
 require_once('../config/cargador.php');
 use Controladores\Router;
 
-include Router::direccion('/plantillas/header.php');
+include('./plantillas/header.php');
 
 $welcomeFlag = $sesion->obtener('welcomeValid') ?? 0;
 if(!$welcomeFlag){
@@ -23,5 +23,5 @@ $sesion->insertar('welcomeValid', 0); //flag is used
 </div>
 
 <?php
-include Router::direccion('/plantillas/footer.php');
+include('./plantillas/footer.php');
 ?>

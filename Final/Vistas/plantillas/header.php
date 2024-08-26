@@ -93,9 +93,9 @@ $submitted = 0; //hardcored, properly bring from table
                                     <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('cerrarSesion.php');?>">Log out</a></li>
                                 <?php
                                 }
-                                else{ 
-                                    $sesion.cerrarSesion();
-                                }
+                                //else{ 
+                                  //  $sesion.cerrarSesion();
+                                //}
                                 ?>
                             </ul>
                         </li>
@@ -110,7 +110,7 @@ $submitted = 0; //hardcored, properly bring from table
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Subscription </a>
                                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('users/index.php');?>">Admin Subscription</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="<?php Router::direccionWeb('users/index.php?tab=subscription');?>">Admin Subscription</a></li>
                                 </ul>
                             </li>
                         <?php

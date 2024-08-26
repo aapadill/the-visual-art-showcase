@@ -4,7 +4,7 @@ require_once('../config/cargador.php');
 use Controladores\Router;
 use Modelos\Usuario;
 
-include Router::direccion('/plantillas/header.php');
+include('./plantillas/header.php');
 
 if(empty($usuarioSesion)){
     //$sesion->insertar('fromSubscribe', 1); //you got a position ticket
@@ -53,6 +53,5 @@ if (Router::esPost() && !$usuarioSesion->isSubscribed) {
 </div>
 
 <?php
-// include your footer file
-include Router::direccion('/plantillas/footer.php');
+include('./plantillas/footer.php');
 ?>

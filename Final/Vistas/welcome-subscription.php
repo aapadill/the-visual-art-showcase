@@ -3,7 +3,7 @@ ob_start(); //buffering trick
 require_once('../config/cargador.php');
 use Controladores\Router;
 
-include Router::direccion('/plantillas/header.php');
+include('./plantillas/header.php');
 
 if(empty($usuarioIdSesion)){
     Router::redireccionar('login.php');
@@ -26,5 +26,5 @@ $sesion->insertar('welcomeValid2', 0); //flag used
 </div>
 
 <?php
-include Router::direccion('/plantillas/footer.php');
+include('./plantillas/footer.php');
 ?>

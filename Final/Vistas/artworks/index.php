@@ -3,7 +3,7 @@
 require_once('../../config/cargador.php');
 use Controladores\Router;
 
-include Router::direccion('/plantillas/header.php');
+include('../plantillas/header.php');
 
 ?>
 
@@ -18,5 +18,5 @@ include Router::direccion('/plantillas/header.php');
 </div>
 
 <?php
-include Router::direccion('/plantillas/footer.php');
+include('../plantillas/footer.php');
 ?>

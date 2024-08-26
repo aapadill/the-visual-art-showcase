@@ -1,9 +1,10 @@
 <?php
+ob_start(); //buffering trick
 require_once('../config/cargador.php');
 use Modelos\Usuario;
 use Controladores\Router;
 
-include Router::direccion('plantillas/header.php');
+include('./plantillas/header.php');
 
 if (Router::esPost()){
   $registro = $_POST;
@@ -31,6 +32,7 @@ if (Router::esPost()){
 }
 
 ?>
+  <h1 class="mt-4 mb-4 text-center">Sign up</h1>
   <form class="form" action="" method="post" enctype="multipart/form-data">
     <!-- <input type="hidden" name="user_id" value=""> -->
     <!-- necessary? -->
@@ -88,11 +90,11 @@ if (Router::esPost()){
       ?>
 
     <br>
-    <div class="col-md-6 offset-md-6">
+    <div class="col-md-8 offset-md-2">
       <button type="submit" class="btn btn-primary pull-right">Sign up</button>
     </div>
   </form>
 
 <?php
-include Router::direccion('plantillas/footer.php');
+include('./plantillas/footer.php');
 ?>

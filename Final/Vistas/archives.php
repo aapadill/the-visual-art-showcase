@@ -8,7 +8,7 @@ use Modelos\Artwork;
 use Modelos\ShowcaseArtwork;
 use Modelos\Category;
 
-include Router::direccion('/plantillas/header.php');
+include('./plantillas/header.php');
 ?>
 
 <div class="container mt-5">
@@ -99,7 +99,7 @@ include Router::direccion('/plantillas/header.php');
     <!-- n years -->
 </div>
 <?php
-include Router::direccion('/plantillas/footer.php');
+include('./plantillas/footer.php');
 ?>
 
 

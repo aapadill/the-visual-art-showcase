@@ -8,7 +8,7 @@ use Modelos\ShowcaseArtwork;
 use Modelos\Category;
 use Modelos\Like;
 
-include Router::direccion('/plantillas/header.php');
+include('./plantillas/header.php');
 
 $busqueda = htmlentities($_GET['buscar'] ?? ''); //texto a buscar
 $techniqueSelected = htmlentities($_GET['technique-select'] ?? 0); //technique chosen
@@ -24,7 +24,7 @@ if(!empty($usuarioIdSesion)){
 $filteredDayIDs = []; //days to display, affected by filter [alpha]
 
 //loop starts
-$day = WeeklyShowcase::convertToDate("3 March 2023"); //"now" //starting day
+$day = WeeklyShowcase::convertToDate("now"); //"now" //starting day //"3 March 2023"
 $dayID = WeeklyShowcase::whichID($day); // which week is $day
 
 //filtering days depending on technique selection..
@@ -205,4 +205,4 @@ while ($dayID > 0) {
 </div>
 
 <?php
-include Router::direccion('/plantillas/footer.php');
+include('./plantillas/footer.php');

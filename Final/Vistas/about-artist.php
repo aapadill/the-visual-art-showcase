@@ -3,7 +3,8 @@ require_once('../config/cargador.php');
 use Controladores\Router;
 use Modelos\Artist;
 use Modelos\Usuario;
-include Router::direccion('/plantillas/header.php');
+
+include('./plantillas/header.php');
 
 $artistID = $_GET['artistID'] ?? null;
 if ($artistID) {
@@ -33,5 +34,5 @@ if ($artistID) {
     }
 }
 
-include Router::direccion('/plantillas/footer.php');
+include ('./plantillas/footer.php');
 ?>

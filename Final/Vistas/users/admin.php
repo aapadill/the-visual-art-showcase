@@ -2,7 +2,8 @@
 require_once('../../config/cargador.php');
 use Controladores\Router;
 use Modelos\Usuario;
-include Router::direccion('/plantillas/header.php');
+
+include('../plantillas/header.php');
 
 if(empty($usuarioSesion) || $rolSesion == 1 || $rolSesion == 2){
     Router::direccionWeb('login.php');
@@ -17,5 +18,5 @@ var_dump($resultados);
 ?>
 
 <?php
-include Router::direccion('/plantillas/footer.php');
+include('../plantillas/footer.php');
 ?>

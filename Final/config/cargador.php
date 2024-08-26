@@ -1,7 +1,7 @@
 <?php
 //Estas van en un archivo de constantes
 define("RUTA_BASE_WEB", '/Final'); //ruta a carpeta del proyecto
-define("RUTA_BASE", $_SERVER['DOCUMENT_ROOT'] . RUTA_BASE_WEB);
+define("RUTA_BASE", $_SERVER['DOCUMENT_ROOT'] . RUTA_BASE_WEB); ///public_html
 spl_autoload_register('cargador');
 
 function cargador($clase) {

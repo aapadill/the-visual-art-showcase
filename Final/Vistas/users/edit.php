@@ -4,7 +4,7 @@ use Controladores\Router;
 use Modelos\Usuario;
 use Modelos\Artist;
 
-include Router::direccion('plantillas/header.php');
+include('../plantillas/header.php');
 
 if(empty($usuarioIdSesion)){
     Router::redireccionar('login.php');
@@ -75,3 +75,8 @@ $userOBJ = Usuario::consultar($usuarioIdSesion);
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+
+
+<?php
+include('../plantillas/footer.php');
+?>

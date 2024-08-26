@@ -4,7 +4,7 @@ include_once '../../config/cargador.php';
 use Controladores\Router;
 use Modelos\Producto;
 
-include Router::direccion('plantillas/header.php');
+include('../plantillas/header.php');
 // debug
 // echo '<pre>';
 // var_dump($usuarioIdSesion);
@@ -113,4 +113,4 @@ if (Router::esPost()) {
     </table>
   </div>
 <?php
-include Router::direccion('plantillas/footer.php');
+include('./plantillas/footer.php');

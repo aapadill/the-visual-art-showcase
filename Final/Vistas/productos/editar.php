@@ -4,7 +4,7 @@ use Controladores\Router;
 use Modelos\Producto;
 use Modelos\Usuario;
 
-include Router::direccion('plantillas/header.php');
+include('../plantillas/header.php');
 
 //debug
 // echo '<pre>';
@@ -198,5 +198,5 @@ else{
         </div>
     <?php
   }
-  include Router::direccion('/plantillas/footer.php');
+  include('./plantillas/footer.php');
 ?>
